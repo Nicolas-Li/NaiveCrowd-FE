@@ -15,7 +15,7 @@ FROM nginx:1.18.0
 
 RUN mkdir /app
 COPY --from=build-stage /app/dist /app
-COPY nginx/ /etc/nginx/
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
 #RUN rm -r /etc/nginx/conf.d \
 # && ln -s $HOME/nginx /etc/nginx/conf.d
