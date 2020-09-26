@@ -6,7 +6,7 @@ import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // 引入router
-import router from './router/index'
+import router from './router/router'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)

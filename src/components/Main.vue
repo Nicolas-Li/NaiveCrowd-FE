@@ -4,6 +4,13 @@
             <el-row>
                 <el-col :span="20">
                     <el-menu class="grid-content bg-purple menu-left" mode="horizontal">
+<!--
+需求方
+创建任务
+发布任务
+验收任务
+结算任务
+-->
                         <el-menu-item index="1" disabled>测试</el-menu-item>
                         <el-menu-item index="2" disabled>测试</el-menu-item>
                         <el-menu-item index="3" disabled>测试</el-menu-item>
