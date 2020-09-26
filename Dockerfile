@@ -1,5 +1,5 @@
+# build stage
 FROM node:12.18.2
-
 RUN npm config set registry https://registry.npm.taobao.org
 
 ENV FRONTEND=/opt/frontend
@@ -13,7 +13,7 @@ RUN npm install
 COPY . $FRONTEND
 RUN npm run build
 
-# Second stage
+# production stage
 FROM nginx:1.18.0
 
 ENV HOME=/opt/app
@@ -31,3 +31,4 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
