@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 import Register from "@/components/Register";
 import Login from "@/components/Login";
 import Main from "@/components/Main";
+import TaskCreate from "@/components/TaskCreate"
 
 const routes = [
     {
@@ -14,6 +15,7 @@ const routes = [
             {path: '/main', component: Main},
             {path: '/login', component: Login},
             {path: '/register', component: Register},
+            {path:'/taskcreate',component:TaskCreate}
         ]
     },
 ]
