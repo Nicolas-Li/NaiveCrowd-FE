@@ -1,6 +1,9 @@
+// 引入ajax
+import axios from 'axios'
+
 export default {
     async logIn() {
-        this.axios.post('/log/login', {
+        axios.post('api/log/login', {
             identity: 'user',
             name: 'ljj',
             password: 'wghnb'

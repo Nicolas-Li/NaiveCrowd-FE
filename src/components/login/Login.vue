@@ -23,6 +23,7 @@
 </template>
 
 <script>
+    import fun from "../../net/login"
     export default {
         name: "Login",
         data() {
@@ -60,6 +61,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         alert('submit!');
+                        fun.logIn();
                     } else {
                         console.log('error submit!!');
                         return false;
