@@ -4,10 +4,10 @@
             <el-row>
                 <el-col :span="20">
                     <el-menu class="grid-content bg-purple menu-left" router mode="horizontal">
-                        <el-menu-item index="/taskcreate" disabled>任务创建</el-menu-item>
-                        <el-menu-item index="2" disabled>测试</el-menu-item>
-                        <el-menu-item index="3" disabled>测试</el-menu-item>
-                        <el-menu-item index="4" disabled>测试</el-menu-item>
+                        <el-menu-item index="/taskcreate">任务创建</el-menu-item>
+                        <el-menu-item index="/acceptance">验收</el-menu-item>
+                        <el-menu-item index="/settlement">结算</el-menu-item>
+                        <el-menu-item index="/export">导出</el-menu-item>
                     </el-menu>
                 </el-col>
                 <el-col :span="4">
@@ -25,7 +25,11 @@
                 </el-header>
                 <el-main>
                     <el-row :gutter="20">
-                        <el-col :span="12"><el-button type="primary">文本任务</el-button></el-col>
+                        <el-col :span="12">
+                            <router-link to="/taskcreate/text">
+                                <el-button router type="primary">文本任务</el-button>
+                            </router-link>
+                            </el-col>
                         <el-col :span="12"><el-button type="primary">图片任务</el-button></el-col>
                     </el-row>
                 </el-main>
