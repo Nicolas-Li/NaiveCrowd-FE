@@ -1,7 +1,7 @@
 const API={
-    GET_MESSAGE_LIST:{
-        path:"/api/message",
-        method:"get"
+    LOGIN:{
+        path:"api/log/login",
+        method:"post"
     },
     POST_NEW_MESSAGE:{
         path:"/api/message",

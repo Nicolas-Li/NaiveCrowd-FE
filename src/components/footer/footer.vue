@@ -1,13 +1,15 @@
 <template>
-    $END$
+    <el-footer class="footer">@81X86</el-footer>
 </template>
 
 <script>
     export default {
-        name: "footer"
+        name: "Footer"
     }
 </script>
 
 <style scoped>
-
+    .footer {
+        height: 50px;
+    }
 </style>

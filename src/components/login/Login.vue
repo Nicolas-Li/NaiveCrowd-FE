@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import fun from "../../net/login"
+    import fun from "@/net/login"
     export default {
         name: "Login",
         data() {
@@ -59,11 +59,11 @@
         methods: {
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        alert('submit!');
-                        fun.logIn();
+                    console.log(this.$cookies.get("identity"))
+                    if (valid && this.$cookies.isKey("identity")) {
+                        fun.login(this.$cookies.get("identity"), this.ruleForm.name, this.ruleForm.pass);
                     } else {
-                        console.log('error submit!!');
+                        alert('error submit!!');
                         return false;
                     }
                 });

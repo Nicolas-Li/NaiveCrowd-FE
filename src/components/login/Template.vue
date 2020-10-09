@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-header>
+        <el-header style="height: 50px">
             <el-row>
                 <el-col :span="18">
                     <el-menu class="grid-content menu-left" mode="horizontal">
@@ -18,16 +18,20 @@
                 </el-col>
             </el-row>
         </el-header>
-        <el-main>
+        <el-main class="content">
             <router-view/>
         </el-main>
-        <el-footer>Footer</el-footer>
+        <Footer/>
     </el-container>
 </template>
 
 <script>
+    import Footer from "@/components/footer/footer"
     export default {
         name: "LoginTemplate",
+        components: {
+            Footer,
+        },
     }
 </script>
 
@@ -43,6 +47,9 @@
         font-size: 250%;
         color: #a310ad;
         text-shadow: 0 2px 2px #000;
+    }
+    .content {
+        min-height: calc(100vh - 100px);
     }
 
     .grid-content {

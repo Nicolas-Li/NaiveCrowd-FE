@@ -6,13 +6,13 @@
                     选择身份
                 </h1>
                 <template v-for="identity in identities">
-                    <router-link :to="identity.url" v-bind:key="identity.name">
+                    <router-link :to="identity.url" :key="identity.name" @click.native="setIdentityInCookie(identity.name_en)">
                         <el-card class="identity" shadow="hover">
                             <el-row>
-                                <el-col span="10">
+                                <el-col :span="10">
                                     <el-avatar :size="60" class="avatar">{{ identity.avatar }}</el-avatar>
                                 </el-col>
-                                <el-col span="14" class="content-right">
+                                <el-col :span="14" class="content-right">
                                     <span class="name">{{ identity.name }}</span><br/>
                                     <span class="description">{{ identity.description }}</span></el-col>
                             </el-row>
@@ -34,15 +34,22 @@
                         url: "/login/user",
                         avatar: "user",
                         name: "用户",
+                        name_en: "user",
                         description: "可以领取任务,完成任务获得回报",
                     },
                     {
                         url: "/login/demander",
                         avatar: "demander",
                         name: "需求方",
+                        name_en: "demander",
                         description: "可以创建任务，发布任务，验收任务",
                     }
                 ]
+            }
+        },
+        methods: {
+            setIdentityInCookie: function (identity) {
+                this.$cookies.set("identity", identity, "30d", "/")
             }
         }
     }
