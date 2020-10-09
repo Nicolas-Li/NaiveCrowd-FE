@@ -27,13 +27,13 @@
                     <el-row>
                         <el-col :span="4" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
                             <el-card :body-style="{ padding: '0px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+                            <img src="http://ydschool-online.nos.netease.com/1602209174044-file.jpg" class="image">
                             <div style="padding: 14px;">
-                                <span>任务test</span>
-                                <div class="bottom clearfix">
+                                <span>任务{{o+2}}</span>
+                                
                                 <div>已完成100%</div>
-                                <el-button type="text" class="button">开始导出</el-button>
-                                </div>
+                                <el-button type="primary" class="button">开始导出</el-button>
+                                
                             </div>
                             </el-card>
                         </el-col>

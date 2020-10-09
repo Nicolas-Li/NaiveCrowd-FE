@@ -24,14 +24,20 @@
                     任务创建
                 </el-header>
                 <el-main>
-                    <el-row :gutter="20">
-                        <el-col :span="12">
-                            <router-link to="/taskcreate/text">
-                                <el-button router type="primary">文本任务</el-button>
+                    <el-row>
+                        <el-col :span="4" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
+                            <el-card :body-style="{ padding: '0px' }">
+                            <img src="http://ydschool-online.nos.netease.com/1602209174044-file.jpg" class="image">
+                            <div style="padding: 14px;">
+                                <router-link to="/taskcreate/text">
+                                <el-button router type="primary">任务模板{{o}}创建</el-button>
                             </router-link>
-                            </el-col>
-                        <el-col :span="12"><el-button type="primary">图片任务</el-button></el-col>
+                            </div>
+                            </el-card>
+                        </el-col>
+                        
                     </el-row>
+
                 </el-main>
                 <el-footer></el-footer>
             </el-container>
@@ -51,6 +57,29 @@
 </script>
 
 <style scoped>
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .button {
+    padding: 5px;
+  }
+
+  .image {
+    width: 100%;
+    display: block;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+      display: table;
+      content: "";
+  }
+  
+  .clearfix:after {
+      clear: both
+  }
   .el-row {
     margin-bottom: 20px;
   }

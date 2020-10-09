@@ -90,7 +90,7 @@
             { min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur' }
           ],
           price: [
-            { required: true, message: '请选择活动区域', trigger: 'blur' }
+            { required: true, message: '请输入预算', trigger: 'blur' }
           ],
           date1: [
             { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
