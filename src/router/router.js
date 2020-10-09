@@ -1,5 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import TaskCreate from "@/components/TaskCreate";
+import TextTaskCreate from "@/components/TextTaskCreate";
+import Settlement from "@/components/Settlement";
+import Export from "@/components/Export";
+import Acceptance from "@/components/Acceptance";
 
 Vue.use(VueRouter)
 
@@ -27,6 +32,11 @@ const routes = [
                     {path: '/register/demander', component: () => import("@/components/register/Register")},
                 ]
             },
+            {path: '/taskcreate', component: TaskCreate},
+            {path: '/taskcreate/text', component: TextTaskCreate},
+            {path: '/settlement', component: Settlement},
+            {path: '/export', component: Export},
+            {path: '/acceptance', component: Acceptance},
         ]
     },
 ]
