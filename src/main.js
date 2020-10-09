@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Vuex from 'vuex'
 // 完整引入 Element
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -11,12 +10,12 @@ import router from './router/router'
 import VueCookies from 'vue-cookies'
 
 Vue.config.productionTip = false
-Vue.use(Vuex)
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(VueCookies)
 
 new Vue({
   router,
+  store: import("@/vuex/store"),
   render: h => h(App),
 }).$mount('#app')

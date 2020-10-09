@@ -1,18 +1,12 @@
 // 引入ajax
 import axios from 'axios'
+axios.defaults.withCredentials = true
 import API from "@/net/API"
-import "@/mock/index"
 
 export default {
-    async login(identity, name, password) {
-        axios.post(API.LOGIN.path, {
-            identity: identity,
-            name: name,
+    async login(password) {
+        return await axios.post(API.LOGIN.path, {
             password: password
-        }).then(res => {
-            console.log(res);
-        }).catch(err => {
-            console.log(err);
-        });
+        })
     }
 }

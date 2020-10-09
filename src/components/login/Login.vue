@@ -24,6 +24,7 @@
 
 <script>
     import fun from "@/net/login"
+
     export default {
         name: "Login",
         data() {
@@ -59,11 +60,21 @@
         methods: {
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
-                    console.log(this.$cookies.get("identity"))
                     if (valid && this.$cookies.isKey("identity")) {
-                        fun.login(this.$cookies.get("identity"), this.ruleForm.name, this.ruleForm.pass);
+                        this.$cookies.set("name", this.ruleForm.name, "30d", "/")
+                        fun.login(this.ruleForm.pass)
+                            .then(res => {
+                                let data = res.data
+                                if (data.type === "failed") {
+                                    this.$message.error(data.message)
+                                } else if (data.type === "success") {
+                                    this.$message.success("登录成功")
+                                }
+                            }).catch(err => {
+                            this.$message.error(err.toString())
+                        })
                     } else {
-                        alert('error submit!!');
+                        this.$message.error('提交信息不正确！');
                         return false;
                     }
                 });
