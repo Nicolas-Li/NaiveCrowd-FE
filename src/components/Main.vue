@@ -3,11 +3,9 @@
         <el-header style="height: 50px">
             <el-row>
                 <el-col :span="20">
-                    <el-menu class="grid-content bg-purple menu-left" router mode="horizontal">
-                        <el-menu-item index="/taskcreate">任务创建</el-menu-item>
-                        <el-menu-item index="2" disabled>测试</el-menu-item>
-                        <el-menu-item index="3" disabled>测试</el-menu-item>
-                        <el-menu-item index="4" disabled>测试</el-menu-item>
+                    <el-menu class="grid-content menu-left" router mode="horizontal">
+                        <el-menu-item index="/main"><h1 class="main">Naive Crowd</h1></el-menu-item>
+                        <el-menu-item index="/main/task">任务广场</el-menu-item>
                     </el-menu>
                 </el-col>
                 <el-col :span="4">
@@ -45,8 +43,7 @@
             </el-row>
         </el-header>
         <el-main class="content">
-            Main
-            <!--            <router-view/>-->
+            <router-view/>
         </el-main>
         <Footer/>
     </el-container>
@@ -70,12 +67,21 @@
 </script>
 
 <style scoped>
-    .content {
-        min-height: calc(100vh - 100px);
+    .main {
+        text-decoration: none;
+        margin-top: -5px;
+
+        transform-style: inherit;
+
+        text-align: center;
+        font-style: italic;
+        font-size: 250%;
+        color: #a310ad;
+        text-shadow: 0 2px 2px #000;
     }
 
-    .bg-purple {
-        background: #d3dce6;
+    .content {
+        min-height: calc(100vh - 100px);
     }
 
     .bg-purple-light {

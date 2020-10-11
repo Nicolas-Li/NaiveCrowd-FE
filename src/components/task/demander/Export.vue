@@ -21,7 +21,7 @@
         <el-main>
             <el-container>
                 <el-header>
-                    验收
+                    导出
                 </el-header>
                 <el-main>
                     <el-row>
@@ -29,10 +29,10 @@
                             <el-card :body-style="{ padding: '0px' }">
                             <img src="http://ydschool-online.nos.netease.com/1602209174044-file.jpg" class="image">
                             <div style="padding: 14px;">
-                                <span>任务{{o}}</span>
+                                <span>任务{{o+2}}</span>
                                 
                                 <div>已完成100%</div>
-                                <el-button type="primary" class="button">开始验收</el-button>
+                                <el-button type="primary" class="button">开始导出</el-button>
                                 
                             </div>
                             </el-card>
@@ -49,7 +49,7 @@
 
 <script>
     export default {
-        name: "Acceptance",
+        name: "Export",
         data() {
             return {}
         },
@@ -71,13 +71,13 @@
     display: block;
   }
 
-  .clearfix:before,
-  .clearfix:after {
+  .clear-fix:before,
+  .clear-fix:after {
       display: table;
       content: "";
   }
   
-  .clearfix:after {
+  .clear-fix:after {
       clear: both
   }
   .el-row {

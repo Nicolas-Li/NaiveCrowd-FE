@@ -71,13 +71,13 @@
     display: block;
   }
 
-  .clearfix:before,
-  .clearfix:after {
+  .clear-fix:before,
+  .clear-fix:after {
       display: table;
       content: "";
   }
   
-  .clearfix:after {
+  .clear-fix:after {
       clear: both
   }
   .el-row {

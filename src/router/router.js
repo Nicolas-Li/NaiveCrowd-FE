@@ -1,10 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import TaskCreate from "@/components/TaskCreate";
-import TextTaskCreate from "@/components/TextTaskCreate";
-import Settlement from "@/components/Settlement";
-import Export from "@/components/Export";
-import Acceptance from "@/components/Acceptance";
 
 Vue.use(VueRouter)
 
@@ -13,7 +8,41 @@ const routes = [
         path: '', redirect: '/main', component: () => import("@/App"),
         children: [
             // 主界面
-            {path: '/main', component: () => import("@/components/Main")},
+            {
+                path: '/main', component: () => import("@/components/Main"),
+                children: [
+                    // 任务界面
+                    {
+                        path: '/main/task', component: () => import("@/components/task/Template"),
+                        children: [
+                            {
+                                path: '/main/task',
+                                component: () => import("@/components/task/TaskSquare")
+                            },
+                            {
+                                path: '/main/task/create',
+                                component: () => import("@/components/task/demander/TaskCreate")
+                            },
+                            {
+                                path: '/main/task/create/text',
+                                component: () => import("@/components/task/demander/TextTaskCreate")
+                            },
+                            {
+                                path: '/main/task/settlement',
+                                component: () => import("@/components/task/demander/Settlement")
+                            },
+                            {
+                                path: '/main/task/export',
+                                component: () => import("@/components/task/demander/Export")
+                            },
+                            {
+                                path: '/main/task/acceptance',
+                                component: () => import("@/components/task/demander/Acceptance")
+                            },
+                        ]
+                    },
+                ]
+            },
             // 个人信息
             {
                 path: '/person', component: () => import("@/components/person/Template"),
@@ -39,11 +68,6 @@ const routes = [
                     {path: '/register/demander', component: () => import("@/components/register/Register")},
                 ]
             },
-            {path: '/taskcreate', component: TaskCreate},
-            {path: '/taskcreate/text', component: TextTaskCreate},
-            {path: '/settlement', component: Settlement},
-            {path: '/export', component: Export},
-            {path: '/acceptance', component: Acceptance},
         ]
     },
 ]

@@ -3,10 +3,8 @@
         <el-header style="height: 50px">
             <el-row>
                 <el-col :span="18">
-                    <el-menu class="grid-content menu-left" mode="horizontal">
-                        <el-menu-item>
-                            <router-link to="/main"><h1 class="main">Naive Crowd</h1></router-link>
-                        </el-menu-item>
+                    <el-menu class="grid-content bg-purple menu-left" router mode="horizontal">
+                        <el-menu-item index="/main"><h1 class="main">Naive Crowd</h1></el-menu-item>
                         <el-menu-item>精致的众包任务分配平台</el-menu-item>
                     </el-menu>
                 </el-col>
@@ -47,7 +45,7 @@
     import Footer from "@/components/footer/footer"
     import Person from "@/components/person/Person"
     export default {
-        name: "InfoTemplate",
+        name: "PersonTemplate",
         components: {
             Footer,
             Person,
