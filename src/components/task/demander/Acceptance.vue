@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+<el-container>
         <el-header>
             <el-row>
                 <el-col :span="20">
@@ -21,35 +21,35 @@
         <el-main>
             <el-container>
                 <el-header>
-                    任务创建
+                    验收
                 </el-header>
                 <el-main>
                     <el-row>
                         <el-col :span="4" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
                             <el-card :body-style="{ padding: '0px' }">
-                                <img src="http://ydschool-online.nos.netease.com/1602209174044-file.jpg" class="image">
-                                <div style="padding: 14px;">
-                                    <router-link to="/taskcreate/text">
-                                        <el-button router type="primary">任务模板{{o}}创建</el-button>
-                                    </router-link>
-                                </div>
+                            <img src="http://ydschool-online.nos.netease.com/1602209174044-file.jpg" class="image">
+                            <div style="padding: 14px;">
+                                <span>任务{{o}}</span>
+                                
+                                <div>已完成100%</div>
+                                <el-button type="primary" class="button">开始验收</el-button>
+                                
+                            </div>
                             </el-card>
                         </el-col>
-
                     </el-row>
-
                 </el-main>
                 <el-footer></el-footer>
             </el-container>
         </el-main>
         <el-footer></el-footer>
     </el-container>
-
+    
 </template>
 
 <script>
     export default {
-        name: "TaskCreate",
+        name: "Acceptance",
         data() {
             return {}
         },
@@ -57,39 +57,36 @@
 </script>
 
 <style scoped>
-    .bottom {
-        margin-top: 13px;
-        line-height: 12px;
-    }
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
 
-    .button {
-        padding: 5px;
-    }
+  .button {
+    padding: 5px;
+  }
 
-    .image {
-        width: 100%;
-        display: block;
-    }
+  .image {
+    width: 100%;
+    display: block;
+  }
 
-    .clearfix:before,
-    .clearfix:after {
-        display: table;
-        content: "";
-    }
-
-    .clearfix:after {
-        clear: both
-    }
-
-    .el-row {
-        margin-bottom: 20px;
-    }
-
-    .el-col {
-        border-radius: 4px;
-    }
-
-    .bg-purple {
+  .clear-fix:before,
+  .clear-fix:after {
+      display: table;
+      content: "";
+  }
+  
+  .clear-fix:after {
+      clear: both
+  }
+  .el-row {
+    margin-bottom: 20px;
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple {
         background: #d3dce6;
     }
 

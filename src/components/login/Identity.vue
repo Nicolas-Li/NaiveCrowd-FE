@@ -77,7 +77,6 @@
 
     .identity {
         margin-top: 20px;
-        border-color: #c917be;
     }
 
     .content-right {

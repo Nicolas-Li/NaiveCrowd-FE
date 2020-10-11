@@ -16,6 +16,5 @@ Vue.use(VueCookies)
 
 new Vue({
   router,
-  store: import("@/vuex/store"),
   render: h => h(App),
 }).$mount('#app')
