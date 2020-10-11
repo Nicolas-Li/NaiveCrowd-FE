@@ -69,6 +69,8 @@
                                     this.$message.error(data.message)
                                 } else if (data.type === "success") {
                                     this.$message.success("登录成功")
+                                    this.$cookies.set("isLogin", true, "30d", "/")
+                                    this.$router.push({ path: '/main' })
                                 }
                             }).catch(err => {
                             this.$message.error(err.toString())

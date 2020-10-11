@@ -14,6 +14,13 @@ const routes = [
         children: [
             // 主界面
             {path: '/main', component: () => import("@/components/Main")},
+            // 个人信息
+            {
+                path: '/person', component: () => import("@/components/person/Template"),
+                children: [
+                    {path: '/person', component: () => import("@/components/person/Detail")},
+                ]
+            },
             // 登陆界面
             {
                 path: '/login', component: () => import("@/components/login/Template"),

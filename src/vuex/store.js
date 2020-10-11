@@ -6,12 +6,12 @@ Vue.use(Vuex)
 // 保存全局变量
 const store = new Vuex.Store({
     state: {
-        identity: -1, // -1 is none, 0 is user, 1 is demander
-        currentUser: null,
-        isLogin: false
+        // isLogin: true
     },
     mutations: {
-
+        // login (isLogin) {
+        //     isLogin = true
+        // },
     }
 })
 
