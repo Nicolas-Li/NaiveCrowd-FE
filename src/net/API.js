@@ -7,12 +7,25 @@ const API = {
         path: "/api/log/register",
         method: "post"
     },
-    GET_INFO: {
+    GET_PERSON_INFO: {
         path: "/api/log/getmessage",
         method: "get"
     },
     LOG_DEL: {
         path: "/api/log/logout",
+        method: "post"
+    },
+
+    LOAD_MORE_TASK: {
+        path: "/api/task/loadmore",
+        method: "post"
+    },
+    LOAD_DEMANDER_TASK: {
+        path: "/api/task/load",
+        method: "get"
+    },
+    CREATE_TASK: {
+        path: "/api/task/createtask",
         method: "post"
     }
 }

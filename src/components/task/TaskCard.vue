@@ -1,5 +1,12 @@
 <template>
-    <el-card :body-style="{ padding: '0px' }" style="height: 250px; width: 400px; background: black"/>
+    <el-card class="card">
+        <el-image v-if="task.cover"
+                  style="width: 100%" fit="cover"
+                  :src="task.cover"/>
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.intro }}</p>
+        <el-button>{{ task.time }}</el-button>
+    </el-card>
 </template>
 
 <script>
@@ -10,8 +17,11 @@
                 type: Object,
                 default: () => {
                     return {
-                        name: "任务样例",
-                        time: new Date(),
+                        cover: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+                        title: "任务样例",
+                        intro: "整合人工智能，实现自动驾驶，进阶人机交互",
+                        time: new Date().toLocaleString(),
+
                     }
                 }
             }
@@ -20,34 +30,10 @@
 </script>
 
 <style scoped>
-
-    .time {
-        font-size: 13px;
-        color: #999;
-    }
-
-    .bottom {
-        margin-top: 13px;
-        line-height: 12px;
-    }
-
-    .button {
-        padding: 0;
-        float: right;
-    }
-
-    .image {
-        width: 100%;
-        display: block;
-    }
-
-    .clear-fix:before,
-    .clear-fix:after {
-        display: table;
-        content: "";
-    }
-
-    .clear-fix:after {
-        clear: both
+    .card {
+        border-radius: 20px;
+        margin-bottom: -10px;
+        width: 280px;
+        overflow: hidden;
     }
 </style>
