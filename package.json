@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "node index.js",
-    "server": "nodemon index.js --ignore client"
+    "server": "nodemon index.js --ignore client",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -23,9 +24,16 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "@vue/test-utils": "^1.1.0",
+    "babel": "^6.23.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "jest": "^26.5.3",
+    "jsdom": "^16.4.0",
+    "jsdom-global": "^3.0.2",
+    "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -42,11 +50,11 @@
     },
     "rules": {
       "generator-star-spacing": "off",
-      "no-tabs":"off",
-      "no-unused-vars":"off",
-      "no-unused-labels":"off",
-      "no-console":"off",
-      "no-irregular-whitespace":"off",
+      "no-tabs": "off",
+      "no-unused-vars": "off",
+      "no-unused-labels": "off",
+      "no-console": "off",
+      "no-irregular-whitespace": "off",
       "no-debugger": "off"
     }
   },
@@ -54,5 +62,31 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "```\r npm install\r ```",
+  "main": "babel.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.secoder.net:81X86/NaiveCrowdFrontEnd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
+  }
 }
