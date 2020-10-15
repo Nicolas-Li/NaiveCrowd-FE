@@ -4,8 +4,7 @@
         <el-header class="header">
             <el-row>
                 <el-col :span="20">
-                    <el-menu class="grid-content menu-left" mode="horizontal"
-                             router default-active="/main/task/square">
+                    <el-menu class="grid-content menu-left" mode="horizontal" router>
                         <el-menu-item index="/main"><h1 class="main">Naive Crowd</h1></el-menu-item>
                         <el-menu-item index="/main/task/square">任务广场</el-menu-item>
                         <el-menu-item index="/main/task/demander">我的任务</el-menu-item>

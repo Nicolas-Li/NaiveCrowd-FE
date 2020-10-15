@@ -26,20 +26,24 @@ const routes = [
                                 component: () => import("@/components/task/demander/MyTasks")
                             },
                             {
+                                // 需求方 创建任务
                                 path: '/main/task/create',
                                 component: () => import("@/components/task/demander/TaskCreate")
                             },
                             {
-                                path: '/main/task/create/text',
-                                component: () => import("@/components/task/demander/TextTaskCreate")
+                                // 需求方 配置任务
+                                path: '/main/task/configuration',
+                                component: () => import("@/components/task/demander/Configuration")
                             },
                             {
-                                path: '/main/task/settlement',
-                                component: () => import("@/components/task/demander/Settlement")
-                            },
-                            {
+                                // 需求方 验收任务
                                 path: '/main/task/acceptance',
                                 component: () => import("@/components/task/demander/Acceptance")
+                            },
+                            {
+                                // 需求方 结算任务
+                                path: '/main/task/settlement',
+                                component: () => import("@/components/task/demander/Settlement")
                             },
                             {
                                 path: '/main/task/export',
