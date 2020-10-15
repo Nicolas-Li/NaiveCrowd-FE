@@ -1,5 +1,5 @@
 import {mount} from '@vue/test-utils'
-import Login from '@/components/login/Login'
+import Login from '@/components/log/login/Login'
 import ElementUI from 'element-ui'
 import Vue from 'vue'
 Vue.use(ElementUI)

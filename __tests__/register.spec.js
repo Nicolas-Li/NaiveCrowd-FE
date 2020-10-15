@@ -1,5 +1,5 @@
 import {mount} from '@vue/test-utils'
-import Register from '@/components/register/Register'
+import Register from '@/components/log/register/Register'
 //import ElementUI from 'element-ui'
 // import Vue from 'vue'
 // Vue.use(ElementUI)
