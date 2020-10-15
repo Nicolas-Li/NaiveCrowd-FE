@@ -11,7 +11,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@vue/test-utils": "^1.1.0",
     "axios": "^0.20.0",
+    "babel-core": "^6.26.3",
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
     "jest": "^26.5.3",
@@ -19,8 +21,10 @@
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-cookies": "^1.7.4",
+    "vue-jest": "^3.0.7",
     "vue-router": "^3.4.4",
     "vue-stick": "^1.0.7",
+    "vue-test": "^1.0.0",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
@@ -85,5 +89,4 @@
       "^@/(.*)$": "<rootDir>/src/$1"
     }
   }
-  
 }
