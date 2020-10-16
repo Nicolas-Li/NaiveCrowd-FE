@@ -1,11 +1,14 @@
-import {mount} from '@vue/test-utils'
+import {mount,config,createLocalVue} from '@vue/test-utils'
 import Login from '@/components/login/Login'
 import ElementUI from 'element-ui'
 import Vue from 'vue'
-Vue.use(ElementUI)
+const localVue=createLocalVue()
+localVue.use(ElementUI)
+config.stubs.transition = false
+
 
 describe('Login',()=>{
-    const wrapper = mount(Login)
+    const wrapper = mount(Login,{localVue})
     const submitButton=wrapper.find('.el-button')
 
     it('have right buttons',()=>{
