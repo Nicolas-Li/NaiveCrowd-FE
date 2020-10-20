@@ -1,7 +1,7 @@
 <template>
     <el-main>
         <h1>创建新任务</h1>
-        <el-form :model="ruleForm" :rules="rules" label-width="100px" ref="ruleForm">
+        <el-form :model="ruleForm" :rules="rules" label-width="100px" ref="ruleForm" class="form">
             <el-row>
                 <el-col :span="12">
                     <el-form-item label="任务标题" prop="title">
@@ -160,4 +160,7 @@
 </script>
 
 <style scoped>
+    .form {
+        padding-right: 100px;
+    }
 </style>

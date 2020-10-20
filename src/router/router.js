@@ -33,7 +33,9 @@ const routes = [
                             {
                                 // 需求方 配置任务
                                 path: '/main/task/configuration',
-                                component: () => import("@/components/task/demander/Configuration")
+                                name: 'configuration',
+                                component: () => import("@/components/task/demander/Configuration"),
+                                props: true
                             },
                             {
                                 // 需求方 验收任务

@@ -38,9 +38,6 @@
                 }
             }
         },
-        mounted: function () {
-            // console.log(this.task.status)
-        },
         data() {
             return {
             }
@@ -64,7 +61,10 @@
             chooseTask() {
                 switch (this.task.status) {
                     case 0:
-                        this.$router.push('/main/task/configuration')
+                        this.$router.push({
+                            name: 'configuration',
+                            params: this.task
+                        })
                         break
                 }
             },
