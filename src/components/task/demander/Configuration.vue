@@ -18,7 +18,7 @@
                         </el-col>
                         <el-col :span="2">-</el-col>
                         <el-col :span="11">
-                            <el-form-item prop="date">
+                            <el-form-item prop="time">
                                 <el-time-picker placeholder="选择时间" style="width: 100%;"
                                                 v-model="ruleForm.time"/>
                             </el-form-item>
