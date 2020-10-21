@@ -20,11 +20,11 @@
                                    type="info"/>
                     </el-col>
                 </el-row>
-                <i :key="answerId" v-for="(answerId, index) in answersOfUsersList">
+                <i :key="answerId" v-for="(answerId, index) in answersOfUsersIdList">
                     <el-button @click="seeAnswersOfUser(answerId)" class="singleButton" icon="el-icon-edit" plain
                                round
                                type="warning">
-                        答案{{ normalIndex(answersOfUsersList.length, index) }}
+                        答案{{ normalIndex(answersOfUsersIdList.length, index) }}
                     </el-button>
                 </i>
             </el-col>
@@ -50,34 +50,57 @@
                 },
                 miniTasksIdList: ["id"],
                 miniTasksIndex: null,
-                answersOfUsersList: ["id"],
+                answersOfUsersIdList: ["id"],
                 dialogVisible: false,
             }
         },
         mounted: function () {
-            let task = this.$route.params
-            if (task.id && Number(task.status) === 3) {
-                this.task = task
-            } else {
-                this.$message.error("验收出错啦！即将返回前一页面")
-                setTimeout(() => {
-                    this.$router.back()
-                }, 1500)
-            }
+            this.assertTaskId()
         },
         methods: {
+            assertTaskId() {
+                let task = this.$route.params
+                if (task.id && Number(task.status) === 3) {
+                    this.task = task
+                } else {
+                    this.$message.error("验收出错啦！即将返回前一页面")
+                    setTimeout(() => {
+                        this.$router.back()
+                    }, 1500)
+                }
+            },
             seeAnswersOfUsers(miniTasksId, index) {
                 console.log(miniTasksId)
                 this.miniTasksIndex = index
-                this.span = {
-                    miniTasks: 12,
-                    answersOfUsers: 12
+                this.showAnswer()
+            },
+            showAnswer() {
+                let that = this
+                let spanInterval = setInterval(incSpan, 8);
+                function incSpan() {
+                    if (that.span.miniTasks === 12) {
+                        clearInterval(spanInterval);
+                    } else {
+                        that.span = {
+                            miniTasks: that.span.miniTasks - 1,
+                            answersOfUsers: that.span.answersOfUsers + 1
+                        }
+                    }
                 }
             },
             hideAnswer() {
-                this.span = {
-                    miniTasks: 24,
-                    answersOfUsers: 0
+                let that = this
+                this.answersOfUsersIdList = []
+                let spanInterval = setInterval(decSpan, 8);
+                function decSpan() {
+                    if (that.span.miniTasks === 24) {
+                        clearInterval(spanInterval);
+                    } else {
+                        that.span = {
+                            miniTasks: that.span.miniTasks + 1,
+                            answersOfUsers: that.span.answersOfUsers - 1
+                        }
+                    }
                 }
             },
             seeAnswersOfUser(answerId) {
