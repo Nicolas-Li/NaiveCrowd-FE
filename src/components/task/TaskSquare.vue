@@ -1,44 +1,42 @@
 <template>
-    <el-carousel indicator-position="none" :autoplay="false">
-        <el-carousel-item v-for="item in 4" :key="item">
-            <el-container>
-                <el-col style="height: 100%">
-                    <el-row :span="12">
-                        <el-col :span="8">
-                            <TaskCard/>
-                        </el-col>
-                        <el-col :span="8">
-                            <TaskCard/>
-                        </el-col>
-                        <el-col :span="8">
-                            <TaskCard/>
-                        </el-col>
-                    </el-row>
-                    <el-row :span="12">
-                        <el-col :span="8">
-                            <TaskCard/>
-                        </el-col>
-                        <el-col :span="8">
-                            <TaskCard/>
-                        </el-col>
-                        <el-col :span="8">
-                            <TaskCard/>
-                        </el-col>
-                    </el-row>
-
-                </el-col>
-            </el-container>
-        </el-carousel-item>
-    </el-carousel>
+    <Stick :list="tasks" @onScrollEnd="loadMore">
+        <template slot-scope="scope">
+            <TaskCard :task="scope.data"/>
+        </template>
+    </Stick>
 </template>
 
 <script>
     import TaskCard from "@/components/task/TaskCard";
+    import Stick from "vue-stick"
+    import fun from "@/net/task"
 
     export default {
         name: "TaskSquare",
         components: {
             TaskCard,
+            Stick: Stick.component
+        },
+        data() {
+            return {
+                tasks: [],
+            }
+        },
+        mounted: function () {
+            if (this.tasks.length === 0) {
+                this.loadMore(10)
+            }
+        },
+        methods: {
+            loadMore: function (number = 20) {
+                fun.loadMore(this.tasks.length, number)
+                    .then(res => {
+                        let data = res.data
+                        this.tasks = this.tasks.concat(data)
+                    }).catch(err => {
+                    this.$message.error(err.toString())
+                })
+            }
         }
     }
 </script>

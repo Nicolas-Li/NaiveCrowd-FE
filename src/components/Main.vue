@@ -1,11 +1,13 @@
 <template>
     <el-container>
-        <el-header style="height: 50px">
+        <el-header/>
+        <el-header class="header">
             <el-row>
                 <el-col :span="20">
-                    <el-menu class="grid-content menu-left" router mode="horizontal">
+                    <el-menu class="grid-content menu-left" mode="horizontal" router>
                         <el-menu-item index="/main"><h1 class="main">Naive Crowd</h1></el-menu-item>
-                        <el-menu-item index="/main/task">任务广场</el-menu-item>
+                        <el-menu-item index="/main/task/square">任务广场</el-menu-item>
+                        <el-menu-item index="/main/task/demander">我的任务</el-menu-item>
                     </el-menu>
                 </el-col>
                 <el-col :span="4">
@@ -45,18 +47,14 @@
         <el-main class="content">
             <router-view/>
         </el-main>
-        <Footer/>
     </el-container>
 </template>
 
 <script>
-    import Footer from "@/components/footer/footer"
 
     export default {
         name: 'Main',
-        components: {
-            Footer,
-        },
+        components: {},
         data() {
             return {
                 isLogin: this.$cookies.get('isLogin') === "true",
@@ -67,6 +65,14 @@
 </script>
 
 <style scoped>
+    .header {
+        height: 50px;
+        position: fixed;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
     .main {
         text-decoration: none;
         margin-top: -5px;
@@ -82,6 +88,7 @@
 
     .content {
         min-height: calc(100vh - 100px);
+        overflow: hidden;
     }
 
     .bg-purple-light {
