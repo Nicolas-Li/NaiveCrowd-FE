@@ -29,7 +29,7 @@
     "vuex": "^3.5.1",
     "gulp-run": "^1.7.1",
     "sonarqube-scanner": "^2.7.0",
-    "jasmine": "^2.5.2",
+    "jasmine": "^2.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
