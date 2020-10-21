@@ -49,6 +49,11 @@ const routes = [
                                 path: '/main/task/export',
                                 component: () => import("@/components/task/demander/Export")
                             },
+                            {
+                                //用户方 我的任务
+                                path: '/main/task/user',
+                                component: () => import("@/components/task/user/MyTasks")
+                            },
                         ]
                     },
                 ]
