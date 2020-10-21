@@ -9,7 +9,11 @@
                 <el-row>{{ email }}</el-row>
             </el-col>
             <el-col :span="14"><br/></el-col>
-            <el-col :span="4">
+            <el-col :span="2">
+                <el-row class="money-value">{{ money }}</el-row>
+                <el-row class="credit-label"><i class="el-icon-money"/>钱包</el-row>
+            </el-col>
+            <el-col :span="2">
                 <el-row class="credit-value">{{ credit }}</el-row>
                 <el-row class="credit-label"><i class="el-icon-magic-stick"/>信誉值</el-row>
             </el-col>
@@ -53,6 +57,7 @@
                 email: "unknown",
                 sex: "unknown",
                 credit: 100,
+                money: 0,
                 dialogVisible: false,
                 password: null
             }
@@ -72,6 +77,7 @@
                             this.sex = data.sex === "non-binary" ? "el-icon-link" : "el-icon-" + data.sex;
                             this.email = data.email
                             this.credit = data.credit ? data.credit : 100
+                            this.money = data.money ? data.money : 0
                         }
                     }).catch(err => {
                         this.$message.error(err.toString())
@@ -126,6 +132,11 @@
 
     .credit-value {
         color: #9c0bdb;
+        font-weight: bolder;
+        font-size: xx-large;
+    }
+    .money-value {
+        color: #8d6900;
         font-weight: bolder;
         font-size: xx-large;
     }

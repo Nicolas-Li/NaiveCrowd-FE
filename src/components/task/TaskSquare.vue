@@ -31,7 +31,7 @@
             loadMore: function (number = 20) {
                 fun.loadMore(this.tasks.length, number)
                     .then(res => {
-                        let data = res.data
+                        let data = res.data.data
                         this.tasks = this.tasks.concat(data)
                     }).catch(err => {
                     this.$message.error(err.toString())

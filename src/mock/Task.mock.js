@@ -6,6 +6,7 @@ Mock.setup({timeout: "200-400"})
 let taskList = []
 for (let i = 0; i < 1000; i++) {
     taskList.push({
+        id: 1,
         cover: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
         title: "任务样例",
         intro: "介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍",
@@ -17,11 +18,12 @@ for (let i = 0; i < 1000; i++) {
 }
 Mock.mock(API.LOAD_MORE_TASK.path,API.LOAD_MORE_TASK.method,(rqst)=>{
     let data = JSON.parse(rqst.body)
-    return taskList.slice(data.start, data.start + data.num)
+    return { data: taskList.slice(data.start, data.start + data.num) }
 })
 Mock.mock(API.LOAD_DEMANDER_TASK.path,API.LOAD_DEMANDER_TASK.method,(rqst)=>{
     for (let i = 0; i < taskList.length; i++) {
         taskList[i].status = i % 6
+        taskList[i].id = i + 1
     }
-    return taskList.slice(0, 10)
+    return { data: taskList.slice(0, 10) }
 })
