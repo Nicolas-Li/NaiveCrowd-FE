@@ -31,6 +31,14 @@ const API = {
     CONFIG_TASK: {
         path: "/api/task/configtask",
         method: "post"
+    },
+    RELEASE_TASK: {
+        path: "/api/task/releasetask",
+        method: "post"
+    },
+    TERMINATE_TASK: {
+        path: "/api/task/terminatetask",
+        method: "post"
     }
 }
 

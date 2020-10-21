@@ -35,11 +35,11 @@ const routes = [
                                 path: '/main/task/configuration',
                                 name: 'configuration',
                                 component: () => import("@/components/task/demander/Configuration"),
-                                props: true
                             },
                             {
                                 // 需求方 验收任务
                                 path: '/main/task/acceptance',
+                                name: 'acceptance',
                                 component: () => import("@/components/task/demander/Acceptance")
                             },
                             {

@@ -1,5 +1,5 @@
 <template>
-    <el-main>
+    <el-main v-if="task.id">
         <h1>配置任务</h1>
         <el-form :model="ruleForm" :rules="rules" class="form" label-width="100px" ref="ruleForm">
             <el-row>
@@ -58,7 +58,7 @@
                         <el-row>
                             <el-col :span="7">每个任务有</el-col>
                             <el-col :span="12">
-                                <el-input type="number" v-model="ruleForm.miniTaskNum"/>
+                                <el-input type="number" v-model="ruleForm.miniTasksNum"/>
                             </el-col>
                             <el-col :span="5">道题目</el-col>
                         </el-row>
@@ -69,13 +69,13 @@
                         <el-col :span="6">每个任务奖励</el-col>
                         <el-col :span="7">
                             <el-form-item prop="miniTaskBonus1">
-                                <el-input type="number" v-model="ruleForm.miniTaskBonus1"/>
+                                <el-input type="number" v-model="ruleForm.miniTasksBonus1"/>
                             </el-form-item>
                         </el-col>
                         <el-col :span="2">元</el-col>
                         <el-col :span="7">
                             <el-form-item prop="miniTaskBonus2">
-                                <el-input type="number" v-model="ruleForm.miniTaskBonus2"/>
+                                <el-input type="number" v-model="ruleForm.miniTasksBonus2"/>
                             </el-form-item>
                         </el-col>
                         <el-col :span="2">分</el-col>
@@ -107,9 +107,9 @@
                     date: null,
                     time: null,
                     problems: null,
-                    miniTaskNum: null,
-                    miniTaskBonus1: null,
-                    miniTaskBonus2: null,
+                    miniTasksNum: null,
+                    miniTasksBonus1: null,
+                    miniTasksBonus2: null,
                 },
                 rules: {
                     date: [
@@ -121,13 +121,13 @@
                     problems: [
                         {required: true, message: '请上传正确格式的题目文件', trigger: 'blur'}
                     ],
-                    miniTaskNum: [
+                    miniTasksNum: [
                         {required: true, message: '请输入小任务大小', trigger: 'blur'}
                     ],
-                    miniTaskBonus1: [
+                    miniTasksBonus1: [
                         {required: true, message: '请输入小任务金钱/元', trigger: 'blur'}
                     ],
-                    miniTaskBonus2: [
+                    miniTasksBonus2: [
                         {required: true, message: '请输入小任务金钱/分', trigger: 'blur'}
                     ]
                 },
@@ -160,7 +160,7 @@
                 this.$message.error("配置出错啦！即将返回前一页面")
                 setTimeout(() => {
                     this.$router.back()
-                }, 2000)
+                }, 1500)
             }
         },
         methods: {
@@ -185,7 +185,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.isSubmitting = true
-                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTaskNum, this.miniTaskBonus)
+                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTasksNum, this.miniTasksBonus)
                             .then(res => {
                                 this.isSubmitting = false
                                 let data = res.data
@@ -223,8 +223,8 @@
                 }
                 return deadline.getTime()
             },
-            miniTaskBonus() {
-                return this.ruleForm.miniTaskBonus1 * 100 + this.ruleForm.miniTaskBonus2
+            miniTasksBonus() {
+                return this.ruleForm.miniTasksBonus1 * 100 + this.ruleForm.miniTasksBonus2
             },
             showButton() {
                 return this.isSubmitting ? "正在配置" : "立即配置"
