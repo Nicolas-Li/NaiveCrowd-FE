@@ -5,7 +5,8 @@
             <el-col :span="span.miniTasks">
                 <h4>小任务列表</h4>
                 <i :key="miniTasksId" v-for="(miniTasksId, index) in miniTasksIdList">
-                    <el-button @click="seeAnswersOfUsers(miniTasksId, index)" class="singleButton" icon="el-icon-edit" plain
+                    <el-button @click="seeAnswersOfUsers(miniTasksId, index)" class="singleButton" icon="el-icon-edit"
+                               plain
                                round
                                type="success">
                         小任务{{ normalIndex(miniTasksIdList.length, index) }}
@@ -75,32 +76,15 @@
                 this.showAnswer()
             },
             showAnswer() {
-                let that = this
-                let spanInterval = setInterval(incSpan, 8);
-                function incSpan() {
-                    if (that.span.miniTasks === 12) {
-                        clearInterval(spanInterval);
-                    } else {
-                        that.span = {
-                            miniTasks: that.span.miniTasks - 1,
-                            answersOfUsers: that.span.answersOfUsers + 1
-                        }
-                    }
+                this.span = {
+                    miniTasks: 12,
+                    answersOfUsers: 12
                 }
             },
             hideAnswer() {
-                let that = this
-                this.answersOfUsersIdList = []
-                let spanInterval = setInterval(decSpan, 8);
-                function decSpan() {
-                    if (that.span.miniTasks === 24) {
-                        clearInterval(spanInterval);
-                    } else {
-                        that.span = {
-                            miniTasks: that.span.miniTasks + 1,
-                            answersOfUsers: that.span.answersOfUsers - 1
-                        }
-                    }
+                this.span = {
+                    miniTasks: 24,
+                    answersOfUsers: 0
                 }
             },
             seeAnswersOfUser(answerId) {

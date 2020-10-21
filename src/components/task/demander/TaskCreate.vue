@@ -1,7 +1,7 @@
 <template>
     <el-main>
         <h1>创建新任务</h1>
-        <el-form :model="ruleForm" :rules="rules" label-width="100px" ref="ruleForm" class="form">
+        <el-form :model="ruleForm" :rules="rules" class="form" label-width="100px" ref="ruleForm">
             <el-row>
                 <el-col :span="12">
                     <el-form-item label="任务标题" prop="title">
@@ -33,13 +33,13 @@
             <el-form-item label="上传封面" prop="cover" required>
                 <el-upload
                         :before-upload="beforeCoverUpload"
-                        :on-remove="handleCoverRemove"
                         :http-request="() => {null}"
                         :limit="1"
                         :multiple="false"
+                        :on-remove="handleCoverRemove"
                         action="null"
                         list-type="picture-card">
-                    <el-button size="small" type="success" :disabled="uploadAble">点击上传<br/>任务封面</el-button>
+                    <el-button :disabled="uploadAble" size="small" type="success">点击上传<br/>任务封面</el-button>
                     <div class="el-upload__tip" slot="tip">只能上传一个jpg/png文件，且不超过2M</div>
                 </el-upload>
             </el-form-item>
