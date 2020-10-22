@@ -15,7 +15,7 @@
                 <el-row :span="6">截止时间</el-row>
             </el-col>
             <el-col :span="10">
-                <el-button @click="chooseTask">{{ showButton }}</el-button>
+                <el-button @click="TaskView">{{ showButton }}</el-button>
             </el-col>
         </el-row>
     </el-card>
@@ -47,7 +47,7 @@
         },
         computed: {
             showStatus() {
-                let statusList = ["未完成","待验收","待结算","待领取","任务结束"]
+                let statusList = ["未完成","待验收","待结算","奖励待领取","任务结束"]
                 return statusList[this.task.status]
             },
             showDate() {
@@ -56,11 +56,14 @@
                 return t.toLocaleString()
             },
             showButton() {
-                let statusList = ["开始做题","查看","","我要领取",""]
+                let statusList = ["开始做题","查看详情","查看详情","我要领取","查看详情"]
                 return statusList[this.task.status]
             },
         },
         methods: {
+            TaskView(){
+                this.$router.push('/main/task/view')
+            }
         }
     }
 </script>

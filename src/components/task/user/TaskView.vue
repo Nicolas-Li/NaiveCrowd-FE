@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-header>{{title}}</el-header>
+        <el-header class='title'>{{title}}</el-header>
         <el-main>
             <el-divider></el-divider>
             <el-row :gutter="20">
@@ -8,6 +8,7 @@
                 <el-col :span="6"><div align='left'>题目类型：{{type}}</div></el-col>
                 <el-col :span="6"><div align='left'>预期收益：{{earn}}</div></el-col>
                 <el-col :span="6"><div align='left'>正确率要求：无</div></el-col>
+                <el-col :span="6"><div align='left'>截止日期：2020-11-20</div></el-col>
             </el-row>
             <el-divider></el-divider>
             <el-row>
@@ -34,7 +35,7 @@
             return {
                 title: '题目标题',
                 number:20,
-                descr:'题目描述',
+                descr:'题目描述介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
                 type:'选择题',
                 earn:'10'
             }
@@ -48,5 +49,8 @@
 </script>
 
 <style scoped>
-
+    .title {
+        font-size: x-large;
+        font-weight: bolder;
+    }
 </style>
