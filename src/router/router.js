@@ -54,6 +54,11 @@ const routes = [
                                 path: '/main/task/user',
                                 component: () => import("@/components/task/user/MyTasks")
                             },
+                            {
+                                //用户方 任务详情
+                                path: '/main/task/view',
+                                component: () => import("@/components/task/user/TaskView")
+                            },
                         ]
                     },
                 ]
