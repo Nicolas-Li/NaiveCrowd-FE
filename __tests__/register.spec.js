@@ -1,14 +1,24 @@
-import {mount} from '@vue/test-utils'
+import {mount,config,createLocalVue} from '@vue/test-utils'
 import Register from '@/components/log/register/Register'
-//import ElementUI from 'element-ui'
-// import Vue from 'vue'
-// Vue.use(ElementUI)
+import ElementUI from 'element-ui'
+import Vue from 'vue'
+const localVue=createLocalVue()
+localVue.use(ElementUI)
+config.stubs.transition = false
 
 describe('Register',()=>{
-    const wrapper = mount(Register)
+    const wrapper = mount(Register,{localVue})
     //const submitButton = wrapper.find('.el-button')
 
-    wrapper.setData({ruleForm:{name:'yxb',pass:'123456',checkPass:'123456',email:'abc@mails.com',sex:'male'}})
+    wrapper.setData({
+        ruleForm:{
+            name:'yxb',
+            pass:'123456',
+            checkPass:'123456',
+            email:'abc@mails.com',
+            sex:'male'
+        }
+    })
     it('name',async()=>{
         expect(wrapper.vm.ruleForm.name).toBe('yxb')
     })
