@@ -39,6 +39,22 @@ const API = {
     TERMINATE_TASK: {
         path: "/api/task/terminatetask",
         method: "post"
+    },
+    SEE_MINI_TASKS_OF_TASK: {
+        path: "/api/check/seeminitasksoftask",
+        method: "post"
+    },
+    SEE_ANSWERS_OF_USERS: {
+        path: "/api/check/seeanswersofusers",
+        method: "post"
+    },
+    SEE_ANSWERS_OF_USER: {
+        path: "/api/check/seeanswersofuser",
+        method: "post"
+    },
+    REFUSE_ANSWERS_OF_USER: {
+        path: "/api/check/refuseanswersofuser",
+        method: "post"
     }
 }
 
