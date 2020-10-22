@@ -37,4 +37,16 @@ export default {
     async terminateTask(id) {
         return await axios.post(API.TERMINATE_TASK.path, { id })
     },
+    async getMiniTasks(id) {
+        return await axios.post(API.SEE_MINI_TASKS_OF_TASK.path, { id })
+    },
+    async getAnswerIds(id) {
+        return await axios.post(API.SEE_ANSWERS_OF_USERS.path, { id })
+    },
+    async getProblemsAndUsers(id) {
+        return await axios.post(API.SEE_ANSWERS_OF_USER.path, { id })
+    },
+    async refuseAnswer(id) {
+        return await axios.post(API.REFUSE_ANSWERS_OF_USER.path, { id })
+    },
 }

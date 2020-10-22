@@ -31,12 +31,16 @@
             </el-col>
         </el-row>
         <el-dialog :visible.sync="dialogVisible">
-            hhh
+            {{ dialogAnswer }}
+            <el-button @click="refuseAnswer" type="warning">拒绝</el-button>
+            <el-button @click="acceptAnswer" type="success">接受</el-button>
         </el-dialog>
     </el-main>
 </template>
 
 <script>
+    import fun from "@/net/task"
+
     export default {
         name: "Acceptance",
         data() {
@@ -52,28 +56,69 @@
                 miniTasksIdList: ["id"],
                 miniTasksIndex: null,
                 answersOfUsersIdList: ["id"],
+
                 dialogVisible: false,
+                dialogAnswerId: null,
+                dialogAnswer: {
+                    userID: null,
+                    content: null,
+                    choice: null,
+                    judgement: null
+                },
             }
         },
         mounted: function () {
-            this.assertTaskId()
+            if (this.assertTaskId()) {
+                this.seeMiniTasksOfTask()
+            }
         },
         methods: {
+            normalIndex: function (listLength, index) {
+                let len = (listLength - 1).toString().length
+                return (Array(len).join("0") + index).slice(-len)
+            },
             assertTaskId() {
                 let task = this.$route.params
                 if (task.id && Number(task.status) === 3) {
                     this.task = task
+                    return true
                 } else {
                     this.$message.error("验收出错啦！即将返回前一页面")
                     setTimeout(() => {
                         this.$router.back()
                     }, 1500)
                 }
+                return false
+            },
+            seeMiniTasksOfTask() {
+                this.miniTasksIdList = []
+                fun.getMiniTasks(this.task.id)
+                    .then(res => {
+                        let data = res.data
+                        if (data.type === "success") {
+                            this.miniTasksIdList = data.miniTasksIdList
+                        } else if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        }
+                    }).catch(err => {
+                    this.$message.error(err.toString())
+                })
             },
             seeAnswersOfUsers(miniTasksId, index) {
-                console.log(miniTasksId)
-                this.miniTasksIndex = index
-                this.showAnswer()
+                this.answersOfUsersIdList = []
+                fun.getAnswerIds(miniTasksId)
+                    .then(res => {
+                        let data = res.data
+                        if (data.type === "success") {
+                            this.miniTasksIndex = index
+                            this.showAnswer()
+                            this.answersOfUsersIdList = data.answersOfUsersIdList
+                        } else if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        }
+                    }).catch(err => {
+                    this.$message.error(err.toString())
+                })
             },
             showAnswer() {
                 this.span = {
@@ -88,12 +133,42 @@
                 }
             },
             seeAnswersOfUser(answerId) {
-                console.log(answerId)
-                this.dialogVisible = true
+                this.dialogAnswerId = answerId
+                fun.getProblemsAndUsers(this.dialogAnswerId)
+                    .then(res => {
+                        let data = res.data
+                        if (data.type === "success") {
+                            this.dialogAnswer = {
+                                userID: data.userID,
+                                content: data.content,
+                                choice: data.choice,
+                                judgement: data.judgement
+                            }
+                            this.dialogVisible = true
+                        } else if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        }
+                    }).catch(err => {
+                    this.$message.error(err.toString())
+                })
             },
-            normalIndex: function (listLength, index) {
-                let len = (listLength - 1).toString().length
-                return (Array(len).join("0") + index).slice(-len)
+            refuseAnswer() {
+                fun.refuseAnswer(this.dialogAnswerId)
+                    .then(res => {
+                        let data = res.data
+                        if (data.type === "success") {
+                            this.$message.success(data.message)
+                        } else if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        }
+                        this.acceptAnswer()
+                    }).catch(err => {
+                    this.acceptAnswer()
+                    this.$message.error(err.toString())
+                })
+            },
+            acceptAnswer() {
+                this.dialogVisible = false
             }
         },
     }

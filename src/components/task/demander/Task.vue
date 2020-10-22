@@ -75,6 +75,7 @@
                         fun.releaseTask(this.task.id)
                             .then(res => {
                                 let data = res.data
+                                this.loading = false
                                 if (data.type === "failed") {
                                     this.$message.error(data.message)
                                 } else if (data.type === "success") {
@@ -90,6 +91,7 @@
                         fun.terminateTask(this.task.id)
                             .then(res => {
                                 let data = res.data
+                                this.loading = false
                                 if (data.type === "failed") {
                                     this.$message.error(data.message)
                                 } else if (data.type === "success") {
