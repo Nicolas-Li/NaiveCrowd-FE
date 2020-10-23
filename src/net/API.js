@@ -27,6 +27,14 @@ const API = {
     CREATE_TASK: {
         path: "/api/task/createtask",
         method: "post"
+    },
+    GET_PROGRAMS_OF_MINITASK:{
+        path:"/api/task/getproblemsofminitask",
+        method:"post"
+    },
+    SUBMIT_ANSWER:{
+        path:"/api/answer/submitanswer",
+        method:"post"
     }
 }
 
