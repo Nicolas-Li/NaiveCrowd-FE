@@ -28,6 +28,10 @@ const API = {
         path: "/api/task/createtask",
         method: "post"
     },
+    GET_TEMPLATE: {
+        path: "/api/task/gettemplate",
+        method: "post"
+    },
     CONFIG_TASK: {
         path: "/api/task/configtask",
         method: "post"
