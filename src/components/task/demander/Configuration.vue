@@ -161,7 +161,7 @@
                     miniTasksBonus1: null,
                     miniTasksBonus2: null,
                     miniTasksTime: null,
-                    miniTasksLimit: null,
+                    miniTasksLimit: 2,
                 },
                 rules: {
                     date: [
@@ -216,7 +216,7 @@
         },
         methods: {
             beforeProblemsUpload(file) {
-                const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/zip')
+                const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
                 if (!isTXTorZIP) {
                     this.$message.error('上传封面图片只能是 TXT/ZIP 格式!')
                 } else {
@@ -246,7 +246,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.isSubmitting = true
-                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.miniTasksTime, this.miniTasksLimit, this.miniTasksType)
+                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.ruleForm.miniTasksTime, this.ruleForm.miniTasksLimit, this.ruleForm.miniTasksType)
                             .then(res => {
                                 this.isSubmitting = false
                                 let data = res.data
