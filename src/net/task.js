@@ -2,7 +2,7 @@ import axios from 'axios'
 
 axios.defaults.withCredentials = true
 import API from "@/net/API"
- import "@/mock/index"
+// import "@/mock/index"
 
 export default {
     async loadMore(start, num) {
@@ -33,6 +33,9 @@ export default {
             headers: {'Content-Type': 'multipart/form-data'}
         }
         return await axios.post(API.CONFIG_TASK.path, formData, config)
+    },
+    async beforeReleaseTask(id) {
+        return await axios.post(API.BEFORE_RELEASE_TASK.path, { id })
     },
     async releaseTask(id) {
         return await axios.post(API.RELEASE_TASK.path, { id })

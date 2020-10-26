@@ -101,12 +101,12 @@
             <el-row>
                 <el-col :span="12">
                     <el-form-item label="题目类型" prop="miniTasksType" required>
-                        <el-select v-model="ruleForm.miniTasksType" placeholder="请选择题目类型">
+                        <el-select placeholder="请选择题目类型" v-model="ruleForm.miniTasksType">
                             <el-option
-                                    v-for="item in miniTasksTypeOptions"
                                     :key="item.value"
                                     :label="item.label"
-                                    :value="item.value">
+                                    :value="item.value"
+                                    v-for="item in miniTasksTypeOptions">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -148,9 +148,9 @@
                     intro: "任务介绍"
                 },
                 miniTasksTypeOptions: [
-                    { label: "填空题", value: "completion", },
-                    { label: "选择题", value: "choice", },
-                    { label: "图片判断题", value: "photo-judge", },
+                    {label: "填空题", value: "completion",},
+                    {label: "选择题", value: "choice",},
+                    {label: "图片判断题", value: "photo-judge",},
                 ],
                 ruleForm: {
                     date: null,
@@ -208,7 +208,7 @@
                 this.ruleForm.time = new Date()
                 this.ruleForm.time.setTime(dateTime.getTime())
             } else {
-                this.$message.error("配置出错啦！即将返回前一页面")
+                this.$message.warning("配置出错啦！即将返回前一页面")
                 setTimeout(() => {
                     this.$router.back()
                 }, 1500)
@@ -236,7 +236,12 @@
                         this.$message.error(data.message)
                     } else if (data.type === "success") {
                         let url = data.templateUrl
-                        window.open(url)
+                        let a = document.createElement('a')
+                        a.href = 'data:text/plain;charset=utf-8,' + url
+                        a.download = type + '.txt'
+                        document.body.appendChild(a)
+                        a.click()
+                        document.body.removeChild(a)
                     }
                 }).catch(err => {
                     this.$message.error(err.toString())

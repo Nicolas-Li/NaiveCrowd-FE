@@ -83,7 +83,7 @@
                     this.task = task
                     return true
                 } else {
-                    this.$message.error("验收出错啦！即将返回前一页面")
+                    this.$message.warning("验收出错啦！即将返回前一页面")
                     setTimeout(() => {
                         this.$router.back()
                     }, 1500)
