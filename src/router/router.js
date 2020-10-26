@@ -69,7 +69,8 @@ const routes = [
             {
                 path: '/person', component: () => import("@/components/person/Template"),
                 children: [
-                    {path: '/person', component: () => import("@/components/person/Detail")},
+                    {path: '/person/detail', component: () => import("@/components/person/Detail")},
+                    {path: '/person/charge', component: () => import("@/components/person/Charge")},
                 ]
             },
             // 登陆界面

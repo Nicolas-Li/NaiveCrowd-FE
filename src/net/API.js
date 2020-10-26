@@ -11,6 +11,10 @@ const API = {
         path: "/api/log/getmessage",
         method: "get"
     },
+    CHARGE: {
+        path: "/api/log/charge",
+        method: "post"
+    },
     LOG_DEL: {
         path: "/api/log/logout",
         method: "post"
