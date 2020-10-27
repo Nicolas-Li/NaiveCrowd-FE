@@ -1,41 +1,64 @@
 <template>
-    <el-main v-if="task.id">
-        <h1>验收任务</h1>
-        <el-row>
-            <el-col :span="span.miniTasks">
-                <h4>小任务列表</h4>
-                <i :key="miniTasksId" v-for="(miniTasksId, index) in miniTasksIdList">
-                    <el-button @click="seeAnswersOfUsers(miniTasksId, index)" class="singleButton" icon="el-icon-edit"
-                               plain
-                               round
-                               type="success">
-                        小任务{{ normalIndex(miniTasksIdList.length, index) }}
-                    </el-button>
-                </i>
-            </el-col>
-            <el-col :span="span.answersOfUsers">
-                <el-row>
-                    <el-col :span="20"><h4>小任务{{ miniTasksIndex }}用户答案列表</h4></el-col>
-                    <el-col :span="4">
-                        <el-button @click="hideAnswer" circle icon="el-icon-s-unfold"
-                                   type="info"/>
-                    </el-col>
-                </el-row>
-                <i :key="answerId" v-for="(answerId, index) in answersOfUsersIdList">
-                    <el-button @click="seeAnswersOfUser(answerId)" class="singleButton" icon="el-icon-edit" plain
-                               round
-                               type="warning">
-                        答案{{ normalIndex(answersOfUsersIdList.length, index) }}
-                    </el-button>
-                </i>
-            </el-col>
-        </el-row>
+    <el-container v-if="task.id">
+        <el-aside width="100">
+            <el-menu>
+                <el-menu-item index="1">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">导航一</span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">导航二</span>
+                </el-menu-item>
+                <el-menu-item disabled index="3">
+                    <i class="el-icon-document"></i>
+                    <span slot="title">导航三</span>
+                </el-menu-item>
+                <el-menu-item index="4">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">导航四</span>
+                </el-menu-item>
+            </el-menu>
+        </el-aside>
+        <el-main>
+
+            <el-row>
+                <el-col :span="span.miniTasks">
+                    <h4>小任务列表</h4>
+                    <i :key="miniTasksId" v-for="(miniTasksId, index) in miniTasksIdList">
+                        <el-button @click="seeAnswersOfUsers(miniTasksId, index)" class="singleButton"
+                                   icon="el-icon-edit"
+                                   plain
+                                   round
+                                   type="success">
+                            小任务{{ normalIndex(miniTasksIdList.length, index) }}
+                        </el-button>
+                    </i>
+                </el-col>
+                <el-col :span="span.answersOfUsers">
+                    <el-row>
+                        <el-col :span="20"><h4>小任务{{ miniTasksIndex }}用户答案列表</h4></el-col>
+                        <el-col :span="4">
+                            <el-button @click="hideAnswer" circle icon="el-icon-s-unfold"
+                                       type="info"/>
+                        </el-col>
+                    </el-row>
+                    <i :key="answerId" v-for="(answerId, index) in answersOfUsersIdList">
+                        <el-button @click="seeAnswersOfUser(answerId)" class="singleButton" icon="el-icon-edit" plain
+                                   round
+                                   type="warning">
+                            答案{{ normalIndex(answersOfUsersIdList.length, index) }}
+                        </el-button>
+                    </i>
+                </el-col>
+            </el-row>
+        </el-main>
         <el-dialog :visible.sync="dialogVisible">
             {{ dialogAnswer }}
             <el-button @click="refuseAnswer" type="warning">拒绝</el-button>
             <el-button @click="acceptAnswer" type="success">接受</el-button>
         </el-dialog>
-    </el-main>
+    </el-container>
 </template>
 
 <script>
@@ -45,6 +68,7 @@
         name: "Acceptance",
         data() {
             return {
+                isCollapse: true,
                 task: {
                     title: "任务标题",
                     intro: "任务介绍"
