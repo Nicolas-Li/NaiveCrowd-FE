@@ -61,6 +61,11 @@ const routes = [
                                 path: '/main/task/view',
                                 component: () => import("@/components/task/user/TaskView")
                             },
+                            {
+                                //用户方 答题
+                                path: '/main/task/do',
+                                component: () => import("@/components/task/user/DoTask")
+                            },
                         ]
                     },
                 ]
