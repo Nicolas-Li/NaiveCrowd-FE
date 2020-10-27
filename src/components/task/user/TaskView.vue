@@ -44,7 +44,7 @@
         },
         mounted: function () {
             
-            this.$cookies.set("miniTaskId",id)
+            //this.$cookies.set("miniTaskId",id)
         },
         methods: {
             doTask(){
