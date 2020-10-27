@@ -1,11 +1,12 @@
 <template>
     <el-card class="card">
         <el-row>
-            <el-col :span="19" class="title">
+            <el-col :span="18" class="title">
                 {{ task.title }}
             </el-col>
-            <el-col :span="5">
+            <el-col :span="6">
                 {{ showStatus }}
+                <el-progress :percentage="percentage" :stroke-width="16" :text-inside="true" v-if="task.status === 2"/>
             </el-col>
         </el-row>
         <p>{{ task.intro }}</p>
@@ -42,7 +43,8 @@
         },
         data() {
             return {
-                loading: false
+                loading: false,
+                percentage: null
             }
         },
         computed: {
@@ -60,6 +62,23 @@
                 let statusLoadingList = ["进入配置", "正在发布", "正在终止", "进入验收", "进入结算", "进入详情"]
                 return this.loading ? statusLoadingList[this.task.status] : statusList[this.task.status]
             },
+        },
+        mounted: function () {
+            if (this.task.status === 2) {
+                fun.getTaskProgress(this.task.id)
+                    .then(res => {
+                        let data = res.data
+                        this.loading = false
+                        if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        } else if (data.type === "success") {
+                            this.progress = data.answersNum * 100.0 / data.totalNum
+                        }
+                    }).catch(err => {
+                    this.loading = false
+                    this.$message.error(err.toString())
+                })
+            }
         },
         methods: {
             money(m) {

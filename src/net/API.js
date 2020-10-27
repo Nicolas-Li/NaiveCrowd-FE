@@ -48,6 +48,10 @@ const API = {
         path: "/api/task/releasetask",
         method: "post"
     },
+    TASK_PROGRESS: {
+        path: "/api/task/taskprogress",
+        method: "post"
+    },
     TERMINATE_TASK: {
         path: "/api/task/terminatetask",
         method: "post"

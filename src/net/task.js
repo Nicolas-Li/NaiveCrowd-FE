@@ -40,6 +40,9 @@ export default {
     async releaseTask(id) {
         return await axios.post(API.RELEASE_TASK.path, { id })
     },
+    async getTaskProgress(id) {
+        return await axios.post(API.TASK_PROGRESS.path, { id })
+    },
     async terminateTask(id) {
         return await axios.post(API.TERMINATE_TASK.path, { id })
     },
