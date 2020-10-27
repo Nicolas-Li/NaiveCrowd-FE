@@ -55,6 +55,7 @@ const API = {
     REFUSE_ANSWERS_OF_USER: {
         path: "/api/check/refuseanswersofuser",
         method: "post"
+    },
     GET_PROGRAMS_OF_MINITASK:{
         path:"/api/task/getproblemsofminitask",
         method:"post"
