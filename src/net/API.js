@@ -35,7 +35,11 @@ const API = {
     SUBMIT_ANSWER:{
         path:"/api/answer/submitanswer",
         method:"post"
-    }
+    },
+    DISTRIBUTE_MINITASK:{
+        path:"/api/task/distributeminitask",
+        method:"get"
+    },
 }
 
 export default API
