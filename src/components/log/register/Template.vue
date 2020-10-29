@@ -10,26 +10,23 @@
                 </el-col>
                 <el-col :span="6">
                     <el-menu class="grid-content menu-right" router mode="horizontal">
-                        <el-menu-item index="hint" disabled>还没有账号？</el-menu-item>
-                        <el-menu-item index="/register">注册</el-menu-item>
+                        <el-menu-item index="hint" disabled>已有账号？</el-menu-item>
+                        <el-menu-item index="/login">登录</el-menu-item>
                     </el-menu>
                 </el-col>
             </el-row>
         </el-header>
         <el-main class="content">
-            <router-view/>
+            <router-view></router-view>
         </el-main>
-        <Footer/>
     </el-container>
 </template>
 
 <script>
-    import Footer from "@/components/footer/footer"
+
     export default {
         name: "LoginTemplate",
-        components: {
-            Footer,
-        },
+        components: {},
     }
 </script>
 
@@ -46,6 +43,7 @@
         color: #a310ad;
         text-shadow: 0 2px 2px #000;
     }
+
     .content {
         min-height: calc(100vh - 100px);
     }

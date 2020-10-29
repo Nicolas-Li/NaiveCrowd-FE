@@ -1,6 +1,7 @@
 <template>
     <el-container>
-        <el-header style="height: 50px">
+        <el-header/>
+        <el-header class="header">
             <el-row>
                 <el-col :span="18">
                     <el-menu class="grid-content bg-purple menu-left" router mode="horizontal">
@@ -37,17 +38,14 @@
         <el-main class="content">
             <Person/>
         </el-main>
-        <Footer/>
     </el-container>
 </template>
 
 <script>
-    import Footer from "@/components/footer/footer"
     import Person from "@/components/person/Person"
     export default {
         name: "PersonTemplate",
         components: {
-            Footer,
             Person,
         },
         data() {
@@ -59,6 +57,13 @@
 </script>
 
 <style scoped>
+    .header {
+        height: 50px;
+        position: fixed;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+    }
     .main {
         text-decoration: none;
         margin-top: -5px;
