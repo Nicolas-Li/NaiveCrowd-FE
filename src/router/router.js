@@ -40,7 +40,7 @@ const routes = [
                                 // 需求方 验收任务
                                 path: '/main/task/acceptance',
                                 name: 'acceptance',
-                                component: () => import("@/components/task/demander/Acceptance")
+                                component: () => import("@/components/task/demander/acceptance/Acceptance")
                             },
                             {
                                 // 需求方 结算任务
@@ -74,7 +74,8 @@ const routes = [
             {
                 path: '/person', component: () => import("@/components/person/Template"),
                 children: [
-                    {path: '/person', component: () => import("@/components/person/Detail")},
+                    {path: '/person/detail', component: () => import("@/components/person/Detail")},
+                    {path: '/person/charge', component: () => import("@/components/person/Charge")},
                 ]
             },
             // 登陆界面

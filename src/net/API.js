@@ -11,6 +11,10 @@ const API = {
         path: "/api/log/getmessage",
         method: "get"
     },
+    CHARGE: {
+        path: "/api/log/charge",
+        method: "post"
+    },
     LOG_DEL: {
         path: "/api/log/logout",
         method: "post"
@@ -28,12 +32,24 @@ const API = {
         path: "/api/task/createtask",
         method: "post"
     },
+    GET_TEMPLATE: {
+        path: "/api/task/gettemplate",
+        method: "post"
+    },
     CONFIG_TASK: {
         path: "/api/task/configtask",
         method: "post"
     },
+    BEFORE_RELEASE_TASK: {
+        path: "/api/task/beforereleasetask",
+        method: "post"
+    },
     RELEASE_TASK: {
         path: "/api/task/releasetask",
+        method: "post"
+    },
+    TASK_PROGRESS: {
+        path: "/api/task/taskprogress",
         method: "post"
     },
     TERMINATE_TASK: {

@@ -1,6 +1,6 @@
 <template>
     <el-card>
-        <el-image style="min-width: 1100px; height: 200px" fit="cover"
+        <el-image style="height: 200px" fit="cover"
                   src="https://wx4.sinaimg.cn/mw690/006HO9i9ly1gjj1pdv2itj328n1hre81.jpg"/>
         <el-row>
             <el-col :span="2"><br/></el-col>
