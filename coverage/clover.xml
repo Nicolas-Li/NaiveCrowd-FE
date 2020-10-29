@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1603809634917" clover="3.2.0">
-  <project timestamp="1603809634917" name="All files">
+<coverage generated="1603865906840" clover="3.2.0">
+  <project timestamp="1603865906841" name="All files">
     <metrics statements="70" coveredstatements="19" conditionals="32" coveredconditionals="4" methods="21" coveredmethods="6" elements="123" coveredelements="29" complexity="0" loc="70" ncloc="70" packages="3" files="4" classes="4"/>
     <package name="components.log.login">
       <metrics statements="25" coveredstatements="10" conditionals="12" coveredconditionals="4" methods="8" coveredmethods="5"/>
-      <file name="Login.vue" path="C:\Users\32912\WebstormProjects\naivecrowdfrontend\src\components\log\login\Login.vue">
+      <file name="Login.vue" path="C:\Users\yuxiaobin\Desktop\NaiveCrowd\NaiveCrowdFrontEnd\src\components\log\login\Login.vue">
         <metrics statements="25" coveredstatements="10" conditionals="12" coveredconditionals="4" methods="8" coveredmethods="5"/>
         <line num="26" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
@@ -35,7 +35,7 @@
     </package>
     <package name="components.log.register">
       <metrics statements="41" coveredstatements="7" conditionals="20" coveredconditionals="0" methods="11" coveredmethods="1"/>
-      <file name="Register.vue" path="C:\Users\32912\WebstormProjects\naivecrowdfrontend\src\components\log\register\Register.vue">
+      <file name="Register.vue" path="C:\Users\yuxiaobin\Desktop\NaiveCrowd\NaiveCrowdFrontEnd\src\components\log\register\Register.vue">
         <metrics statements="41" coveredstatements="7" conditionals="20" coveredconditionals="0" methods="11" coveredmethods="1"/>
         <line num="39" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
@@ -82,11 +82,11 @@
     </package>
     <package name="net">
       <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="API.js" path="C:\Users\32912\WebstormProjects\naivecrowdfrontend\src\net\API.js">
+      <file name="API.js" path="C:\Users\yuxiaobin\Desktop\NaiveCrowd\NaiveCrowdFrontEnd\src\net\API.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
       </file>
-      <file name="login.js" path="C:\Users\32912\WebstormProjects\naivecrowdfrontend\src\net\login.js">
+      <file name="login.js" path="C:\Users\yuxiaobin\Desktop\NaiveCrowd\NaiveCrowdFrontEnd\src\net\login.js">
         <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="3" count="2" type="stmt"/>
         <line num="9" count="0" type="stmt"/>

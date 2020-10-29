@@ -24,7 +24,7 @@
 <script>
     import TaskCard from "@/components/task/TaskCard";
     import Stick from "vue-stick"
-    import fun from "@/net/task"
+    import fun from "@/net/doTask"
 
     export default {
         name: "TaskView",
@@ -43,8 +43,13 @@
             }
         },
         mounted: function () {
-            
-            //this.$cookies.set("miniTaskId",id)
+            fun.distribute_minitask()
+            .then(res => {
+                        this.id = res.id
+                    }).catch(err => {
+                    this.$message.error(err.toString())
+                })
+            this.$cookies.set("miniTaskId",this.id)
         },
         methods: {
             doTask(){
