@@ -100,13 +100,13 @@
     }
   },
   "collectCoverageFrom": [
-         "**/*.(t|j)s"
-       ],
+    "**/*.(t|j)s"
+  ],
   "testResultsProcessor": "jest-sonar-reporter",
   "coverageDirectory": "../coverage",
   "jestSonar": {
-       "reportPath": "coverage",
-       "reportFile": "test-reporter.xml",
-       "indent": 4
-     }
+    "reportPath": "coverage",
+    "reportFile": "test-reporter.xml",
+    "indent": 4
+  }
 }
