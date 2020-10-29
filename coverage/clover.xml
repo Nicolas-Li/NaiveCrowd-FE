@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<coverage generated="1603286418637" clover="3.2.0">
-  <project timestamp="1603286418637" name="All files">
-=======
-<coverage generated="1603865906840" clover="3.2.0">
-  <project timestamp="1603865906841" name="All files">
->>>>>>> yxb
+<coverage generated="1603941028261" clover="3.2.0">
+  <project timestamp="1603941028262" name="All files">
     <metrics statements="70" coveredstatements="19" conditionals="32" coveredconditionals="4" methods="21" coveredmethods="6" elements="123" coveredelements="29" complexity="0" loc="70" ncloc="70" packages="3" files="4" classes="4"/>
     <package name="components.log.login">
       <metrics statements="25" coveredstatements="10" conditionals="12" coveredconditionals="4" methods="8" coveredmethods="5"/>
