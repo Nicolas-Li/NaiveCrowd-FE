@@ -31,9 +31,10 @@ describe('Task',()=>{
                 time: new Date().getTime()
             }
         })
-        await wrapper.findAll('.el-button').at(0).trigger('click')
+        wrapper.findAll('.el-button').at(0).trigger('click')
         expect (wrapper.vm.task.status).toBe(2)
         expect (wrapper.findAll('.el-progress').length).toBe(1)
+        expect (wrapper.vm.loading).toBe(true);
     })
     it('can check demander money rightly',async ()=> {
         await wrapper.setProps({
@@ -62,6 +63,22 @@ describe('Task',()=>{
         )
         await wrapper.findAll('.el-button').at(0).trigger('click')
         expect (wrapper.vm.task.status).toBe(7)
+    })
+
+    it('can finish',async ()=> {
+        await wrapper.setProps(
+            {
+                task:{
+                    id: "3a4d567",
+                    title: "标题",
+                    intro: "介绍",
+                    status: 3,
+                    time: new Date().getTime()
+                }
+            }
+        )
+        wrapper.findAll('.el-button').at(0).trigger('click')
+        expect (wrapper.vm.task.status).toBe(3)
     })
 
     //wrapper.setData({loading:true,money:100})
