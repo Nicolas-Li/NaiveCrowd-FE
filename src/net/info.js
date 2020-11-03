@@ -10,5 +10,9 @@ export default {
     },
     async logDel(password) {
         return await axios.post(API.LOG_DEL.path, { password })
-    }
+    },
+    async charge(money) {
+        let change = "+"
+        return await axios.post(API.CHARGE.path, { money, change })
+    },
 }

@@ -1,7 +1,7 @@
 <template>
     <el-main v-if="task.id">
         <h1>配置任务</h1>
-        <el-form :model="ruleForm" :rules="rules" class="form" label-width="100px" ref="ruleForm">
+        <el-form :model="ruleForm" :rules="rules" class="form" label-width="130px" ref="ruleForm">
             <el-row>
                 <el-col :span="12">
                     <el-form-item label="任务标题">
@@ -31,26 +31,14 @@
             </el-form-item>
             <el-form-item label="题目模板">
                 <el-row>
-                    <i :key="template.downUrl" v-for="template in templates">
-                        <el-col :span="Math.floor(24 / templates.length)">
-                            <a :href="template.downUrl" @click.prevent="downloadTemplate(template.downUrl)">
-                                查看{{ template.downName }}模板
+                    <i :key="type.value" v-for="type in miniTasksTypeOptions">
+                        <el-col :span="Math.floor(24 / miniTasksTypeOptions.length)">
+                            <a :href="type.value" @click.prevent="downloadTemplate(type.value)">
+                                查看{{ type.label }}模板
                             </a>
                         </el-col>
                     </i>
                 </el-row>
-            </el-form-item>
-            <el-form-item label="上传题目" prop="problems" required>
-                <el-upload
-                        :before-upload="beforeProblemsUpload"
-                        :http-request="() => {null}"
-                        :limit="1"
-                        :multiple="false"
-                        :on-remove="handleProblemsRemove"
-                        action="null">
-                    <el-button :disabled="uploadAble" size="small" type="success">点击上传<br/>题目文件</el-button>
-                    <div class="el-upload__tip" slot="tip">只能上传一个txt/zip文件</div>
-                </el-upload>
             </el-form-item>
             <el-row>
                 <el-col :span="12">
@@ -84,6 +72,60 @@
                     </el-form-item>
                 </el-col>
             </el-row>
+            <el-row>
+                <el-col :span="12">
+                    <el-form-item label="做题时间" required>
+                        <el-row>
+                            <el-col :span="12">每个小任务最长做题时间为</el-col>
+                            <el-col :span="8">
+                                <el-form-item prop="miniTasksTime">
+                                    <el-input type="number" v-model="ruleForm.miniTasksTime"/>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="4">秒</el-col>
+                        </el-row>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                    <el-form-item label="重复分配次数" required>
+                        <el-col :span="12">每个任务最多被分配</el-col>
+                        <el-col :span="8">
+                            <el-form-item prop="miniTasksLimit">
+                                <el-input type="number" v-model="ruleForm.miniTasksLimit"/>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="4">次</el-col>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="12">
+                    <el-form-item label="题目类型" prop="miniTasksType" required>
+                        <el-select placeholder="请选择题目类型" v-model="ruleForm.miniTasksType">
+                            <el-option
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    v-for="item in miniTasksTypeOptions">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                    <el-form-item label="上传题目" prop="problems" required>
+                        <el-upload
+                                :before-upload="beforeProblemsUpload"
+                                :http-request="() => {null}"
+                                :limit="1"
+                                :multiple="false"
+                                :on-remove="handleProblemsRemove"
+                                action="null">
+                            <el-button :disabled="uploadAble" size="small" type="success">点击上传<br/>题目文件</el-button>
+                            <div class="el-upload__tip" slot="tip">只能上传一个txt/zip文件</div>
+                        </el-upload>
+                    </el-form-item>
+                </el-col>
+            </el-row>
             <el-form-item>
                 <el-button :loading="isSubmitting" @click="submitForm('ruleForm')" type="primary">
                     {{ showButton }}
@@ -105,13 +147,21 @@
                     title: "任务标题",
                     intro: "任务介绍"
                 },
+                miniTasksTypeOptions: [
+                    {label: "填空题", value: "completion",},
+                    {label: "选择题", value: "choice",},
+                    {label: "图片判断题", value: "photo-judge",},
+                ],
                 ruleForm: {
                     date: null,
                     time: null,
+                    miniTasksType: null,
                     problems: null,
                     miniTasksNum: null,
                     miniTasksBonus1: null,
                     miniTasksBonus2: null,
+                    miniTasksTime: null,
+                    miniTasksLimit: 2,
                 },
                 rules: {
                     date: [
@@ -119,6 +169,9 @@
                     ],
                     time: [
                         {type: 'date', message: '请选择时间', trigger: 'change'}
+                    ],
+                    miniTasksType: [
+                        {required: true, message: '请选择正确的题目类型', trigger: 'blur'}
                     ],
                     problems: [
                         {required: true, message: '请上传正确格式的题目文件', trigger: 'blur'}
@@ -131,18 +184,14 @@
                     ],
                     miniTasksBonus2: [
                         {required: true, message: '请输入小任务金钱/分', trigger: 'blur'}
-                    ]
+                    ],
+                    miniTasksTime: [
+                        {required: true, message: '请选择小任务做题时间', trigger: 'change'}
+                    ],
+                    miniTasksLimit: [
+                        {required: true, message: '请选择小任务被做次数', trigger: 'change'}
+                    ],
                 },
-                templates: [
-                    {
-                        downUrl: '2',
-                        downName: '选择题'
-                    },
-                    {
-                        downUrl: '1',
-                        downName: '填空题'
-                    }
-                ],
                 isSubmitting: false,
             }
         },
@@ -159,7 +208,7 @@
                 this.ruleForm.time = new Date()
                 this.ruleForm.time.setTime(dateTime.getTime())
             } else {
-                this.$message.error("配置出错啦！即将返回前一页面")
+                this.$message.warning("配置出错啦！即将返回前一页面")
                 setTimeout(() => {
                     this.$router.back()
                 }, 1500)
@@ -167,7 +216,7 @@
         },
         methods: {
             beforeProblemsUpload(file) {
-                const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/zip')
+                const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
                 if (!isTXTorZIP) {
                     this.$message.error('上传封面图片只能是 TXT/ZIP 格式!')
                 } else {
@@ -180,14 +229,29 @@
                 this.ruleForm.problems = null
                 this.$refs.ruleForm.validateField('problems')
             },
-            downloadTemplate(url) {
-                window.open(url)
+            downloadTemplate(type) {
+                fun.getTemplate(type).then(res => {
+                    let data = res.data;
+                    if (data.type === "failed") {
+                        this.$message.error(data.message)
+                    } else if (data.type === "success") {
+                        let url = data.templateUrl
+                        let a = document.createElement('a')
+                        a.href = 'data:text/plain;charset=utf-8,' + url
+                        a.download = type + '.txt'
+                        document.body.appendChild(a)
+                        a.click()
+                        document.body.removeChild(a)
+                    }
+                }).catch(err => {
+                    this.$message.error(err.toString())
+                })
             },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.isSubmitting = true
-                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTasksNum, this.miniTasksBonus)
+                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.ruleForm.miniTasksTime, this.ruleForm.miniTasksLimit, this.ruleForm.miniTasksType)
                             .then(res => {
                                 this.isSubmitting = false
                                 let data = res.data

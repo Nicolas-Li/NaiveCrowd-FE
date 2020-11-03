@@ -1,11 +1,12 @@
 <template>
     <el-card class="card">
         <el-row>
-            <el-col :span="19" class="title">
+            <el-col :span="18" class="title">
                 {{ task.title }}
             </el-col>
-            <el-col :span="5">
+            <el-col :span="6">
                 {{ showStatus }}
+                <el-progress :percentage="percentage" :stroke-width="16" :text-inside="true" v-if="task.status === 2"/>
             </el-col>
         </el-row>
         <p>{{ task.intro }}</p>
@@ -42,7 +43,8 @@
         },
         data() {
             return {
-                loading: false
+                loading: false,
+                percentage: null
             }
         },
         computed: {
@@ -61,59 +63,108 @@
                 return this.loading ? statusLoadingList[this.task.status] : statusList[this.task.status]
             },
         },
+        mounted: function () {
+            if (this.task.status === 2) {
+                fun.getTaskProgress(this.task.id)
+                    .then(res => {
+                        let data = res.data
+                        this.loading = false
+                        if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        } else if (data.type === "success") {
+                            this.progress = data.answersNum * 100.0 / data.totalNum
+                        }
+                    }).catch(err => {
+                    this.loading = false
+                    this.$message.error(err.toString())
+                })
+            }
+        },
         methods: {
+            money(m) {
+                return m / 100 + "元" + m % 100 + "分"
+            },
             chooseTask() {
                 this.loading = true
                 switch (this.task.status) {
+                    // 配置任务
                     case 0:
                         this.$router.push({
                             name: 'configuration',
                             params: this.task
                         })
                         break
+                    // 发布任务
                     case 1:
-                        fun.releaseTask(this.task.id)
+                        fun.beforeReleaseTask(this.task.id)
                             .then(res => {
                                 let data = res.data
                                 if (data.type === "failed") {
+                                    this.loading = false
                                     this.$message.error(data.message)
                                 } else if (data.type === "success") {
-                                    this.$message.success("任务发布成功")
-                                    this.task.status += 1
+                                    let taskMoney = data.taskMoney
+                                    let demanderMoney = data.demanderMoney
+                                    if (taskMoney > demanderMoney) {
+                                        this.loading = false
+                                        this.$message.warning("任务发布需要资金" + this.money(taskMoney)
+                                            + "\n但您只有" + this.money(demanderMoney)
+                                            + "\n请充值")
+                                    } else {
+                                        fun.releaseTask(this.task.id)
+                                            .then(res => {
+                                                let data = res.data
+                                                this.loading = false
+                                                if (data.type === "failed") {
+                                                    this.$message.error(data.message)
+                                                } else if (data.type === "success") {
+                                                    this.$message.success("任务发布成功")
+                                                    this.task.status = 2
+                                                }
+                                            }).catch(err => {
+                                            this.loading = false
+                                            this.$message.error(err.toString())
+                                        })
+                                    }
                                 }
                             }).catch(err => {
                             this.loading = false
                             this.$message.error(err.toString())
                         })
                         break
+                    // 终止任务
                     case 2:
                         fun.terminateTask(this.task.id)
                             .then(res => {
                                 let data = res.data
+                                this.loading = false
                                 if (data.type === "failed") {
                                     this.$message.error(data.message)
                                 } else if (data.type === "success") {
                                     this.$message.success("任务终止成功")
-                                    this.task.status += 1
+                                    this.task.status = 3
                                 }
                             }).catch(err => {
                             this.loading = false
                             this.$message.error(err.toString())
                         })
                         break
+                    // 验收任务
                     case 3:
                         this.$router.push({
                             name: 'acceptance',
                             params: this.task
                         })
                         break
+                    // 结算任务
                     case 4:
                         break
+                    // 导出任务
                     case 5:
                         break
                     default:
                         this.loading = false
-                        this.$message.error("任务状态出错啦，请刷新页面")
+                        this.$message.warning("任务状态出错啦，请刷新页面")
                         break
                 }
             },
