@@ -2,5 +2,5 @@ projectKey=81X86:NaiveCrowdFrontEnd
 serverUrl=https://sonarqube.secoder.net
 serverVersion=8.4.2.36762
 dashboardUrl=https://sonarqube.secoder.net/dashboard?id=81X86%3ANaiveCrowdFrontEnd
-ceTaskId=AXV-78xh7mfcGsQjyHDA
-ceTaskUrl=https://sonarqube.secoder.net/api/ce/task?id=AXV-78xh7mfcGsQjyHDA
+ceTaskId=AXWNlj1Q7mfcGsQjyHb7
+ceTaskUrl=https://sonarqube.secoder.net/api/ce/task?id=AXWNlj1Q7mfcGsQjyHb7
