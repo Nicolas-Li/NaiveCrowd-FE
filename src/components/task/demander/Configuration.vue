@@ -231,7 +231,7 @@
             },
             downloadTemplate(type) {
                 fun.getTemplate(type).then(res => {
-                    let data = res.data;
+                    let data = res.data
                     if (data.type === "failed") {
                         this.$message.error(data.message)
                     } else if (data.type === "success") {

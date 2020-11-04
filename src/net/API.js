@@ -76,13 +76,17 @@ const API = {
         path: "/api/task/settletask",
         method: "post"
     },
-    GET_PROBLEMS_OF_MINITASK:{
-        path:"/api/task/getproblemsofminitask",
-        method:"post"
+    DISTRIBUTE_MINITASK: {
+        path: "/api/task/distributeminitask",
+        method: "get"
     },
-    SUBMIT_ANSWER:{
-        path:"/api/answer/submitanswer",
-        method:"post"
+    GET_PROBLEMS_OF_MINITASK: {
+        path: "/api/task/getproblemsofminitask",
+        method: "post"
+    },
+    SUBMIT_ANSWER: {
+        path: "/api/answer/submitanswer",
+        method: "post"
     }
 }
 
