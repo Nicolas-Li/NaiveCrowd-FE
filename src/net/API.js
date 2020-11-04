@@ -24,7 +24,7 @@ const API = {
         path: "/api/task/loadmore",
         method: "post"
     },
-    LOAD_DEMANDER_TASK: {
+    LOAD_TASK: {
         path: "/api/task/load",
         method: "get"
     },

@@ -22,8 +22,6 @@
 </template>
 
 <script>
-    import TaskCard from "@/components/task/TaskCard";
-    import Stick from "vue-stick"
     import fun from "@/net/task"
 
     export default {
@@ -33,6 +31,7 @@
         },
         data() {
             return {
+                task: null,
                 id:'',
                 title: '题目标题',
                 number:20,
@@ -43,8 +42,15 @@
             }
         },
         mounted: function () {
-            
-            //this.$cookies.set("miniTaskId",id)
+            let task = this.$route.params
+            if (task.id && Number(task.status) === 0) {
+                this.task = task
+            } else {
+                this.$message.warning("详情出错啦！即将返回前一页面")
+                setTimeout(() => {
+                    this.$router.back()
+                }, 1500)
+            }
         },
         methods: {
             doTask(){

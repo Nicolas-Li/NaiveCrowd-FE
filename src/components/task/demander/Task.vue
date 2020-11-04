@@ -158,6 +158,17 @@
                         break
                     // 结算任务
                     case 4:
+                        fun.settleTask(this.task.id).then(res => {
+                            let data = res.data;
+                            if (data.type === "failed") {
+                                this.$message.error(data.message)
+                            } else if (data.type === "success") {
+                                this.$message.success(data.message)
+                                this.task.status = 5
+                            }
+                        }).catch(err => {
+                            this.$message.error(err.toString())
+                        })
                         break
                     // 导出任务
                     case 5:

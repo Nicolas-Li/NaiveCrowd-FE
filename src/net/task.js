@@ -9,7 +9,7 @@ export default {
         return await axios.post(API.LOAD_MORE_TASK.path, {start, num})
     },
     async loadTask() {
-        return await axios.get(API.LOAD_DEMANDER_TASK.path)
+        return await axios.get(API.LOAD_TASK.path)
     },
     async createTask(cover, title, intro, deadline) {
         let formData = new FormData()
