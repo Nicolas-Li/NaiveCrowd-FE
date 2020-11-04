@@ -236,12 +236,18 @@
                         this.$message.error(data.message)
                     } else if (data.type === "success") {
                         let url = data.templateUrl
-                        let a = document.createElement('a')
-                        a.href = 'data:text/plain;charset=utf-8,' + url
-                        a.download = type + '.txt'
-                        document.body.appendChild(a)
-                        a.click()
-                        document.body.removeChild(a)
+                        //创建a标签
+                        let a = document.createElement('a');
+                        a.setAttribute('href', url);
+                        a.setAttribute('download', type); //分割路径，取出最后一个元素
+                        a.setAttribute('target', '_blank');
+                        a.setAttribute('id', 'DownloadFile');
+                        // 防止反复添加
+                        if (document.getElementById('DownloadFile')) {
+                            document.body.removeChild(document.getElementById('DownloadFile'));
+                        }
+                        document.body.appendChild(a);
+                        a.click();
                     }
                 }).catch(err => {
                     this.$message.error(err.toString())
