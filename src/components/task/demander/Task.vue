@@ -82,7 +82,7 @@
         },
         methods: {
             money(m) {
-                return m / 100 + "元" + m % 100 + "分"
+                return m / 100.0 + "元"
             },
             chooseTask() {
                 this.loading = true

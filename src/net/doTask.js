@@ -6,7 +6,7 @@ import API from "@/net/API"
 
 export default {
     async load_problems(id) {
-        return await axios.post(API.GET_PROGRAMS_OF_MINITASK.path, { id })
+        return await axios.post(API.GET_PROBLEMS_OF_MINITASK.path, { id })
     },
     async submit_answer(datalist,MiniTaskID) {
         return await axios.post(API.SUBMIT_ANSWER.path, { datalist ,MiniTaskID})

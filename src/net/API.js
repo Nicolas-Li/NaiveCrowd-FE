@@ -72,7 +72,11 @@ const API = {
         path: "/api/check/refuseanswersofuser",
         method: "post"
     },
-    GET_PROGRAMS_OF_MINITASK:{
+    SETTLE_TASK: {
+        path: "/api/task/settletask",
+        method: "post"
+    },
+    GET_PROBLEMS_OF_MINITASK:{
         path:"/api/task/getproblemsofminitask",
         method:"post"
     },
