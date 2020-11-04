@@ -18,6 +18,7 @@ describe('Charge',()=>{
     wrapper.setData({loading:true,money:100})
 
     it('money',async()=>{
+        button.trigger('click')
         await button.trigger('click')
         expect(wrapper.vm.money).toBe(100)
     })
