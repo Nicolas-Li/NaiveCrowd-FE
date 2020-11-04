@@ -33,7 +33,7 @@
             loadTask: function () {
                 fun.loadTask()
                     .then(res => {
-                        this.taskList = res.data
+                        this.taskList = res.data.data
                     }).catch(err => {
                     this.$message.error(err.toString())
                 })

@@ -1,7 +1,10 @@
 <template>
-    <el-row>
-        <el-col :span="span.miniTasks">
-            <h4>小任务列表</h4>
+    <el-main>
+        <el-button @click="drawerVisible=!drawerVisible">{{ drawerVisible ? '关闭' : '打开'}}任务列表</el-button>
+        <el-drawer
+                title="小任务列表"
+                :visible.sync="drawerVisible"
+                direction="ltr">
             <i :key="miniTasksId" v-for="(miniTasksId, index) in miniTasksIdList">
                 <el-button @click="seeAnswersOfUsers(miniTasksId, index)" class="singleButton"
                            icon="el-icon-edit"
@@ -11,24 +14,63 @@
                     小任务{{ normalIndex(miniTasksIdList.length, index) }}
                 </el-button>
             </i>
-        </el-col>
-        <el-col :span="span.answersOfUsers">
-            <el-row>
-                <el-col :span="20"><h4>小任务{{ miniTasksIndex }}用户答案列表</h4></el-col>
-                <el-col :span="4">
-                    <el-button @click="hideAnswer" circle icon="el-icon-s-unfold"
-                               type="info"/>
-                </el-col>
-            </el-row>
-            <i :key="answerId" v-for="(answerId, index) in answersOfUsersIdList">
-                <el-button @click="seeAnswersOfUser(answerId)" class="singleButton" icon="el-icon-edit" plain
-                           round
-                           type="warning">
-                    答案{{ normalIndex(answersOfUsersIdList.length, index) }}
-                </el-button>
-            </i>
-        </el-col>
-    </el-row>
+        </el-drawer>
+        <el-row>
+            <el-col :span="12">
+                <el-card v-for="problem in problemList" :key="problem.description">
+                    <div slot="header">
+                        {{ problem.description }}
+                    </div>
+                    <div>
+                        {{ problem.type }}
+                    </div>
+                    <div>
+                        {{ problem.choice }}
+                    </div>
+                    <div>
+                        {{ problem.imageUrl }}
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="12">
+                <i :key="answerId" v-for="(answerId, index) in answersOfUsersIdList">
+                    <el-button @click="seeAnswersOfUser(answerId)" class="singleButton"
+                               icon="el-icon-edit"
+                               plain
+                               round
+                               type="primary">
+                        用户答案{{ normalIndex(answersOfUsersIdList.length, index) }}
+                    </el-button>
+                </i>
+                <el-drawer
+                        :title="userInfo.name+'的答案'"
+                        :visible.sync="answerDrawerVisible"
+                        direction="rtl">
+                    <el-row>
+                        <el-col :span="12">
+                            <el-button @click="answerDrawerVisible=false">验收通过</el-button>
+                            <el-button @click="refuseAnswer">拒绝通过</el-button>
+                        </el-col>
+                    </el-row>
+                    <div>
+                        用户名：{{ userInfo.name }}
+                    </div>
+                    <div>
+                        信誉值：{{ userInfo.credit }}
+                    </div>
+                    <div>
+                        历史接受率：{{ userInfo.acceptRate }}
+                    </div>
+                    <div>
+                        做了{{ userInfo.answerNum }}份关于该任务的小任务
+                    </div>
+                    <el-card v-for="content in contentList" :key="content.content">
+                        {{ content }}
+                    </el-card>
+                </el-drawer>
+            </el-col>
+        </el-row>
+    </el-main>
 </template>
 
 <script>
@@ -41,13 +83,30 @@
         },
         data() {
             return {
-                span: {
-                    miniTasks: 24,
-                    answersOfUsers: 0,
-                },
-                miniTasksIdList: ["id"],
+                drawerVisible: true,
+                // 小任务列表
+                miniTasksIdList: [],
                 miniTasksIndex: null,
-                answersOfUsersIdList: ["id"],
+                // 答案列表
+                answersOfUsersIdList: [],
+                problemList: [{
+                    description: null,
+                    type: null,
+                    choice: null,
+                    imageUrl: null
+                }],
+                // 详细答案
+                answerDrawerVisible: false,
+                answerId: null,
+                userInfo: {
+                    name: "unknown",
+                    credit: 100,
+                    acceptRate: 1,
+                    answerNum: 0
+                },
+                contentList: [{
+                    content: 'none'
+                }],
             }
         },
         mounted: function() {
@@ -72,58 +131,45 @@
                     this.$message.error(err.toString())
                 })
             },
-            seeAnswersOfUsers(miniTasksId, index) {
-                console.log(this.task)
-                console.log("ddd")
+            seeAnswersOfUsers(miniTasksId) {
                 this.answersOfUsersIdList = []
                 fun.getAnswerIds(miniTasksId)
                     .then(res => {
                         let data = res.data
                         if (data.type === "success") {
-                            this.miniTasksIndex = index
-                            this.showAnswer()
+                            this.drawerVisible = false
                             this.answersOfUsersIdList = data.answersOfUsersIdList
+                            this.problemList = data.problemList
                         } else if (data.type === "failed") {
                             this.$message.error(data.message)
                         }
                     }).catch(err => {
                     this.$message.error(err.toString())
                 })
-            },
-            showAnswer() {
-                this.span = {
-                    miniTasks: 12,
-                    answersOfUsers: 12
-                }
-            },
-            hideAnswer() {
-                this.span = {
-                    miniTasks: 24,
-                    answersOfUsers: 0
-                }
             },
             seeAnswersOfUser(answerId) {
-                this.dialogAnswerId = answerId
-                fun.getProblemsAndUsers(this.dialogAnswerId)
-                    .then(res => {
-                        let data = res.data
-                        if (data.type === "success") {
-                            this.dialogAnswer = {
-                                userID: data.userID,
-                                content: data.content,
-                                choice: data.choice,
-                                judgement: data.judgement
+                if (this.answerId !== answerId) {
+                    this.answerId = null
+                    fun.getProblemsAndUsers(answerId)
+                        .then(res => {
+                            let data = res.data
+                            if (data.type === "success") {
+                                this.answerDrawerVisible = true
+                                this.answerId = answerId
+                                this.userInfo = data.userInfo
+                                this.contentList = data.contentList
+                            } else if (data.type === "failed") {
+                                this.$message.error(data.message)
                             }
-                            this.dialogVisible = true
-                        } else if (data.type === "failed") {
-                            this.$message.error(data.message)
-                        }
-                    }).catch(err => {
-                    this.$message.error(err.toString())
-                })
+                        }).catch(err => {
+                        this.$message.error(err.toString())
+                    })
+                } else {
+                    this.answerDrawerVisible = true
+                }
             },
             refuseAnswer() {
-                fun.refuseAnswer(this.dialogAnswerId)
+                fun.refuseAnswer(this.answerId)
                     .then(res => {
                         let data = res.data
                         if (data.type === "success") {
@@ -131,19 +177,16 @@
                         } else if (data.type === "failed") {
                             this.$message.error(data.message)
                         }
-                        this.acceptAnswer()
                     }).catch(err => {
-                    this.acceptAnswer()
                     this.$message.error(err.toString())
                 })
             },
-            acceptAnswer() {
-                this.dialogVisible = false
-            }
         },
     }
 </script>
 
 <style scoped>
-
+.singleButton {
+    margin: 2px 3px 3px 2px;
+}
 </style>

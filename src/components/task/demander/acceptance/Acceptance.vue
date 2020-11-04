@@ -7,8 +7,11 @@
                     拒绝了{{ answerProgress.refuseNum }}份答案
                 </el-col>
                 <el-col :span="8">
-                    <el-button plain round type="primary" v-if="answerProgress.refuseNum > 0">继续分发</el-button>
-                    <el-button plain round type="warning">结算任务</el-button>
+                    <el-button plain round
+                               type="primary"
+                               v-if="answerProgress.refuseNum > 0">继续分发
+                    </el-button>
+                    <el-button @click="settleTask" plain round type="warning">结算任务</el-button>
                 </el-col>
             </el-row>
             <el-menu mode="horizontal">
@@ -42,6 +45,7 @@
 
 <script>
     import ByMiniTasks from "@/components/task/demander/acceptance/ByMiniTasks";
+    import fun from "@/net/task"
 
     export default {
         name: "Acceptance",
@@ -78,12 +82,22 @@
                 }
                 return false
             },
+            settleTask() {
+                fun.settleTask(this.task.id).then(res => {
+                    let data = res.data;
+                    if (data.type === "failed") {
+                        this.$message.error(data.message)
+                    } else if (data.type === "success") {
+                        this.$message.success(data.message)
+                        this.$router.push({path: '/main/task/demander'})
+                    }
+                }).catch(err => {
+                    this.$message.error(err.toString())
+                })
+            }
         },
     }
 </script>
 
 <style scoped>
-    .singleButton {
-        margin: 3px 5px 3px 5px;
-    }
 </style>
