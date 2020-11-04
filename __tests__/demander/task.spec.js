@@ -8,8 +8,8 @@ config.stubs.transition = false
 
 
 describe('Task',()=>{
-    var wrapper = mount(Task,{localVue})
-    var button=wrapper.find('.el-button')
+    const wrapper = mount(Task,{localVue})
+    const button=wrapper.find('.el-button')
 
     it('have right buttons',()=>{
         expect(wrapper.findAll('.el-button').length).toBe(1)
@@ -21,69 +21,93 @@ describe('Task',()=>{
         await wrapper.findAll('.el-button').at(0).trigger('click')
         expect(button.text()).toBe('进入配置')
     })
-    wrapper.destroy()
-    wrapper = mount(Task,{
-        task:{
-            id: "3a4d567",
-            title: "标题",
-            intro: "介绍",
-            status: 2,
-            time: new Date().getTime()
+    const wrapper1 = mount(Task, {localVue,
+        propsData: {
+            task:{
+                status: 1
+            }
         }
     })
     it('can show percentage rightly', async () =>{
-        wrapper.findAll('.el-button').at(0).trigger('click')
-        expect (wrapper.vm.task.status).toBe(2)
-        expect (wrapper.findAll('.el-progress').length).toBe(1)
-        expect (wrapper.vm.loading).toBe(true);
-    })
-    wrapper.destroy()
-    wrapper = mount(Task,{
-        task:{
-            id: "3a4d567",
-            title: "标题",
-            intro: "介绍",
-            status: 1,
-            time: new Date().getTime()
-        }
-    })
-    it('can check demander money rightly',async ()=> {
-        await wrapper.findAll('.el-button').at(0).trigger('click')
-    })
-    wrapper.destroy()
-    wrapper = mount(Task,{
-        task:{
-            id: "3a4d567",
-            title: "标题",
-            intro: "介绍",
-            status: 7,
-            time: new Date().getTime()
-        }
-    })
-    it('can break',async ()=> {
-        await wrapper.find('.el-button').trigger('click')
-        expect (wrapper.vm.task.status).toBe(7)
-    })
-    wrapper = mount(Task,{
-        task:{
-            id: "3a4d567",
-            title: "标题",
-            intro: "介绍",
-            status: 3,
-            time: new Date().getTime()
-        }
+        await wrapper1.findAll('.el-button').at(0).trigger('click')
     })
     it('can finish',async ()=> {
-        wrapper.find('.el-button').trigger('click')
-        expect (wrapper.vm.task.status).toBe(3)
+        await wrapper.setProps(
+            {
+                task:{
+                    id: "3a4d567",
+                    title: "标题",
+                    intro: "介绍",
+                    status: 3,
+                    time: new Date().getTime()
+                }
+            }
+        )
+        await wrapper.findAll('.el-button').at(0).trigger('click')
+        Vue.nextTick(() => {
+            expect (wrapper.vm.task.status).toBe(3)
+            done()
+        })
     })
 
-    //wrapper.setData({loading:true,money:100})
-
-    // it('money',async()=>{
-    //     await button.trigger('click')
-    //     expect(wrapper.vm.money).toBe(100)
-    // })
-
-    
+    const wrapper2 = mount(Task, {localVue,
+        propsData: {
+            task:{
+                status: 2
+            }
+        }
+    })
+    it('can show percentage rightly', async () =>{
+        await wrapper2.findAll('.el-button').at(0).trigger('click')
+    })
+    const wrapper3 = mount(Task, {localVue,
+        propsData: {
+            task:{
+                status: 3
+            }
+        }
+    })
+    it('can show percentage rightly', async () =>{
+        await wrapper3.findAll('.el-button').at(0).trigger('click')
+    })
+    const wrapper4 = mount(Task, {localVue,
+        propsData: {
+            task:{
+                status: 4
+            }
+        }
+    })
+    it('can show percentage rightly', async () =>{
+        await wrapper4.findAll('.el-button').at(0).trigger('click')
+    })
+    const wrapper5 = mount(Task, {localVue,
+        propsData: {
+            task:{
+                status: 5
+            }
+        }
+    })
+    it('can show percentage rightly', async () =>{
+        await wrapper5.findAll('.el-button').at(0).trigger('click')
+    })
+    const wrapper6 = mount(Task, {localVue,
+        propsData: {
+            task:{
+                status: 6
+            }
+        }
+    })
+    it('can show percentage rightly', async () =>{
+        await wrapper6.findAll('.el-button').at(0).trigger('click')
+    })
+    const wrapper7 = mount(Task, {localVue,
+        propsData: {
+            task:{
+                status: 7
+            }
+        }
+    })
+    it('can show percentage rightly', async () =>{
+        await wrapper7.findAll('.el-button').at(0).trigger('click')
+    })
 })
