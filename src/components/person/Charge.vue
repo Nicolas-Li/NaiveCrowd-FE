@@ -39,7 +39,7 @@
             charge: function () {
                 if (this.money > 0) {
                     this.loading = true
-                    fun.charge(this.money)
+                    fun.charge(this.money * 100)
                         .then(res => {
                             this.loading = false
                             let data = res.data

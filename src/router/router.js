@@ -43,11 +43,7 @@ const routes = [
                                 component: () => import("@/components/task/demander/acceptance/Acceptance")
                             },
                             {
-                                // 需求方 结算任务
-                                path: '/main/task/settlement',
-                                component: () => import("@/components/task/demander/Settlement")
-                            },
-                            {
+                                // 需求方 导出任务
                                 path: '/main/task/export',
                                 component: () => import("@/components/task/demander/Export")
                             },
@@ -57,8 +53,14 @@ const routes = [
                                 component: () => import("@/components/task/user/MyTasks")
                             },
                             {
+                                //用户方 系统分发
+                                path: '/main/task/distribute',
+                                component: () => import("@/components/task/user/Distribute")
+                            },
+                            {
                                 //用户方 任务详情
                                 path: '/main/task/view',
+                                name: 'taskView',
                                 component: () => import("@/components/task/user/TaskView")
                             },
                             {

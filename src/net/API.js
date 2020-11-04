@@ -24,7 +24,7 @@ const API = {
         path: "/api/task/loadmore",
         method: "post"
     },
-    LOAD_DEMANDER_TASK: {
+    LOAD_TASK: {
         path: "/api/task/load",
         method: "get"
     },
@@ -72,7 +72,11 @@ const API = {
         path: "/api/check/refuseanswersofuser",
         method: "post"
     },
-    GET_PROGRAMS_OF_MINITASK:{
+    SETTLE_TASK: {
+        path: "/api/task/settletask",
+        method: "post"
+    },
+    GET_PROBLEMS_OF_MINITASK:{
         path:"/api/task/getproblemsofminitask",
         method:"post"
     },
