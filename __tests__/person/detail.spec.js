@@ -9,12 +9,16 @@ config.stubs.transition = false
 
 describe('Detail',()=>{
     const wrapper = mount(Detail,{localVue})
-    const button=wrapper.find('.el-button')
+    const buttons=wrapper.findAll('.el-button')
     const image=wrapper.find('.el-image')
 
-    it('have right buttons',()=>{
+    it('have right buttons', async()=>{
         expect(wrapper.findAll('.el-button').length).toBe(4)
         expect(wrapper.findAll('.el-row').length).toBe(10)
+        await buttons.at(0).trigger('click')
+        await buttons.at(1).trigger('click')
+        await buttons.at(2).trigger('click')
+        await buttons.at(3).trigger('click')
     })
 
     wrapper.setData({
