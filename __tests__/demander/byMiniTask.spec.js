@@ -1,5 +1,5 @@
 import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
-import Acceptance from '@/components/task/demander/acceptance/Acceptance'
+import ByMiniTasks from '@/components/task/demander/acceptance/ByMiniTasks'
 import ElementUI from 'element-ui'
 import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
@@ -12,12 +12,17 @@ config.stubs.transition = false
 
 
 describe('Acceptance',()=>{
-    const wrapper = shallowMount(Acceptance,{
+    const wrapper = shallowMount(ByMiniTasks,{
         localVue,
         mocks:{
             $route:{
                 params:{id:'1',status:0}
             },
+        },
+        propsData:{
+            task:{
+                id:1
+            }
         }
     })
 
@@ -25,25 +30,14 @@ describe('Acceptance',()=>{
 
     it('money',async()=>{
 
-        wrapper.vm.assertTaskId()
-        // wrapper.vm.seeAnswersOfUsers(1,1)
-        // wrapper.vm.showAnswer()
-        // wrapper.vm.hideAnswer()
-        // wrapper.vm.seeAnswersOfUser(answerId)
-        // wrapper.vm.normalIndex(3,1)
+        wrapper.vm.normalIndex(1,1)
+        wrapper.vm.seeAnswersOfUsers(1,1)
+        wrapper.vm.showAnswer()
+        wrapper.vm.hideAnswer()
+        wrapper.vm.seeAnswersOfUser(3)
+        wrapper.vm.refuseAnswer()
+        wrapper.vm.acceptAnswer()
     })
 
-    const wrapper2 = shallowMount(Acceptance,{
-        localVue,
-        mocks:{
-            $route:{
-                params:{id:'1',status:3}
-            },
-        }
-    })
-    it('money',async()=>{
-
-        wrapper2.vm.assertTaskId()
-    })
     
 })
