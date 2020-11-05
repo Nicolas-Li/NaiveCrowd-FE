@@ -138,6 +138,7 @@
 
 <script>
     import fun from "@/net/task"
+    import util from "@/util"
 
     export default {
         name: "Configuration",
@@ -284,16 +285,7 @@
         },
         computed: {
             deadline: function () {
-                let deadline = new Date()
-                if (this.ruleForm.time && this.ruleForm.date) {
-                    deadline.setTime(this.ruleForm.time.getTime())
-                    deadline.setDate(this.ruleForm.date.getDate())
-                    deadline.setMonth(this.ruleForm.date.getMonth())
-                    deadline.setFullYear(this.ruleForm.date.getFullYear())
-                } else {
-                    deadline.setFullYear(deadline.getFullYear() + 1)
-                }
-                return deadline.getTime()
+                return util.deadline(this.ruleForm.time, this.ruleForm.date)
             },
             miniTasksBonus() {
                 return this.ruleForm.miniTasksBonus1 * 100 + this.ruleForm.miniTasksBonus2

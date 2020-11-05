@@ -69,7 +69,7 @@ const API = {
         method: "post"
     },
     REFUSE_ANSWERS_OF_USER: {
-        path: "/api/check/refuseanswersofuser",
+        path: "/api/check/refuseanswerofuser",
         method: "post"
     },
     SETTLE_TASK: {

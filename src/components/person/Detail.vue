@@ -48,6 +48,7 @@
 
 <script>
     import fun from "@/net/info"
+    import util from "@/util"
 
     export default {
         name: "detail",
@@ -77,7 +78,7 @@
                             this.sex = data.sex === "non-binary" ? "el-icon-link" : "el-icon-" + data.sex;
                             this.email = data.email
                             this.credit = data.credit ? data.credit : 100
-                            this.money = data.money ? data.money : 0
+                            this.money = util.money(data.money ? data.money : 0)
                         }
                     }).catch(err => {
                         this.$message.error(err.toString())
