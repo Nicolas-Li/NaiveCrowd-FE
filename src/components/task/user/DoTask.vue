@@ -6,9 +6,11 @@
         <el-main>
             <div v-if="data[currentPage-1].type==='choice'">
                 <el-radio-group v-model="answer[currentPage-1]">
-                    <div :key=item v-for="(item,index) in problems[currentPage-1].choice">
-                        <el-radio :label="String.fromCharCode(65+index)">
-                            {{String.fromCharCode(65+index)}}.{{item}}
+<!--                    <div :key=item v-for="(item,index) in data[currentPage-1].choice">-->
+                    <div :key=item v-for="item in data[currentPage-1].choice">
+                        <el-radio :label="item">
+<!--                            {{String.fromCharCode(65+index)}}.{{item}}-->
+                            {{item.trim().replace(':', '.').replace(/'/ig, '')}}
                         </el-radio>
                     </div>
                 </el-radio-group>
@@ -35,7 +37,7 @@
                     background
                     layout="prev, pager, next">
             </el-pagination>
-            <el-button @click="submit" v-if="currentPage-1===data.length">提交</el-button>
+            <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
         </el-footer>
     </el-container>
 </template>
@@ -50,7 +52,7 @@
                     return [{
                         description: "",
                         type: "",
-                        choice: "",
+                        choice: [""],
                         imageUrl: null,
                     }]
                 }

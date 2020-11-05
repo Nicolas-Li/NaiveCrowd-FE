@@ -61,4 +61,7 @@ export default {
     async settleTask(id) {
         return await axios.post(API.SETTLE_TASK.path, { id })
     },
+    async exportTask(id) {
+        return await axios.post(API.EXPORT_TASK.path, { id })
+    },
 }

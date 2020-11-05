@@ -28,7 +28,7 @@ const routes = [
                             {
                                 // 需求方 创建任务
                                 path: '/main/task/create',
-                                component: () => import("@/components/task/demander/TaskCreate")
+                                component: () => import("@/components/task/demander/Creation")
                             },
                             {
                                 // 需求方 配置任务
@@ -41,11 +41,6 @@ const routes = [
                                 path: '/main/task/acceptance',
                                 name: 'acceptance',
                                 component: () => import("@/components/task/demander/acceptance/Acceptance")
-                            },
-                            {
-                                // 需求方 导出任务
-                                path: '/main/task/export',
-                                component: () => import("@/components/task/demander/Export")
                             },
                             {
                                 //用户方 我的任务

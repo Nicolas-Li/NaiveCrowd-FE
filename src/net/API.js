@@ -76,6 +76,10 @@ const API = {
         path: "/api/task/settletask",
         method: "post"
     },
+    EXPORT_TASK: {
+        path: "/api/task/exporttask",
+        method: "post"
+    },
     DISTRIBUTE_MINITASK: {
         path: "/api/task/distributeminitask",
         method: "get"

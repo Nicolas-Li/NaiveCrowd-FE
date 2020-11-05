@@ -58,8 +58,8 @@
                 return t.toLocaleString()
             },
             showButton() {
-                let statusList = ["配置任务", "发布任务", "终止任务", "我要验收", "我要结算", "查看详情"]
-                let statusLoadingList = ["进入配置", "正在发布", "正在终止", "进入验收", "进入结算", "进入详情"]
+                let statusList = ["配置任务", "发布任务", "终止任务", "我要验收", "我要结算", "导出任务"]
+                let statusLoadingList = ["进入配置", "正在发布", "正在终止", "进入验收", "进入结算", "正在导出"]
                 return this.loading ? statusLoadingList[this.task.status] : statusList[this.task.status]
             },
         },
@@ -159,7 +159,7 @@
                     // 结算任务
                     case 4:
                         fun.settleTask(this.task.id).then(res => {
-                            let data = res.data;
+                            let data = res.data
                             if (data.type === "failed") {
                                 this.$message.error(data.message)
                             } else if (data.type === "success") {
@@ -172,6 +172,19 @@
                         break
                     // 导出任务
                     case 5:
+                        fun.exportTask(this.task.id).then(res => {
+                            let data = res.data
+                            if (data.type === "failed") {
+                                this.$message.error(data.message)
+                            } else if (data.type === "success") {
+                                this.$message.success(data.message)
+                                window.open(data.resultUrl)
+                            }
+                            this.loading = false
+                        }).catch(err => {
+                            this.loading = false
+                            this.$message.error(err.toString())
+                        })
                         break
                     default:
                         this.loading = false

@@ -47,6 +47,7 @@
                 })
             },
             submitAnswer(answer) {
+                console.log(answer)
                 fun.submitAnswer(answer, this.miniTaskId)
                     .then(res => {
                         let data = res.data
