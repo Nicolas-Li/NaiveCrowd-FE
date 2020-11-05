@@ -24,7 +24,7 @@ const API = {
         path: "/api/task/loadmore",
         method: "post"
     },
-    LOAD_DEMANDER_TASK: {
+    LOAD_TASK: {
         path: "/api/task/load",
         method: "get"
     },
@@ -72,18 +72,26 @@ const API = {
         path: "/api/check/refuseanswersofuser",
         method: "post"
     },
-    GET_PROGRAMS_OF_MINITASK:{
-        path:"/api/task/getproblemsofminitask",
-        method:"post"
+    SETTLE_TASK: {
+        path: "/api/task/settletask",
+        method: "post"
     },
-    SUBMIT_ANSWER:{
-        path:"/api/answer/submitanswer",
-        method:"post"
+    EXPORT_TASK: {
+        path: "/api/task/exporttask",
+        method: "post"
     },
-    DISTRIBUTE_MINITASK:{
-        path:"/api/task/distributeminitask",
-        method:"get"
+    DISTRIBUTE_MINITASK: {
+        path: "/api/task/distributeminitask",
+        method: "get"
     },
+    GET_PROBLEMS_OF_MINITASK: {
+        path: "/api/task/getproblemsofminitask",
+        method: "post"
+    },
+    SUBMIT_ANSWER: {
+        path: "/api/answer/submitanswer",
+        method: "post"
+    }
 }
 
 export default API

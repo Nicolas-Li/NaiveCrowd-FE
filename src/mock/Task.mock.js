@@ -20,7 +20,7 @@ Mock.mock(API.LOAD_MORE_TASK.path,API.LOAD_MORE_TASK.method,(rqst)=>{
     let data = JSON.parse(rqst.body)
     return { data: taskList.slice(data.start, data.start + data.num) }
 })
-Mock.mock(API.LOAD_DEMANDER_TASK.path,API.LOAD_DEMANDER_TASK.method,(rqst)=>{
+Mock.mock(API.LOAD_TASK.path,API.LOAD_TASK.method,(rqst)=>{
     for (let i = 0; i < taskList.length; i++) {
         taskList[i].status = i % 6
         taskList[i].id = i + 1
