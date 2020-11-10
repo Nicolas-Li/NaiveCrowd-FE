@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
 //import router from '../../src/router/router.js'
 import Vue from 'vue'
+import axios from 'axios'
+jest.mock('axios')
 const localVue=createLocalVue()
 localVue.use(ElementUI)
 localVue.use(VueCookies)
@@ -29,14 +31,78 @@ describe('Acceptance',()=>{
     //wrapper.setData({loading:true,money:100})
 
     it('money',async()=>{
+        
+
+        axios.post.mockResolvedValue({
+            data:{
+                type:'success',
+                message:'123',
+            }
+        })
+        wrapper.vm.seeMiniTasksOfTask()
+        axios.post.mockResolvedValue({
+            data:{
+                type:'failed',
+                message:'123',
+            }
+        })
+        wrapper.vm.seeMiniTasksOfTask()
+
+        axios.post.mockResolvedValue({
+            data:{
+                type:'success',
+                message:'123',
+                answersOfUsersIdList:'',
+                problemList:'',
+            }
+        })
+        wrapper.vm.seeAnswersOfUsers(1)
+        axios.post.mockResolvedValue({
+            data:{
+                type:'failed',
+                message:'123',
+                answersOfUsersIdList:'',
+                problemList:'',
+            }
+        })
+        wrapper.vm.seeAnswersOfUsers(1)
+
+        axios.post.mockResolvedValue({
+            data:{
+                type:'success',
+                message:'123',
+                userInfo:'',
+                contentList:'',
+            }
+        })
+        wrapper.vm.seeAnswersOfUser(1)
+
+        axios.post.mockResolvedValue({
+            data:{
+                type:'failed',
+                message:'123',
+                userInfo:'',
+                contentList:'',
+            }
+        })
+        wrapper.vm.seeAnswersOfUser(1)
+        wrapper.setData({answerId:10})
+        wrapper.vm.answerId=10
+        wrapper.vm.seeAnswersOfUser(10)
+
 
         wrapper.vm.normalIndex(1,1)
-        wrapper.vm.seeAnswersOfUsers(1,1)
-        wrapper.vm.showAnswer()
-        wrapper.vm.hideAnswer()
-        wrapper.vm.seeAnswersOfUser(3)
+        
         wrapper.vm.refuseAnswer()
-        wrapper.vm.acceptAnswer()
+        axios.post.mockResolvedValue({
+            data:{
+                type:'success',
+                message:'123',
+                userInfo:'',
+                contentList:'',
+            }
+        })
+        wrapper.vm.refuseAnswer()
     })
 
     
