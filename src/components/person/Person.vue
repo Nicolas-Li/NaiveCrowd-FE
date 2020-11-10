@@ -10,7 +10,7 @@
                     <i class="el-icon-info"></i>
                     <span slot="title">资料编辑</span>
                 </el-menu-item>
-                <el-menu-item index="/person/charge">
+                <el-menu-item v-if="$cookies.get('identity') === 'demander'" index="/person/charge">
                     <i class="el-icon-info"></i>
                     <span slot="title">充值钱包</span>
                 </el-menu-item>
