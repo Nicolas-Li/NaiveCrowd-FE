@@ -47,6 +47,13 @@ describe('Acceptance',()=>{
             }
         })
         wrapper.vm.seeMiniTasksOfTask()
+        axios.post.mockResolvedValue({
+            data:{
+                type:'f',
+                message:'123',
+            }
+        })
+        wrapper.vm.seeMiniTasksOfTask()
 
         axios.post.mockResolvedValue({
             data:{
@@ -60,6 +67,15 @@ describe('Acceptance',()=>{
         axios.post.mockResolvedValue({
             data:{
                 type:'failed',
+                message:'123',
+                answersOfUsersIdList:'',
+                problemList:'',
+            }
+        })
+        wrapper.vm.seeAnswersOfUsers(1)
+        axios.post.mockResolvedValue({
+            data:{
+                type:'f',
                 message:'123',
                 answersOfUsersIdList:'',
                 problemList:'',
@@ -76,10 +92,18 @@ describe('Acceptance',()=>{
             }
         })
         wrapper.vm.seeAnswersOfUser(1)
-
         axios.post.mockResolvedValue({
             data:{
                 type:'failed',
+                message:'123',
+                userInfo:'',
+                contentList:'',
+            }
+        })
+        wrapper.vm.seeAnswersOfUser(1)
+        axios.post.mockResolvedValue({
+            data:{
+                type:'f',
                 message:'123',
                 userInfo:'',
                 contentList:'',
@@ -97,6 +121,15 @@ describe('Acceptance',()=>{
         axios.post.mockResolvedValue({
             data:{
                 type:'success',
+                message:'123',
+                userInfo:'',
+                contentList:'',
+            }
+        })
+        wrapper.vm.refuseAnswer()
+        axios.post.mockResolvedValue({
+            data:{
+                type:'failed',
                 message:'123',
                 userInfo:'',
                 contentList:'',
