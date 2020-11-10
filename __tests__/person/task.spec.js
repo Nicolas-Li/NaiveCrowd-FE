@@ -11,7 +11,7 @@ describe('userTask', ()=>{
     const buttons = wrapper.findAll('.el-button')
     it('has right buttons', async()=>{
         expect(buttons.length).toBe(1)
-        expect(buttons.at(0).text()).toBe("开始做题")
+        expect(buttons.at(0).text()).toBe("查看详情")
         await buttons.at(0).trigger('click')
     })
 })
