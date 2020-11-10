@@ -25,8 +25,10 @@ describe('Creation', ()=> {
             type: 'image/jpe'
         })
         wrapper[i].vm.handleCoverRemove()
-        wrapper[i].submitForm('x')
-        wrapper[i].resetForm('x')
+        wrapper[i].vm.submitForm('x')
+        wrapper[i].vm.resetForm('x')
+        wrapper[i].setData({isSubmitting: true})
+
 
     }
 })

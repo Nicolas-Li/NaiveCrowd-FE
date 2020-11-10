@@ -59,7 +59,8 @@ describe('Acceptance',()=>{
     })
     it('m',async()=>{
 
-        //wrapper2.vm.assertTaskId()
+        wrapper2.vm.assertTaskId()
+        
     })
     
 })
