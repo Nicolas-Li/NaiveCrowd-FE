@@ -5,32 +5,48 @@ import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
 //import router from '../../src/router/router.js'
 import Vue from 'vue'
+import axios from 'axios'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
 localVue.use(VueCookies)
 config.stubs.transition = false
-
+jest.mock('axios')
 
 describe('Acceptance',()=>{
     const wrapper = shallowMount(Acceptance,{
         localVue,
         mocks:{
             $route:{
-                params:{id:'1',status:0}
+                params:{id:'1',status:0},
+                back:function(){},
+                push:function(path){}
             },
         }
     })
 
-    //wrapper.setData({loading:true,money:100})
-
     it('money',async()=>{
-
+        axios.post.mockResolvedValue({
+            data:{
+                type:'success',
+                message:'123',
+            }
+        })
         wrapper.vm.assertTaskId()
-        // wrapper.vm.seeAnswersOfUsers(1,1)
-        // wrapper.vm.showAnswer()
-        // wrapper.vm.hideAnswer()
-        // wrapper.vm.seeAnswersOfUser(answerId)
-        // wrapper.vm.normalIndex(3,1)
+        wrapper.vm.settleTask()
+        axios.post.mockResolvedValue({
+            data:{
+                type:'failed',
+                message:'123',
+            }
+        })
+        wrapper.vm.settleTask()
+        axios.post.mockResolvedValue({
+            data:{
+                type:'f',
+                message:'123',
+            }
+        })
+        wrapper.vm.settleTask()
     })
 
     const wrapper2 = shallowMount(Acceptance,{
@@ -41,9 +57,9 @@ describe('Acceptance',()=>{
             },
         }
     })
-    it('money',async()=>{
+    it('m',async()=>{
 
-        wrapper2.vm.assertTaskId()
+        //wrapper2.vm.assertTaskId()
     })
     
 })
