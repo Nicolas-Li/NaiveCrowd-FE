@@ -3,14 +3,16 @@
         <el-header/>
         <el-header class="header">
             <el-row>
-                <el-col :span="20">
+                <el-col :span="18">
                     <el-menu class="grid-content menu-left" mode="horizontal" router>
                         <el-menu-item index="/main"><h1 class="main">Naive Crowd</h1></el-menu-item>
                         <el-menu-item index="/main/task/square">任务广场</el-menu-item>
-                        <el-menu-item index="/main/task/demander">我的任务</el-menu-item>
+                        <el-menu-item v-if="$cookies.get('identity') === 'demander'" index="/main/task/demander">我的任务</el-menu-item>
+                        <el-menu-item v-if="$cookies.get('identity') === 'user'" index="/main/task/user">我的任务</el-menu-item>
+                        <el-menu-item v-if="$cookies.get('identity') === 'user'" index="/main/task/distribute">系统分发</el-menu-item>
                     </el-menu>
                 </el-col>
-                <el-col :span="4">
+                <el-col :span="6">
                     <div v-if="!isLogin">
                         <el-menu class="grid-content bg-purple-light menu-right" router mode="horizontal">
                             <el-menu-item index="/login">登录</el-menu-item>
