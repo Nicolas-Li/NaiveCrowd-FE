@@ -8,8 +8,19 @@ config.stubs.transition = false
 
 describe('Register',()=>{
     const wrapper = mount(Register,{localVue})
-    //const submitButton = wrapper.find('.el-button')
-
+    const submitButton = wrapper.find('.el-button')
+    const resetButton = wrapper.findAll('.el-button').at(1)
+    wrapper.setData({
+        ruleForm:{
+            name:'',
+            pass:'',
+            checkPass:'',
+            email:'',
+            sex:''
+        }
+    })
+    wrapper.vm.submitForm("x")
+    wrapper.vm.resetForm("x")
     wrapper.setData({
         ruleForm:{
             name:'yxb',
@@ -20,18 +31,28 @@ describe('Register',()=>{
         }
     })
     it('name',async()=>{
+        await submitButton.trigger('click')
+        await resetButton.trigger('click')
         expect(wrapper.vm.ruleForm.name).toBe('yxb')
     })
-    it('pass',async()=>{        
+    it('pass',async()=>{    
+        await submitButton.trigger('click')  
+        await resetButton.trigger('click')  
         expect(wrapper.vm.ruleForm.pass).toBe('123456')
     })
     it('checkPass',async()=>{
+        await submitButton.trigger('click')
+        await resetButton.trigger('click')
         expect(wrapper.vm.ruleForm.checkPass).toBe('123456')
     })
     it('email',async()=>{
+        await submitButton.trigger('click')
+        await resetButton.trigger('click')
         expect(wrapper.vm.ruleForm.email).toBe('abc@mails.com')
     })
     it('sex',async()=>{
+        await submitButton.trigger('click')
+        await resetButton.trigger('click')
         expect(wrapper.vm.ruleForm.sex).toBe('male')
     })
     

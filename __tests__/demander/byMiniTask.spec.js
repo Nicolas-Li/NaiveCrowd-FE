@@ -20,6 +20,9 @@ describe('Acceptance',()=>{
             $route:{
                 params:{id:'1',status:0}
             },
+            $message:{
+                error:function(a){},
+            }
         },
         propsData:{
             task:{

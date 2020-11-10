@@ -21,6 +21,9 @@ describe('Acceptance',()=>{
                 back:function(){},
                 push:function(path){}
             },
+            $router:{
+                back:function(){}
+            },
         }
     })
 
@@ -54,6 +57,9 @@ describe('Acceptance',()=>{
         mocks:{
             $route:{
                 params:{id:'1',status:3}
+            },
+            $router:{
+                back:function(){}
             },
         }
     })

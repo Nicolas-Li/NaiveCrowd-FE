@@ -31,6 +31,9 @@ describe('Task',()=>{
                 $router:{
                     push:function(a){}
                 },
+                $message:{
+                    error:function(a){},
+                }
             },
             propsData:{
                 task:{
@@ -98,6 +101,14 @@ describe('Task',()=>{
         expect(button.text()).toBe('进入配置')
     })
     const wrapper1 = mount(Task, {localVue,
+        mocks:{
+            $route:{
+                params:{id:'1',status:0}
+            },
+            $message:{
+                error:function(a){},
+            }
+        },
         propsData: {
             task:{
                 status: 1
@@ -127,6 +138,14 @@ describe('Task',()=>{
     })
 
     const wrapper2 = mount(Task, {localVue,
+        mocks:{
+            $route:{
+                params:{id:'1',status:0}
+            },
+            $message:{
+                error:function(a){},
+            }
+        },
         propsData: {
             task:{
                 status: 2
@@ -137,6 +156,14 @@ describe('Task',()=>{
         await wrapper2.findAll('.el-button').at(0).trigger('click')
     })
     const wrapper3 = mount(Task, {localVue,
+        mocks:{
+            $route:{
+                params:{id:'1',status:0}
+            },
+            $message:{
+                error:function(a){},
+            }
+        },
         propsData: {
             task:{
                 status: 3
@@ -157,6 +184,14 @@ describe('Task',()=>{
         await wrapper4.findAll('.el-button').at(0).trigger('click')
     })
     const wrapper5 = mount(Task, {localVue,
+        mocks:{
+            $route:{
+                params:{id:'1',status:0}
+            },
+            $message:{
+                error:function(a){},
+            }
+        },
         propsData: {
             task:{
                 status: 5
@@ -167,6 +202,14 @@ describe('Task',()=>{
         await wrapper5.findAll('.el-button').at(0).trigger('click')
     })
     const wrapper6 = mount(Task, {localVue,
+        mocks:{
+            $route:{
+                params:{id:'1',status:0}
+            },
+            $message:{
+                error:function(a){},
+            }
+        },
         propsData: {
             task:{
                 status: 6
@@ -177,6 +220,14 @@ describe('Task',()=>{
         await wrapper6.findAll('.el-button').at(0).trigger('click')
     })
     const wrapper7 = mount(Task, {localVue,
+        mocks:{
+            $route:{
+                params:{id:'1',status:0}
+            },
+            $message:{
+                error:function(a){},
+            }
+        },
         propsData: {
             task:{
                 status: 7

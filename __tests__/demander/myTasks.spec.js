@@ -2,7 +2,6 @@ import {mount,config,createLocalVue} from '@vue/test-utils'
 import MyTasks from '@/components/task/demander/MyTasks'
 import ElementUI from 'element-ui'
 import Vue from 'vue'
-import moxios from 'moxios'
 import mock from '@/mock/Task.mock.js'
 import axios from 'axios'
 const localVue=createLocalVue()
