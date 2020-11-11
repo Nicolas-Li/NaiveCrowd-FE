@@ -94,10 +94,10 @@ describe('Task',()=>{
         
     })
     it('can show button-content rightly', ()=> {
-        expect(button.text()).toBe('配置任务')
+        expect(button.text()).toBe('进入配置')
     })
     it('can change button-content rightly',async ()=> {
-        await wrapper.findAll('.el-button').at(0).trigger('click')
+        //await wrapper.findAll('.el-button').at(0).trigger('click')
         expect(button.text()).toBe('进入配置')
     })
     const wrapper1 = mount(Task, {localVue,
@@ -115,25 +115,37 @@ describe('Task',()=>{
             }
         }
     })
+    const wrapperx = mount(Task, {localVue,
+        mocks:{
+            $route:{
+                params:{id:'1',status:0}
+            },
+            $message:{
+                error:function(a){},
+            },
+            $router:{
+                push:function(a){}
+            },
+        },
+        propsData: {
+            task:{
+                id: "3a4d567",
+                title: "标题",
+                intro: "介绍",
+                status: 3,
+                time: new Date().getTime()
+            }
+        }
+    })
     it('can show percentage rightly', async () =>{
         await wrapper1.findAll('.el-button').at(0).trigger('click')
     })
     it('can finish',async ()=> {
-        await wrapper.setProps(
-            {
-                task:{
-                    id: "3a4d567",
-                    title: "标题",
-                    intro: "介绍",
-                    status: 3,
-                    time: new Date().getTime()
-                }
-            }
-        )
-        await wrapper.findAll('.el-button').at(0).trigger('click')
+        
+        await wrapperx.findAll('.el-button').at(0).trigger('click')
         Vue.nextTick(() => {
-            expect (wrapper.vm.task.status).toBe(3)
-            done()
+            expect (wrapperx.vm.task.status).toBe(3)
+            
         })
     })
 
@@ -162,7 +174,10 @@ describe('Task',()=>{
             },
             $message:{
                 error:function(a){},
-            }
+            },
+            $router:{
+                push:function(a){},
+            },
         },
         propsData: {
             task:{
@@ -208,6 +223,7 @@ describe('Task',()=>{
             },
             $message:{
                 error:function(a){},
+                warning:function(a){},
             }
         },
         propsData: {
@@ -226,6 +242,7 @@ describe('Task',()=>{
             },
             $message:{
                 error:function(a){},
+                warning:function(a){},
             }
         },
         propsData: {

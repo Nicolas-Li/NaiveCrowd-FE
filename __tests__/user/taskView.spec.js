@@ -23,6 +23,9 @@ describe('TaskView',()=>{
                 params:{
                     id:1,
                     status:0
+                },
+                query:{
+                    task: 0
                 }
             }
         }
@@ -38,6 +41,9 @@ describe('TaskView',()=>{
                 params:{
                     id:1,
                     status:1
+                },
+                query:{
+                    task: 0
                 }
             }
         }

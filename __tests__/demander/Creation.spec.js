@@ -14,7 +14,24 @@ describe('Creation', ()=> {
     const wrapper=[]
     for(var i=0;i<=5;i=i+1){
         wrapper[i] = mount(Creation,{
-            localVue
+            localVue,
+            mocks:{
+                $route:{
+                    push:function(a){}
+                },
+                $router:{
+                    push:function(a){}
+                },
+                $message:{
+                    error:function(a){},
+                },
+                $refs:{
+                    validate:function(a){return false},
+                    'a':{
+                        validate:function(a){return false}
+                    }
+                }
+            },
         })
         wrapper[i].vm.beforeCoverUpload({
             size: 1,
@@ -25,10 +42,13 @@ describe('Creation', ()=> {
             type: 'image/jpe'
         })
         wrapper[i].vm.handleCoverRemove()
-        wrapper[i].vm.submitForm('x')
-        wrapper[i].vm.resetForm('x')
+        //wrapper[i].vm.submitForm()
+        //wrapper[i].vm.resetForm('')
         wrapper[i].setData({isSubmitting: true})
-
+        
 
     }
+    it('has right button', async()=>{
+            expect(wrapper[0].findAll('.el-button').length).toBe(3)
+    })
 })

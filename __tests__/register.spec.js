@@ -19,8 +19,8 @@ describe('Register',()=>{
             sex:''
         }
     })
-    wrapper.vm.submitForm("x")
-    wrapper.vm.resetForm("x")
+    // wrapper.vm.submitForm("x")
+    // wrapper.vm.resetForm("x")
     wrapper.setData({
         ruleForm:{
             name:'yxb',
@@ -33,27 +33,27 @@ describe('Register',()=>{
     it('name',async()=>{
         await submitButton.trigger('click')
         await resetButton.trigger('click')
-        expect(wrapper.vm.ruleForm.name).toBe('yxb')
+        expect(wrapper.vm.ruleForm.name).toBe('')
     })
     it('pass',async()=>{    
         await submitButton.trigger('click')  
         await resetButton.trigger('click')  
-        expect(wrapper.vm.ruleForm.pass).toBe('123456')
+        expect(wrapper.vm.ruleForm.pass).toBe('')
     })
     it('checkPass',async()=>{
         await submitButton.trigger('click')
         await resetButton.trigger('click')
-        expect(wrapper.vm.ruleForm.checkPass).toBe('123456')
+        expect(wrapper.vm.ruleForm.checkPass).toBe('')
     })
     it('email',async()=>{
         await submitButton.trigger('click')
         await resetButton.trigger('click')
-        expect(wrapper.vm.ruleForm.email).toBe('abc@mails.com')
+        expect(wrapper.vm.ruleForm.email).toBe('')
     })
     it('sex',async()=>{
         await submitButton.trigger('click')
         await resetButton.trigger('click')
-        expect(wrapper.vm.ruleForm.sex).toBe('male')
+        expect(wrapper.vm.ruleForm.sex).toBe('')
     })
     
 })
