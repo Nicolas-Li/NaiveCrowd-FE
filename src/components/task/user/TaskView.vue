@@ -4,22 +4,36 @@
         <el-main>
             <el-divider></el-divider>
             <el-row :gutter="20">
-                <el-col :span="6"><div align='left'>题目数量：{{task.problemsNum}}</div></el-col>
-                <el-col :span="6"><div align='left'>题目类型：{{type}}</div></el-col>
-                <el-col :span="6"><div align='left'>预期收益：{{task.bonus}}</div></el-col>
-                <el-col :span="6"><div align='left'>做题时间：{{miniTaskTime}}min</div></el-col>
+                <el-col :span="6">
+                    <div align='left'>题目数量：{{task.problemsNum}}</div>
+                </el-col>
+                <el-col :span="6">
+                    <div align='left'>题目类型：{{type}}</div>
+                </el-col>
+                <el-col :span="6">
+                    <div align='left'>预期收益：{{task.bonus}}</div>
+                </el-col>
+                <el-col :span="6">
+                    <div align='left'>做题时间：{{miniTaskTime}}min</div>
+                </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col ><div align='left'>截止日期：{{showDate}}</div></el-col>
+                <el-col>
+                    <div align='left'>截止日期：{{showDate}}</div>
+                </el-col>
             </el-row>
             <el-divider></el-divider>
             <el-row>
-                <el-col :span="24"><div align='left'>题目描述：{{task.intro}}</div></el-col>
+                <el-col :span="24">
+                    <div align='left'>题目描述：{{task.intro}}</div>
+                </el-col>
             </el-row>
             <el-divider></el-divider>
-            <el-button v-if="task.isFavor==false" @click="favor">收藏</el-button>
-            <el-button v-if="task.isFavor==true" disabled>已收藏</el-button>
-            <el-button @click="doTask">开始做题</el-button>
+            <div v-if="identity === 'user'">
+                <el-button @click="favor" v-if="task.isFavor===false">收藏</el-button>
+                <el-button disabled v-if="task.isFavor===true">已收藏</el-button>
+                <el-button @click="doTask">开始做题</el-button>
+            </div>
         </el-main>
 
     </el-container>
@@ -27,15 +41,15 @@
 
 <script>
     import fun from "@/net/task"
+
     export default {
         name: "TaskView",
-        components: {
-        },
+        components: {},
         data() {
             return {
                 task: {},
-                type:"选择题",
-                miniTaskTime:20,
+                type: "选择题",
+                miniTaskTime: 20,
             }
         },
         mounted: function () {
@@ -48,33 +62,33 @@
                     this.$router.back()
                 }, 1500)
             }
-            
+
         },
         methods: {
-            doTask(){
+            doTask() {
                 fun.getMiniTaskByTask(this.task.id)
-                .then(res => {
-                    if (res.data.type === "failed") {
-                        this.$message.error(res.data.message)
-                    }else{
-                        this.$router.push({path:'/main/task/do',query:res.data.id})
-                    }
-                }).catch(err => {
+                    .then(res => {
+                        if (res.data.type === "failed") {
+                            this.$message.error(res.data.message)
+                        } else {
+                            this.$router.push({path: '/main/task/do', query: res.data.id})
+                        }
+                    }).catch(err => {
                     this.$message.error(err.toString())
                 })
 
-                
+
             },
-            favor(){
+            favor() {
                 fun.favor(this.task.id)
-                .then(res => {
-                    if (res.data.type === "failed") {
-                        this.$message.error(res.data.message)
-                    }else{
-                         this.$message.success(res.data.message)
-                        this.task.isFavor = true
-                    }
-                }).catch(err => {
+                    .then(res => {
+                        if (res.data.type === "failed") {
+                            this.$message.error(res.data.message)
+                        } else {
+                            this.$message.success(res.data.message)
+                            this.task.isFavor = true
+                        }
+                    }).catch(err => {
                     this.$message.error(err.toString())
                 })
             }
