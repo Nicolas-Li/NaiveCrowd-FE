@@ -17,7 +17,7 @@
             task: {},
         },
         methods:{
-            goToTaskView(){
+                goToTaskView(){
                 this.$router.push({path:'/main/task/view',query:{task:this.task}})
             }
         },
