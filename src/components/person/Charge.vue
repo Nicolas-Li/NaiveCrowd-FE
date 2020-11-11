@@ -11,7 +11,7 @@
             <el-col :span="5"><br/></el-col>
             <el-col :span="14">
                 <el-input suffix-icon="el-icon-money" v-model="money" type="number">
-                    <template slot="prepend">请输入充值金额</template>
+                    <template slot="prepend">请输入充值金额(元)</template>
                     <template slot="append">
                         <el-button :loading="loading" @click="charge">我要充值</el-button>
                     </template>

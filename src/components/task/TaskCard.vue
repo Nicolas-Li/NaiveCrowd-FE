@@ -1,11 +1,12 @@
 <template>
     <el-card class="card">
         <el-image v-if="task.cover"
-                  style="width: 100%" fit="cover"
+                  style="width: 305px;height:140px;text-align:center;display: table-cell;" fit="cover"
                   :src="task.cover"/>
-        <h2>{{ task.title }}</h2>
-        <p>{{ task.intro }}</p>
-        <el-button>{{ task.time }}</el-button>
+        <h1>{{ task.title }}</h1>
+        <p>{{ showStatus }}</p>
+        <p>截止日期:{{ showDate }}</p>
+        <el-button @click="goToTaskView">查看详情</el-button>
     </el-card>
 </template>
 
@@ -13,27 +14,36 @@
     export default {
         name: "TaskCard",
         props: {
-            task: {
-                type: Object,
-                default: () => {
-                    return {
-                        cover: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-                        title: "任务样例",
-                        intro: "整合人工智能，实现自动驾驶，进阶人机交互",
-                        time: new Date().toLocaleString(),
-
-                    }
-                }
+            task: {},
+        },
+        methods:{
+            goToTaskView(){
+                this.$router.push({path:'/main/task/view',query:{task:this.task}})
             }
+        },
+        computed: {
+            showStatus() {
+                let statusList = ["未配置", "待发布", "发布中", "待验收", "待结算", "任务结束"]
+                return statusList[this.task.status]
+            },
+            showDate() {
+                let t = new Date()
+                t.setTime(this.task.time)
+                return t.toLocaleString()
+            },
         }
     }
 </script>
 
 <style scoped>
     .card {
-        border-radius: 20px;
+        border-radius: 10px;
         margin-bottom: -10px;
-        width: 280px;
+        width: 310px;
+        height:360px;
         overflow: hidden;
+    }
+    p{
+        font-size:15px;
     }
 </style>

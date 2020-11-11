@@ -24,6 +24,7 @@
 
 <script>
     import fun from "@/net/task"
+    import util from "@/util"
 
     export default {
         name: "Task",
@@ -81,9 +82,6 @@
             }
         },
         methods: {
-            money(m) {
-                return m / 100.0 + "元"
-            },
             chooseTask() {
                 this.loading = true
                 switch (this.task.status) {
@@ -107,8 +105,8 @@
                                     let demanderMoney = data.demanderMoney
                                     if (taskMoney > demanderMoney) {
                                         this.loading = false
-                                        this.$message.warning("任务发布需要资金" + this.money(taskMoney)
-                                            + "\n但您只有" + this.money(demanderMoney)
+                                        this.$message.warning("任务发布需要资金" + util.money(taskMoney)
+                                            + "\n但您只有" + util.money(demanderMoney)
                                             + "\n请充值")
                                     } else {
                                         fun.releaseTask(this.task.id)

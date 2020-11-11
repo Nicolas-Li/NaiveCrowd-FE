@@ -1,19 +1,19 @@
 <template>
     <el-card>
-        <el-image style="height: 200px" fit="cover"
-                  src="https://wx4.sinaimg.cn/mw690/006HO9i9ly1gjj1pdv2itj328n1hre81.jpg"/>
+        <el-image style="height: 200px; min-width: 800px" fit="cover"
+                  src="http://wx4.sinaimg.cn/mw690/006HO9i9ly1gjj1pdv2itj328n1hre81.jpg"/>
         <el-row>
             <el-col :span="2"><br/></el-col>
             <el-col :span="4" style="text-align: left">
                 <el-row class="name">{{ name }}<i :class="sex"/></el-row>
                 <el-row>{{ email }}</el-row>
             </el-col>
-            <el-col :span="14"><br/></el-col>
-            <el-col :span="2">
+            <el-col :span="10"><br/></el-col>
+            <el-col :span="4">
                 <el-row class="money-value">{{ money }}</el-row>
-                <el-row class="credit-label"><i class="el-icon-money"/>钱包</el-row>
+                <el-row class="credit-label"><i class="el-icon-money"/>钱包/元</el-row>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="4">
                 <el-row class="credit-value">{{ credit }}</el-row>
                 <el-row class="credit-label"><i class="el-icon-magic-stick"/>信誉值</el-row>
             </el-col>
@@ -48,6 +48,7 @@
 
 <script>
     import fun from "@/net/info"
+    import util from "@/util"
 
     export default {
         name: "detail",
@@ -77,7 +78,7 @@
                             this.sex = data.sex === "non-binary" ? "el-icon-link" : "el-icon-" + data.sex;
                             this.email = data.email
                             this.credit = data.credit ? data.credit : 100
-                            this.money = data.money ? data.money : 0
+                            this.money = util.money(data.money ? data.money : 0).replace("元", "")
                         }
                     }).catch(err => {
                         this.$message.error(err.toString())
