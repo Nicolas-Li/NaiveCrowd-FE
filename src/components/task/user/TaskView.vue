@@ -62,7 +62,6 @@
                     this.$router.back()
                 }, 1500)
             }
-
         },
         methods: {
             doTask() {
@@ -72,8 +71,8 @@
                             this.$message.error(res.data.message)
                         } else {
                             this.$router.push({
-                                name: 'doTask', 
-                                params: { id: res.data.id }
+                                name: 'doTask',
+                                params: {id: res.data.id}
                             })
                         }
                     }).catch(err => {

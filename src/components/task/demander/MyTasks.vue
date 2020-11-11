@@ -30,7 +30,6 @@
             }
         },
         mounted: function () {
-            console.log("fuck you")
             this.loadTask()
         },
         methods: {
