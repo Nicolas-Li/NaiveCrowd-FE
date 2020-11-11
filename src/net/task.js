@@ -23,6 +23,9 @@ export default {
     async favor(id){
         return await axios.post(API.FAVOR.path, {id})
     },
+    async isFavor(id){
+        return await axios.post(API.IS_FAVOR.path, {id})
+    },
     async createTask(cover, title, intro, deadline) {
         let formData = new FormData()
         formData.append('file', cover)

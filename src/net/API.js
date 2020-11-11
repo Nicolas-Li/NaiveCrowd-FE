@@ -40,6 +40,10 @@ const API = {
         path:'/api/log/collecttask',
         method:"post"
     },
+    IS_FAVOR: {
+        path:'/api/log/iscollected',
+        method:"post"
+    },
     GET_MINITASK_BY_TASK:{
         path:'/api/task/freeminitask',
         method:"post"

@@ -30,8 +30,7 @@
             </el-row>
             <el-divider></el-divider>
             <div v-if="$cookies.get('identity') === 'user'">
-                <el-button @click="favor" v-if="task.isFavor===false">收藏</el-button>
-                <el-button disabled v-if="task.isFavor===true">已收藏</el-button>
+                <el-button :disabled="task.isFavor" @click="favor">{{ task.isFavor ? "已收藏" : "收藏" }}</el-button>
                 <el-button @click="doTask">开始做题</el-button>
             </div>
         </el-main>
@@ -56,6 +55,15 @@
             let task = this.$route.query.task
             if (task.id) {
                 this.task = task
+                fun.isFavor(task.id).then(res => {
+                    if (res.data.type === "failed") {
+                        this.$message.error(res.data.message)
+                    } else {
+                        this.task.isFavor = res.data.info === "yes"
+                    }
+                }).catch(err => {
+                    this.$message.error(err.toString())
+                })
             } else {
                 this.$message.warning("详情出错啦！即将返回前一页面")
                 setTimeout(() => {
@@ -78,21 +86,21 @@
                     }).catch(err => {
                     this.$message.error(err.toString())
                 })
-
-
             },
             favor() {
-                fun.favor(this.task.id)
-                    .then(res => {
-                        if (res.data.type === "failed") {
-                            this.$message.error(res.data.message)
-                        } else {
-                            this.$message.success(res.data.message)
-                            this.task.isFavor = true
-                        }
-                    }).catch(err => {
-                    this.$message.error(err.toString())
-                })
+                if (!this.task.isFavor) {
+                    fun.favor(this.task.id)
+                        .then(res => {
+                            if (res.data.type === "failed") {
+                                this.$message.error(res.data.message)
+                            } else {
+                                this.$message.success(res.data.message)
+                                this.task.isFavor = true
+                            }
+                        }).catch(err => {
+                        this.$message.error(err.toString())
+                    })
+                }
             }
         },
         computed: {
