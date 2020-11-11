@@ -61,6 +61,7 @@ const routes = [
                             {
                                 //用户方 答题
                                 path: '/main/task/do',
+                                name: 'doTask',
                                 component: () => import("@/components/task/user/DoTask")
                             },
                         ]

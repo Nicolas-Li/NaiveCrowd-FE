@@ -71,7 +71,10 @@
                         if (res.data.type === "failed") {
                             this.$message.error(res.data.message)
                         } else {
-                            this.$router.push({path: '/main/task/do', query: res.data.id})
+                            this.$router.push({
+                                name: 'doTask', 
+                                params: { id: res.data.id }
+                            })
                         }
                     }).catch(err => {
                     this.$message.error(err.toString())

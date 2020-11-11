@@ -20,18 +20,20 @@
             }
         },
         mounted: function () {
-            this.miniTaskId=this.$route.query
-            fun.getProblems(this.miniTaskId)
-                .then(res => {
-                    let data = res.data
-                    if (data.type === "failed") {
-                        this.$message.error(data.message)
-                    } else {
-                        this.problemList = data.data
-                    }
-                }).catch(err => {
-                    this.$message.error(err.toString())
-                })
+            this.miniTaskId=this.$route.params.id
+            if (this.miniTaskId) {
+                fun.getProblems(this.miniTaskId)
+                    .then(res => {
+                        let data = res.data
+                        if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        } else {
+                            this.problemList = data.data
+                        }
+                    }).catch(err => {
+                        this.$message.error(err.toString())
+                    })
+            }
         },
         methods: {
             submitAnswer(answer) {
