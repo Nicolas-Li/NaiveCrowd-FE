@@ -1,18 +1,18 @@
 <template>
     <el-main>
         <el-button @click="getMiniTasksId">换一个</el-button>
-        <DoTask :data="problemList" @onSubmit="submitAnswer"/>
+        <DoTaskTemplate :data="problemList" @onSubmit="submitAnswer"/>
     </el-main>
 </template>
 
 <script>
-    import DoTask from "@/components/task/user/DoTask";
+    import DoTaskTemplate from "@/components/task/user/DoTaskTemplate";
     import fun from "@/net/doTask"
 
     export default {
         name: "Distribute",
         components: {
-            DoTask,
+            DoTaskTemplate,
         },
         data() {
             return {
