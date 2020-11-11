@@ -12,7 +12,7 @@
 
 <script>
     import Stick from "vue-stick"
-    import TaskCard from "@/components/task/user/Task";
+    import TaskCard from "@/components/task/TaskCard"
     import fun from "@/net/task"
 
     export default {
@@ -27,17 +27,25 @@
             }
         },
         mounted: function () {
-            this.loadTask()
-        },
-        methods: {
-            loadTask: function () {
-                fun.loadTask()
-                    .then(res => {
-                        this.taskList = res.data.data
-                    }).catch(err => {
+            fun.loadAll().then(res=>{
+                let alltasks=res.data.data
+                fun.getFavor().then(res => {
+                    let favor = res.data.data
+                    for(var i=0;i<alltasks.length;i=i+1){                        
+                        alltasks[i]['isFavor']=favor.includes(alltasks[i].id)
+                        if(favor.includes(alltasks[i].id)){
+                            this.taskList.push(alltasks[i])
+                        }
+                    }
+                }).catch(err => {
                     this.$message.error(err.toString())
                 })
-            },
+            }).catch(err => {
+                this.$message.error(err.toString())
+            })
+        },
+        methods: {
+            
         }
     }
 </script>
