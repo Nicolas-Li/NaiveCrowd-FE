@@ -2,14 +2,26 @@ import axios from 'axios'
 
 axios.defaults.withCredentials = true
 import API from "@/net/API"
-// import "@/mock/index"
+//import "@/mock/index"
 
 export default {
     async loadMore(start, num) {
         return await axios.post(API.LOAD_MORE_TASK.path, {start, num})
     },
+    async loadAll() {
+        return await axios.post(API.LOAD_ALL_TASK.path, {})
+    },
     async loadTask() {
         return await axios.get(API.LOAD_TASK.path)
+    },
+    async getFavor(){
+        return await axios.post(API.GET_FAVOR.path, {})
+    },
+    async getMiniTaskByTask(id){
+        return await axios.post(API.GET_MINITASK_BY_TASK.path,{id})
+    },
+    async favor(id){
+        return await axios.post(API.FAVOR.path, {id})
     },
     async createTask(cover, title, intro, deadline) {
         let formData = new FormData()

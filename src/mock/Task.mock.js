@@ -42,3 +42,8 @@ Mock.mock(API.LOAD_ALL_TASK.path,API.LOAD_ALL_TASK.method,(rqst)=>{
 Mock.mock(API.GET_FAVOR.path,API.GET_FAVOR.method,(rqst)=>{
     return { data: [3] }
 })
+Mock.mock(API.GET_PROBLEMS_OF_MINITASK.path,'post',(rqst)=>{
+    return { data:[{description:"13+2=?",type:"choice",choice:['11','12','15','10']},
+    {description:"13-2=?",type:"choice",choice:['11','12','15','10']}
+    ,{description:"13*2=?",type:"choice",choice:['11','26','15','10']}]}
+})

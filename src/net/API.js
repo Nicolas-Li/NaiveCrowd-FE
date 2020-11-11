@@ -24,9 +24,25 @@ const API = {
         path: "/api/task/loadmore",
         method: "post"
     },
+    LOAD_ALL_TASK:{
+        path: "/api/task/loadall",
+        method: "post"
+    },
     LOAD_TASK: {
         path: "/api/task/load",
         method: "get"
+    },
+    GET_FAVOR:{
+        path:'/api/log/getcollecttasks',
+        method:"post"
+    },
+    FAVOR:{
+        path:'/api/log/collecttask',
+        method:"post"
+    },
+    GET_MINITASK_BY_TASK:{
+        path:'/api/task/freeminitask',
+        method:"post"
     },
     CREATE_TASK: {
         path: "/api/task/createtask",
