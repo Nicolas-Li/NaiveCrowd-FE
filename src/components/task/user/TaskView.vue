@@ -55,6 +55,7 @@
             let task = this.$route.query.task
             if (task.id) {
                 this.task = task
+                this.task.isFavor = false
                 fun.isFavor(task.id).then(res => {
                     if (res.data.type === "failed") {
                         this.$message.error(res.data.message)

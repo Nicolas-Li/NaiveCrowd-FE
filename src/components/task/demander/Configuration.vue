@@ -29,6 +29,27 @@
             <el-form-item label="任务介绍">
                 <el-input disabled type="textarea" v-model="task.intro"/>
             </el-form-item>
+            <el-form-item label="任务标签">
+                <el-tag
+                        :disable-transitions="false"
+                        :key="tag"
+                        @close="handleClose(tag)"
+                        closable
+                        v-for="tag in ruleForm.taskTag">
+                    {{tag}}
+                </el-tag>
+                <el-input
+                        @blur="handleInputConfirm"
+                        @keyup.enter.native="handleInputConfirm"
+                        class="input-new-tag"
+                        ref="saveTagInput"
+                        size="small"
+                        v-if="inputVisible"
+                        v-model="inputValue"
+                >
+                </el-input>
+                <el-button @click="showInput" class="button-new-tag" size="small" v-else>+ 新标签</el-button>
+            </el-form-item>
             <el-form-item label="题目模板">
                 <el-row>
                     <i :key="type.value" v-for="type in miniTasksTypeOptions">
@@ -153,11 +174,14 @@
                     {label: "选择题", value: "choice",},
                     {label: "图片判断题", value: "photo-judge",},
                 ],
+                inputVisible: false,
+                inputValue: '',
                 ruleForm: {
                     date: null,
                     time: null,
-                    miniTasksType: null,
                     problems: null,
+                    taskTag: [],
+                    miniTasksType: null,
                     miniTasksNum: null,
                     miniTasksBonus1: null,
                     miniTasksBonus2: null,
@@ -216,6 +240,23 @@
             }
         },
         methods: {
+            handleClose(tag) {
+                this.ruleForm.taskTag.splice(this.ruleForm.taskTag.indexOf(tag), 1);
+            },
+            showInput() {
+                this.inputVisible = true;
+                this.$nextTick(_ => {
+                    this.$refs.saveTagInput.$refs.input.focus();
+                });
+            },
+            handleInputConfirm() {
+                let inputValue = this.inputValue;
+                if (inputValue) {
+                    this.ruleForm.taskTag.push(inputValue);
+                }
+                this.inputVisible = false;
+                this.inputValue = '';
+            },
             beforeProblemsUpload(file) {
                 const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
                 if (!isTXTorZIP) {
@@ -258,7 +299,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.isSubmitting = true
-                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.ruleForm.miniTasksTime, this.ruleForm.miniTasksLimit, this.ruleForm.miniTasksType)
+                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.taskTag, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.ruleForm.miniTasksTime, this.ruleForm.miniTasksLimit, this.ruleForm.miniTasksType)
                             .then(res => {
                                 this.isSubmitting = false
                                 let data = res.data
@@ -303,5 +344,23 @@
 <style scoped>
     .form {
         padding-right: 100px;
+    }
+
+    .el-tag + .el-tag {
+        margin-left: 10px;
+    }
+
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .input-new-tag {
+        width: 90px;
+        margin-left: 10px;
+        vertical-align: bottom;
     }
 </style>

@@ -94,14 +94,14 @@
         },
         methods: {
             loadMore: function (number = 10) {
-                fun.loadMore(this.allTasks.length, number)
-                    .then(res => {
-                        let data = res.data.data
-                        this.allTasks = this.allTasks.concat(data)
-                        this.change(0)
-                    }).catch(err => {
-                    this.$message.error(err.toString())
-                })
+                // fun.loadMore(this.allTasks.length, number)
+                //     .then(res => {
+                //         let data = res.data.data
+                //         this.allTasks = this.allTasks.concat(data)
+                //         this.change(0)
+                //     }).catch(err => {
+                //     this.$message.error(err.toString())
+                // })
             },
             change(label) {
                 this.tasks.splice(0, this.tasks.length)

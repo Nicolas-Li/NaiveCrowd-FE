@@ -39,10 +39,10 @@ export default {
     async getTemplate(type) {
       return await axios.post(API.GET_TEMPLATE.path, { type })
     },
-    async configTask(problems, id, deadline, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType) {
+    async configTask(problems, id, deadline, taskTag, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType) {
         let formData = new FormData()
         formData.append('file', problems)
-        let data = JSON.stringify({id, deadline, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType})
+        let data = JSON.stringify({id, deadline, taskTag, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType})
         formData.append('data', data)   // 上传文件的同时， 也可以上传其他数据
         let config = {
             headers: {'Content-Type': 'multipart/form-data'}
