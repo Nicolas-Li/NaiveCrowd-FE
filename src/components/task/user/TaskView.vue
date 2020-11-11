@@ -29,7 +29,7 @@
                 </el-col>
             </el-row>
             <el-divider></el-divider>
-            <div v-if="identity === 'user'">
+            <div v-if="$cookies.get('identity') === 'user'">
                 <el-button @click="favor" v-if="task.isFavor===false">收藏</el-button>
                 <el-button disabled v-if="task.isFavor===true">已收藏</el-button>
                 <el-button @click="doTask">开始做题</el-button>
