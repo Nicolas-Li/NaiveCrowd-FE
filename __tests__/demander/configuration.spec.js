@@ -82,9 +82,9 @@ describe('Configuration',()=>{
             miniTasksBonus2: '2',
             miniTasksTime: '2',
             miniTasksLimit: 2,
+            inputValue: "x",
         }})
-
-        //wrapper.vm.handleProblemsRemove()
+        wrapper.vm.handleInputConfirm()
         wrapper.vm.downloadTemplate(file.type)
         //wrapper.vm.submitForm('ruleForm')
         //wrapper.vm.resetForm('ruleForm')
@@ -111,6 +111,11 @@ describe('Configuration',()=>{
                 a:{
                     validate:function(){}
                 }
+            },
+            $message:{
+                error:function(a){},
+                warning:function(a){},
+                
             }
         }
     })
@@ -155,7 +160,7 @@ describe('Configuration',()=>{
         wrapper2.vm.handleClose("C")
         wrapper2.vm.showInput()
         wrapper2.vm.handleInputConfirm()
-        //npmwrapper2.vm.beforeProblemsUpload(file1)
+        //wrapper2.vm.beforeProblemsUpload(file1)
         //wrapper.vm.submitForm('ruleForm')
         //wrapper.vm.resetForm('ruleForm')
         // await wrapper.findAll('.el-button').at(0).trigger('click')
