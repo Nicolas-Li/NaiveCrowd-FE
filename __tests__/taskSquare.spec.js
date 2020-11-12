@@ -1,5 +1,5 @@
 import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
-import TaskView from '@/components/task/user/TaskView'
+import TaskSquare from '@/components/task/TaskSquare'
 import ElementUI from 'element-ui'
 import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
@@ -11,8 +11,8 @@ localVue.use(VueCookies)
 config.stubs.transition = false
 jest.mock('axios')
 
-describe('TaskView',()=>{
-    const wrapper = shallowMount(TaskView,{
+describe('TaskSquare',()=>{
+    const wrapper = shallowMount(TaskSquare,{
         localVue,
         mocks:{
             $router:{
@@ -25,16 +25,21 @@ describe('TaskView',()=>{
                     status:0
                 },
                 query:{
-                    task: {
-                        id: 1,
-                    }
+                    task: 0
                 }
             }
         }
     })
-    it('m',async()=>{
-        wrapper.vm.doTask()
+    it('has right id', ()=> {
+        expect(wrapper.vm.canBeFavor).toBe(0)
     })
-    wrapper.vm.favor()
-    
+    wrapper.setData({
+        canBeFavor: 0,
+        status: -1,
+        type: "0",
+        tasks: [],
+        allTasks: [1],
+        favor: [],
+    })
+    wrapper.vm.change("x")
 })

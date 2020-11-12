@@ -1,18 +1,14 @@
 import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
-import TaskView from '@/components/task/user/TaskView'
+import DoTaskTemplate from '@/components/task/user/DoTaskTemplate'
 import ElementUI from 'element-ui'
-import VueRouter from 'vue-router'
-import VueCookies from 'vue-cookies'
 import Vue from 'vue'
-import axios from 'axios'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
-localVue.use(VueCookies)
 config.stubs.transition = false
 jest.mock('axios')
 
-describe('TaskView',()=>{
-    const wrapper = shallowMount(TaskView,{
+describe('template',()=>{
+    const wrapper = shallowMount(DoTaskTemplate,{
         localVue,
         mocks:{
             $router:{
@@ -25,16 +21,19 @@ describe('TaskView',()=>{
                     status:0
                 },
                 query:{
-                    task: {
-                        id: 1,
-                    }
+                    task: 0
                 }
             }
         }
     })
-    it('m',async()=>{
-        wrapper.vm.doTask()
+    it('has right id', ()=> {
+        expect(wrapper.vm.currentPage).toBe(1)
     })
-    wrapper.vm.favor()
-    
+    const wrapper2 = mount(DoTaskTemplate, {localVue,})
+    const buttons = wrapper2.findAll('.el-button')
+    it('has right button', async()=>{
+        expect(buttons.length).toBe(1)
+        await buttons.at(0).trigger('click')
+    })
+
 })
