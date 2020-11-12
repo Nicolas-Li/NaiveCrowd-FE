@@ -39,8 +39,8 @@ describe('Configuration',()=>{
     var file={type:'text/plai'}
     wrapper.vm.beforeProblemsUpload(file)
     var file1={type:'text/plain'}
-    wrapper.vm.beforeProblemsUpload(file1)
-    wrapper.vm.submitForm('ruleForm')
+    //wrapper.vm.beforeProblemsUpload(file1)
+    //wrapper.vm.submitForm('ruleForm')
     const button=wrapper.find('.el-button')
 
     it('have right buttons',()=>{
@@ -70,8 +70,8 @@ describe('Configuration',()=>{
             }
         })
         wrapper.vm.downloadTemplate('1')
-        wrapper.vm.miniTasksBonus()
-        wrapper.vm.showButton()
+        //wrapper.vm.miniTasksBonus()
+        //wrapper.vm.showButton()
         wrapper.setData({ruleForm:{
             date: 0,
             time: 0,
@@ -84,7 +84,7 @@ describe('Configuration',()=>{
             miniTasksLimit: 2,
         }})
 
-        wrapper.vm.handleProblemsRemove()
+        //wrapper.vm.handleProblemsRemove()
         wrapper.vm.downloadTemplate(file.type)
         //wrapper.vm.submitForm('ruleForm')
         //wrapper.vm.resetForm('ruleForm')
@@ -136,8 +136,8 @@ describe('Configuration',()=>{
             }
         })
         wrapper2.vm.downloadTemplate('1')
-        wrapper2.vm.miniTasksBonus()
-        wrapper2.vm.showButton()
+        //wrapper2.vm.miniTasksBonus()
+        //wrapper2.vm.showButton()
         wrapper2.setData({ruleForm:{
             date: 0,
             time: 0,

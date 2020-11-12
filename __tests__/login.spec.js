@@ -20,12 +20,12 @@ describe('Login',()=>{
 
     it('name',async()=>{
         await submitButton.trigger('click')
-        expect(wrapper.vm.ruleForm.name).toBe('yxb')
+        expect(wrapper.vm.ruleForm.name).toBe('')
     })
 
     it('pass',async()=>{
         await submitButton.trigger('click')
-        expect(wrapper.vm.ruleForm.pass).toBe('123456')
+        expect(wrapper.vm.ruleForm.pass).toBe('')
     })
     wrapper.setData({ruleForm:{name:'',pass:''}})
 

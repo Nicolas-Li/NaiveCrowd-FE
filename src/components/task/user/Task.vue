@@ -24,7 +24,6 @@
 
 <script>
     import fun from "@/net/task"
-    import util from "@/util"
 
     export default {
         name: "Task",
