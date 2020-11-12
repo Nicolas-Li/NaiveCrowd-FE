@@ -30,7 +30,7 @@
             </el-row>
             <el-divider></el-divider>
             <div v-if="$cookies.get('identity') === 'user'">
-                <el-button :disabled="task.isFavor" @click="favor">{{ task.isFavor ? "已收藏" : "收藏" }}</el-button>
+                <el-button :disabled="isFavor" @click="favor">{{ isFavor ? "已收藏" : "收藏" }}</el-button>
                 <el-button @click="doTask">开始做题</el-button>
             </div>
         </el-main>
@@ -47,6 +47,7 @@
         data() {
             return {
                 task: {},
+                isFavor: false,
                 type: "选择题",
                 miniTaskTime: 20,
             }
@@ -55,12 +56,11 @@
             let task = this.$route.query.task
             if (task.id) {
                 this.task = task
-                this.task.isFavor = false
                 fun.isFavor(task.id).then(res => {
                     if (res.data.type === "failed") {
                         this.$message.error(res.data.message)
                     } else {
-                        this.task.isFavor = res.data.info === "yes"
+                        this.isFavor = res.data.info === "yes"
                     }
                 }).catch(err => {
                     this.$message.error(err.toString())

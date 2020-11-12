@@ -44,7 +44,7 @@
         data() {
             return {
                 loading: false,
-                percentage: null
+                percentage: 0
             }
         },
         computed: {
@@ -68,7 +68,7 @@
                         if (data.type === "failed") {
                             this.$message.error(data.message)
                         } else if (data.type === "success") {
-                            this.progress = data.answersNum * 100.0 / data.totalNum
+                            this.percentage = data.answersNum * 100.0 / data.totalNum
                         }
                     }).catch(err => {
                     this.loading = false
