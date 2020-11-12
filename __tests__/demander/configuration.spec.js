@@ -152,6 +152,10 @@ describe('Configuration',()=>{
 
         //wrapper.vm.handleProblemsRemove()
         wrapper2.vm.downloadTemplate(file.type)
+        wrapper2.vm.handleClose("C")
+        wrapper2.vm.showInput()
+        wrapper2.vm.handleInputConfirm()
+        //npmwrapper2.vm.beforeProblemsUpload(file1)
         //wrapper.vm.submitForm('ruleForm')
         //wrapper.vm.resetForm('ruleForm')
         // await wrapper.findAll('.el-button').at(0).trigger('click')
