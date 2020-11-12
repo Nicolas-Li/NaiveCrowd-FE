@@ -78,7 +78,7 @@
                     this.allTasks = res.data.data
                     fun.getFavor()
                         .then(res => {
-                            this.favor = res.data.data
+                            this.favor = res.data.data || []
                             for (let i = 0; i < this.allTasks.length; i = i + 1) {
                                 this.allTasks[i]['isFavor'] = this.favor.includes(this.allTasks[i].id)
                             }
