@@ -6,7 +6,7 @@
             </el-col>
             <el-col :span="6">
                 {{ showStatus }}
-                <el-progress :percentage="percentage" :stroke-width="16" :text-inside="true" v-if="task.status === 2"/>
+                <el-progress :percentage="percentage.toFixed(2)" :stroke-width="16" :text-inside="true" v-if="task.status === 2"/>
             </el-col>
         </el-row>
         <p>{{ task.intro }}</p>
