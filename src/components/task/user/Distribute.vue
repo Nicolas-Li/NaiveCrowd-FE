@@ -55,6 +55,7 @@
                             this.$message.error(data.message)
                         } else if (data.type === "success") {
                             this.$message.success(data.message)
+                            this.getMiniTasksId()
                         }
                     }).catch(err => {
                     this.$message.error(err.toString())
