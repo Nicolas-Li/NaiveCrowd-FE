@@ -106,10 +106,11 @@ describe('Configuration',()=>{
             },
             $refs:{
                 ruleForm:{
-                    validateField:function(a){}
+                    validateField:function(x){}
                 },
-                a:{
-                    validate:function(){}
+                'a':{
+                    validate:function(){},
+                    resetFields:function(){}
                 }
             },
             $message:{
@@ -157,12 +158,12 @@ describe('Configuration',()=>{
 
         //wrapper.vm.handleProblemsRemove()
         wrapper2.vm.downloadTemplate(file.type)
-        wrapper2.vm.handleClose("C")
+        //wrapper2.vm.handleClose("C")
         wrapper2.vm.showInput()
         wrapper2.vm.handleInputConfirm()
         //wrapper2.vm.beforeProblemsUpload(file1)
         //wrapper.vm.submitForm('ruleForm')
-        //wrapper.vm.resetForm('ruleForm')
+        //wrapper.vm.resetForm('a')
         // await wrapper.findAll('.el-button').at(0).trigger('click')
         // await wrapper.findAll('.el-button').at(1).trigger('click')
         // await wrapper.findAll('.el-button').at(2).trigger('click')

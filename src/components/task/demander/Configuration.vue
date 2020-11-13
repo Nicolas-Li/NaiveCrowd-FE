@@ -241,13 +241,13 @@
         },
         methods: {
             handleClose(tag) {
-                this.ruleForm.taskTag.splice(this.ruleForm.taskTag.indexOf(tag), 1);
+                this.ruleForm.taskTag.splice(this.ruleForm.taskTag.indexOf(tag), 1)
                 this.$refs.ruleForm.validateField('taskTag')
             },
             showInput() {
                 this.inputVisible = true;
                 this.$nextTick(_ => {
-                    this.$refs.saveTagInput.$refs.input.focus();
+                    this.$refs.saveTagInput.$refs.input.focus()
                 });
             },
             handleInputConfirm() {
