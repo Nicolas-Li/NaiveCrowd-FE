@@ -6,7 +6,7 @@
         <h1>{{ task.title }}</h1>
         <p>{{ showStatus }}</p>
         <p>截止日期:{{ showDate }}</p>
-        <el-button @click="goToTaskView">查看详情</el-button>
+        <el-button v-if="$cookies.get('identity') === 'user'" @click="goToTaskView">查看详情</el-button>
     </el-card>
 </template>
 
