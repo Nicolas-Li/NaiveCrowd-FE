@@ -46,6 +46,7 @@
 <script>
     import ByMiniTasks from "@/components/task/demander/acceptance/ByMiniTasks";
     import fun from "@/net/task"
+    import util from "@/util";
 
     export default {
         name: "Acceptance",
@@ -75,10 +76,7 @@
                     this.task = task
                     return true
                 } else {
-                    this.$message.warning("验收出错啦！即将返回前一页面")
-                    setTimeout(() => {
-                        this.$router.back()
-                    }, 1500)
+                    util.toIndex(this, "验收出错啦！即将返回主页面")
                 }
                 return false
             },

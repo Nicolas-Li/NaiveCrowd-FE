@@ -14,4 +14,10 @@ export default {
     money(m) {
         return m / 100.0 + "元"
     },
+    toIndex(that, text) {
+        that.$message.warning(text)
+        setTimeout(() => {
+            that.$router.push({name: 'index'})
+        }, 1500)
+    }
 }

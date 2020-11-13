@@ -16,11 +16,13 @@
         data() {
             return {
                 miniTaskId: null,
+                task: null,
                 problemList: [],
             }
         },
         mounted: function () {
             this.miniTaskId = this.$route.params.id
+            this.task = this.$route.params.task
             if (this.miniTaskId) {
                 fun.getProblems(this.miniTaskId)
                     .then(res => {
@@ -54,7 +56,7 @@
                                 this.$message.error(data.message)
                             } else {
                                 this.$message.success(data.message)
-                                this.$router.go(-1)
+                                this.$router.push({name: 'taskView', params: {task: this.task}})
                             }
                         }).catch(err => {
                         this.$message.error(err.toString())

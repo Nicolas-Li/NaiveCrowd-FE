@@ -40,6 +40,7 @@
 
 <script>
     import fun from "@/net/task"
+    import util from "@/util"
 
     export default {
         name: "TaskView",
@@ -53,7 +54,7 @@
             }
         },
         mounted: function () {
-            let task = this.$route.query.task
+            let task = this.$route.params.task || {}
             if (task.id) {
                 this.task = task
                 fun.isFavor(task.id).then(res => {
@@ -66,10 +67,7 @@
                     this.$message.error(err.toString())
                 })
             } else {
-                this.$message.warning("详情出错啦！即将返回前一页面")
-                setTimeout(() => {
-                    this.$router.back()
-                }, 1500)
+                util.toIndex(this, "详情出错啦！即将返回主页面")
             }
         },
         methods: {
@@ -81,7 +79,10 @@
                         } else {
                             this.$router.push({
                                 name: 'doTask',
-                                params: {id: res.data.id}
+                                params: {
+                                    id: res.data.id,
+                                    task: this.task
+                                }
                             })
                         }
                     }).catch(err => {

@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '', redirect: '/main', component: () => import("@/AppTemplate"),
+        path: '', name: 'index', redirect: '/main', component: () => import("@/AppTemplate"),
         children: [
             // 主界面
             {

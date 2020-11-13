@@ -236,10 +236,7 @@
                 this.ruleForm.time = new Date()
                 this.ruleForm.time.setTime(dateTime.getTime())
             } else {
-                this.$message.warning("配置出错啦！即将返回前一页面")
-                setTimeout(() => {
-                    this.$router.back()
-                }, 1500)
+                util.toIndex(this, "配置出错啦！即将返回主页面")
             }
         },
         methods: {
