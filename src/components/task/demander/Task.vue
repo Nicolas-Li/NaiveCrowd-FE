@@ -73,7 +73,7 @@
                         if (data.type === "failed") {
                             this.$message.error(data.message)
                         } else if (data.type === "success") {
-                            this.percentage = Math.round(data.answersNum * 100.0 / data.totalNum)
+                            this.percentage = Math.round(Math.min(data.answersNum * 100.0 / data.totalNum, 100))
                         }
                     }).catch(err => {
                     this.loading = false
