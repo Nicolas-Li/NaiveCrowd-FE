@@ -29,7 +29,7 @@
             <el-form-item label="任务介绍">
                 <el-input disabled type="textarea" v-model="task.intro"/>
             </el-form-item>
-            <el-form-item label="任务标签">
+            <el-form-item label="任务标签" prop="taskTag" required>
                 <el-tag
                         :disable-transitions="false"
                         :key="tag"
@@ -195,11 +195,14 @@
                     time: [
                         {type: 'date', message: '请选择时间', trigger: 'change'}
                     ],
-                    miniTasksType: [
-                        {required: true, message: '请选择正确的题目类型', trigger: 'blur'}
-                    ],
                     problems: [
                         {required: true, message: '请上传正确格式的题目文件', trigger: 'blur'}
+                    ],
+                    taskTag: [
+                        {required: true, message: '请至少输入一个tag', trigger: 'blur'}
+                    ],
+                    miniTasksType: [
+                        {required: true, message: '请选择正确的题目类型', trigger: 'blur'}
                     ],
                     miniTasksNum: [
                         {required: true, message: '请输入小任务大小', trigger: 'blur'}
@@ -242,6 +245,7 @@
         methods: {
             handleClose(tag) {
                 this.ruleForm.taskTag.splice(this.ruleForm.taskTag.indexOf(tag), 1);
+                this.$refs.ruleForm.validateField('taskTag')
             },
             showInput() {
                 this.inputVisible = true;
@@ -251,7 +255,10 @@
             },
             handleInputConfirm() {
                 let inputValue = this.inputValue;
-                if (inputValue) {
+                if (this.ruleForm.taskTag.indexOf(inputValue) >= 0) {
+                    this.$message.warning("tag不能重复")
+                }
+                else if (inputValue) {
                     this.ruleForm.taskTag.push(inputValue);
                 }
                 this.inputVisible = false;
@@ -260,7 +267,7 @@
             beforeProblemsUpload(file) {
                 const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
                 if (!isTXTorZIP) {
-                    this.$message.error('上传封面图片只能是 TXT/ZIP 格式!')
+                    this.$message.error('上传配置任务只能是 TXT/ZIP 格式!')
                 } else {
                     this.ruleForm.problems = file
                     this.$refs.ruleForm.validateField('problems')
