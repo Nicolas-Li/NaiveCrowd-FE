@@ -36,13 +36,18 @@
                     layout="prev, pager, next">
             </el-pagination>
             <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
+            <Timer :time="time" ref="headerChild" :maxtime=5></Timer>
         </el-footer>
     </el-container>
 </template>
 
 <script>
+    import Timer from "@/components/task/user/Timer";
     export default {
         name: "DoTaskTemplate",
+        components: {
+            Timer,
+        },
         props: {
             data: {
                 type: Array,
@@ -62,9 +67,17 @@
                 answer: [],
             }
         },
+        created() {
+            this.$refs.headerChild.start()
+        },
         methods: {
             submit: function () {
-                this.$emit("onSubmit", this.answer)
+                if(this.$refs.headerChild.overtime==false){
+                    this.$emit("onSubmit", this.answer)
+                }
+                else{
+                    this.$message.error("超时啦！")
+                }
             }
         },
         watch: {
