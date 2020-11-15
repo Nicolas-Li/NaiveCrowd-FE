@@ -3,7 +3,7 @@ import axios from 'axios'
 
 axios.defaults.withCredentials = true
 import API from "@/net/API"
-//import "@/mock/index"
+import "@/mock/index"
 
 export default {
     async distributeMiniTask() {
