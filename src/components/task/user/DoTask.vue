@@ -17,7 +17,7 @@
             return {
                 miniTaskId: null,
                 task: null,
-                problemList: [],
+                problemList: [{description:'1',type:'choice',choice:['1','2']}],
             }
         },
         mounted: function () {
