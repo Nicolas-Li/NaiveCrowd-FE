@@ -29,6 +29,27 @@
             <el-form-item label="任务介绍">
                 <el-input disabled type="textarea" v-model="task.intro"/>
             </el-form-item>
+            <el-form-item label="任务标签" prop="taskTag" required>
+                <el-tag
+                        :disable-transitions="false"
+                        :key="tag"
+                        @close="handleClose(tag)"
+                        closable
+                        v-for="tag in ruleForm.taskTag">
+                    {{tag}}
+                </el-tag>
+                <el-input
+                        @blur="handleInputConfirm"
+                        @keyup.enter.native="handleInputConfirm"
+                        class="input-new-tag"
+                        ref="saveTagInput"
+                        size="small"
+                        v-if="inputVisible"
+                        v-model="inputValue"
+                >
+                </el-input>
+                <el-button @click="showInput" class="button-new-tag" size="small" v-else>+ 新标签</el-button>
+            </el-form-item>
             <el-form-item label="题目模板">
                 <el-row>
                     <i :key="type.value" v-for="type in miniTasksTypeOptions">
@@ -153,11 +174,14 @@
                     {label: "选择题", value: "choice",},
                     {label: "图片判断题", value: "photo-judge",},
                 ],
+                inputVisible: false,
+                inputValue: '',
                 ruleForm: {
                     date: null,
                     time: null,
-                    miniTasksType: null,
                     problems: null,
+                    taskTag: [],
+                    miniTasksType: null,
                     miniTasksNum: null,
                     miniTasksBonus1: null,
                     miniTasksBonus2: null,
@@ -171,11 +195,14 @@
                     time: [
                         {type: 'date', message: '请选择时间', trigger: 'change'}
                     ],
-                    miniTasksType: [
-                        {required: true, message: '请选择正确的题目类型', trigger: 'blur'}
-                    ],
                     problems: [
                         {required: true, message: '请上传正确格式的题目文件', trigger: 'blur'}
+                    ],
+                    taskTag: [
+                        {required: true, message: '请至少输入一个tag', trigger: 'blur'}
+                    ],
+                    miniTasksType: [
+                        {required: true, message: '请选择正确的题目类型', trigger: 'blur'}
                     ],
                     miniTasksNum: [
                         {required: true, message: '请输入小任务大小', trigger: 'blur'}
@@ -209,17 +236,35 @@
                 this.ruleForm.time = new Date()
                 this.ruleForm.time.setTime(dateTime.getTime())
             } else {
-                this.$message.warning("配置出错啦！即将返回前一页面")
-                setTimeout(() => {
-                    this.$router.back()
-                }, 1500)
+                util.toIndex(this, "配置出错啦！即将返回主页面")
             }
         },
         methods: {
+            handleClose(tag) {
+                this.ruleForm.taskTag.splice(this.ruleForm.taskTag.indexOf(tag), 1)
+                this.$refs.ruleForm.validateField('taskTag')
+            },
+            showInput() {
+                this.inputVisible = true;
+                this.$nextTick(_ => {
+                    this.$refs.saveTagInput.$refs.input.focus()
+                });
+            },
+            handleInputConfirm() {
+                let inputValue = this.inputValue;
+                if (this.ruleForm.taskTag.indexOf(inputValue) >= 0) {
+                    this.$message.warning("tag不能重复")
+                }
+                else if (inputValue) {
+                    this.ruleForm.taskTag.push(inputValue);
+                }
+                this.inputVisible = false;
+                this.inputValue = '';
+            },
             beforeProblemsUpload(file) {
                 const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
                 if (!isTXTorZIP) {
-                    this.$message.error('上传封面图片只能是 TXT/ZIP 格式!')
+                    this.$message.error('上传配置任务只能是 TXT/ZIP 格式!')
                 } else {
                     this.ruleForm.problems = file
                     this.$refs.ruleForm.validateField('problems')
@@ -258,7 +303,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.isSubmitting = true
-                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.ruleForm.miniTasksTime, this.ruleForm.miniTasksLimit, this.ruleForm.miniTasksType)
+                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.taskTag, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.ruleForm.miniTasksTime, this.ruleForm.miniTasksLimit, this.ruleForm.miniTasksType)
                             .then(res => {
                                 this.isSubmitting = false
                                 let data = res.data
@@ -303,5 +348,23 @@
 <style scoped>
     .form {
         padding-right: 100px;
+    }
+
+    .el-tag + .el-tag {
+        margin-left: 10px;
+    }
+
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .input-new-tag {
+        width: 90px;
+        margin-left: 10px;
+        vertical-align: bottom;
     }
 </style>

@@ -39,8 +39,8 @@ describe('Configuration',()=>{
     var file={type:'text/plai'}
     wrapper.vm.beforeProblemsUpload(file)
     var file1={type:'text/plain'}
-    wrapper.vm.beforeProblemsUpload(file1)
-    wrapper.vm.submitForm('ruleForm')
+    //wrapper.vm.beforeProblemsUpload(file1)
+    //wrapper.vm.submitForm('ruleForm')
     const button=wrapper.find('.el-button')
 
     it('have right buttons',()=>{
@@ -70,8 +70,8 @@ describe('Configuration',()=>{
             }
         })
         wrapper.vm.downloadTemplate('1')
-        wrapper.vm.miniTasksBonus()
-        wrapper.vm.showButton()
+        //wrapper.vm.miniTasksBonus()
+        //wrapper.vm.showButton()
         wrapper.setData({ruleForm:{
             date: 0,
             time: 0,
@@ -82,9 +82,9 @@ describe('Configuration',()=>{
             miniTasksBonus2: '2',
             miniTasksTime: '2',
             miniTasksLimit: 2,
+            inputValue: "x",
         }})
-
-        wrapper.vm.handleProblemsRemove()
+        wrapper.vm.handleInputConfirm()
         wrapper.vm.downloadTemplate(file.type)
         //wrapper.vm.submitForm('ruleForm')
         //wrapper.vm.resetForm('ruleForm')
@@ -106,11 +106,17 @@ describe('Configuration',()=>{
             },
             $refs:{
                 ruleForm:{
-                    validateField:function(a){}
+                    validateField:function(x){}
                 },
-                a:{
-                    validate:function(){}
+                'a':{
+                    validate:function(){},
+                    resetFields:function(){}
                 }
+            },
+            $message:{
+                error:function(a){},
+                warning:function(a){},
+                
             }
         }
     })
@@ -136,8 +142,8 @@ describe('Configuration',()=>{
             }
         })
         wrapper2.vm.downloadTemplate('1')
-        wrapper2.vm.miniTasksBonus()
-        wrapper2.vm.showButton()
+        //wrapper2.vm.miniTasksBonus()
+        //wrapper2.vm.showButton()
         wrapper2.setData({ruleForm:{
             date: 0,
             time: 0,
@@ -152,8 +158,12 @@ describe('Configuration',()=>{
 
         //wrapper.vm.handleProblemsRemove()
         wrapper2.vm.downloadTemplate(file.type)
+        //wrapper2.vm.handleClose("C")
+        wrapper2.vm.showInput()
+        wrapper2.vm.handleInputConfirm()
+        //wrapper2.vm.beforeProblemsUpload(file1)
         //wrapper.vm.submitForm('ruleForm')
-        //wrapper.vm.resetForm('ruleForm')
+        //wrapper.vm.resetForm('a')
         // await wrapper.findAll('.el-button').at(0).trigger('click')
         // await wrapper.findAll('.el-button').at(1).trigger('click')
         // await wrapper.findAll('.el-button').at(2).trigger('click')

@@ -23,6 +23,9 @@ export default {
     async favor(id){
         return await axios.post(API.FAVOR.path, {id})
     },
+    async isFavor(id){
+        return await axios.post(API.IS_FAVOR.path, {id})
+    },
     async createTask(cover, title, intro, deadline) {
         let formData = new FormData()
         formData.append('file', cover)
@@ -36,10 +39,10 @@ export default {
     async getTemplate(type) {
       return await axios.post(API.GET_TEMPLATE.path, { type })
     },
-    async configTask(problems, id, deadline, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType) {
+    async configTask(problems, id, deadline, taskTag, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType) {
         let formData = new FormData()
         formData.append('file', problems)
-        let data = JSON.stringify({id, deadline, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType})
+        let data = JSON.stringify({id, deadline, taskTag, miniTasksNum, miniTasksBonus, miniTasksTime, miniTasksLimit, miniTasksType})
         formData.append('data', data)   // 上传文件的同时， 也可以上传其他数据
         let config = {
             headers: {'Content-Type': 'multipart/form-data'}

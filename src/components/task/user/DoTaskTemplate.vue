@@ -80,9 +80,9 @@
 </script>
 
 <style scoped>
- .radio{
-    font-size:20px;
-    zoom: 220%;
-    margin:10px
-}
+     .radio {
+        font-size:20px;
+        zoom: 220%;
+        margin:10px
+    }
 </style>

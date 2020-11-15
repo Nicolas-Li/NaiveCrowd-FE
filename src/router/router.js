@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '', redirect: '/main', component: () => import("@/AppTemplate"),
+        path: '', name: 'index', redirect: '/main', component: () => import("@/AppTemplate"),
         children: [
             // 主界面
             {
@@ -61,6 +61,7 @@ const routes = [
                             {
                                 //用户方 答题
                                 path: '/main/task/do',
+                                name: 'doTask',
                                 component: () => import("@/components/task/user/DoTask")
                             },
                         ]

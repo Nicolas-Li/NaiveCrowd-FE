@@ -1,12 +1,12 @@
 <template>
     <el-card class="card">
-        <el-image v-if="task.cover"
-                  style="width: 305px;height:140px;text-align:center;display: table-cell;" fit="cover"
-                  :src="task.cover"/>
+        <el-image :src="task.cover"
+                  fit="cover" style="width: 305px;height:140px;text-align:center;display: table-cell;"
+                  v-if="task.cover"/>
         <h1>{{ task.title }}</h1>
         <p>{{ showStatus }}</p>
         <p>截止日期:{{ showDate }}</p>
-        <el-button @click="goToTaskView">查看详情</el-button>
+        <el-button v-if="$cookies.get('identity') === 'user'" @click="goToTaskView">查看详情</el-button>
     </el-card>
 </template>
 
@@ -16,9 +16,9 @@
         props: {
             task: {},
         },
-        methods:{
-            goToTaskView(){
-                this.$router.push({path:'/main/task/view',query:{task:this.task}})
+        methods: {
+            goToTaskView() {
+                this.$router.push({name: 'taskView', params: {task: this.task}})
             }
         },
         computed: {
@@ -40,10 +40,11 @@
         border-radius: 10px;
         margin-bottom: -10px;
         width: 310px;
-        height:360px;
+        height: 360px;
         overflow: hidden;
     }
-    p{
-        font-size:15px;
+
+    p {
+        font-size: 15px;
     }
 </style>
