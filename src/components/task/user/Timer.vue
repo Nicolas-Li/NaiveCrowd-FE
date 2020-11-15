@@ -32,7 +32,7 @@ export default {
                 this.minutes = this.minutes + 1;
             }
 
-            if (this.minutes >= 6) {
+            if (this.minutes >= 60) {
                 this.minutes = 0;
                 this.hour = this.hour + 1;
             }
