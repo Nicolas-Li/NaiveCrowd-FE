@@ -111,6 +111,10 @@ const API = {
     SUBMIT_ANSWER: {
         path: "/api/answer/submitanswer",
         method: "post"
+    },
+    GET_INFO_OF_TASK:{
+        path:"/api/task/taskinfoofminitask",
+        method:"post"
     }
 }
 
