@@ -36,7 +36,7 @@
                     layout="prev, pager, next">
             </el-pagination>
             <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
-            <Timer :time="time" ref="headerChild" :maxtime=5></Timer>
+            <Timer :time="time" :maxtime="maxtime" ref="headerChild"></Timer>
         </el-footer>
     </el-container>
 </template>
@@ -59,6 +59,10 @@
                         imageUrl: null,
                     }]
                 }
+            },
+            maxtime:{
+                type:Number,
+                default:600
             }
         },
         data() {
