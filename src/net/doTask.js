@@ -15,4 +15,7 @@ export default {
     async submitAnswer(datalist, MiniTaskID) {
         return await axios.post(API.SUBMIT_ANSWER.path, {datalist, MiniTaskID})
     },
+    async getInfoOfTask(id){
+        return await axios.post(API.GET_INFO_OF_TASK.path, {id})
+    }
 }
