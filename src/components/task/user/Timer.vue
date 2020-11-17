@@ -1,6 +1,6 @@
 <template>
     <div class="timer">
-        <div ref="startTimer">00:00:00</div>
+        <div ref="startTimer">00:00:00/00:00:00</div>
         <div v-if="overtime==true">已超时</div>
     </div>
 </template>
@@ -14,7 +14,7 @@ export default {
       },
       maxtime: {
         type:Number,
-        default:10
+        default:0
       },
     },
     data() {
@@ -23,30 +23,49 @@ export default {
             hour: 0,
             minutes: 0,
             seconds: 0,
-            cr: '',
             overtime: false,
+            maxhour:0,
+            maxmin:0,
+            maxsec:0,
         }
     },
     created() {
         this.timer = setInterval(this.startTimer, 1000);
+        this.maxsec=this.maxtime
+        while (this.maxsec >= 60) {
+            this.maxsec -= 60;
+            this.maxmin = this.maxmin + 1;
+        }
+        while (this.maxmin >= 60) {
+            this.maxmin -= 60;
+            this.maxhour = this.maxhour + 1;
+        }
+        this.$refs.startTimer.innerHTML = (this.hour < 10 ? '0' + this.hour: this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes: this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds: this.seconds)
+                    +'/'+(this.maxhour < 10 ? '0' + this.maxhour: this.maxhour)
+                    +':'+(this.maxmin < 10 ? '0' + this.maxmin: this.maxmin)
+                    +':'+(this.maxsec < 10 ? '0' + this.maxsec: this.maxsec)
+                    ;
     },
     methods: {
         startTimer() {
-            if(this.seconds + 60 * this.minutes + 3600 * this.hour > this.maxtime){
+            if(this.seconds + 60 * this.minutes + 3600 * this.hour >= this.maxtime){
                 this.overtime = true
                 return 0
             }
             this.seconds += 1;
-            if (this.seconds >= 60) {
-                this.seconds = 0;
+            while (this.seconds >= 60) {
+                this.seconds -= 60;
                 this.minutes = this.minutes + 1;
             }
-            if (this.minutes >= 60) {
-                this.minutes = 0;
+            while (this.minutes >= 60) {
+                this.minutes -= 60;
                 this.hour = this.hour + 1;
             }
-            this.$refs.startTimer.innerHTML = (this.hour < 10 ? '0' + this.hour: this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes: this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds: this.seconds);
-            this.cr =  this.seconds
+            this.$refs.startTimer.innerHTML = (this.hour < 10 ? '0' + this.hour: this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes: this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds: this.seconds)
+                                +'/'+(this.maxhour < 10 ? '0' + this.maxhour: this.maxhour)
+                                +':'+(this.maxmin < 10 ? '0' + this.maxmin: this.maxmin)
+                                +':'+(this.maxsec < 10 ? '0' + this.maxsec: this.maxsec)
+                                ;
         },
         stop () {
             clearInterval(this.timer)
