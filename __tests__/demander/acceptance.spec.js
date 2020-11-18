@@ -1,10 +1,7 @@
-import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,config,createLocalVue} from '@vue/test-utils'
 import Acceptance from '@/components/task/demander/acceptance/Acceptance'
 import ElementUI from 'element-ui'
-import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
-//import router from '../../src/router/router.js'
-import Vue from 'vue'
 import axios from 'axios'
 const localVue=createLocalVue()
 localVue.use(ElementUI)

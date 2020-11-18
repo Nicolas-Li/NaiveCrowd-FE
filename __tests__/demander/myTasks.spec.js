@@ -1,8 +1,6 @@
 import {mount,config,createLocalVue} from '@vue/test-utils'
 import MyTasks from '@/components/task/demander/MyTasks'
 import ElementUI from 'element-ui'
-import Vue from 'vue'
-import mock from '@/mock/Task.mock.js'
 import axios from 'axios'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
@@ -20,7 +18,7 @@ describe('MyTasks',()=>{
         },
     })
     it('have right buttons',async()=>{
-        const button=wrapper.find('.el-button')
+        
         wrapper.vm.loadTask()
         expect(wrapper.findAll('.el-button').length).toBe(1)
     })

@@ -1,14 +1,17 @@
 import {shallowMount,config,createLocalVue} from '@vue/test-utils'
-import DoTaskTemplate from '@/components/task/user/DoTaskTemplate'
+import Timer from '@/components/task/user/Timer'
 import ElementUI from 'element-ui'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
 config.stubs.transition = false
 jest.mock('axios')
 
-describe('template',()=>{
-    const wrapper = shallowMount(DoTaskTemplate,{
+describe('timer',()=>{
+    const wrapper = shallowMount(Timer,{
         localVue,
+        propsData: {
+            maxtime:8000
+        },
         mocks:{
             $router:{
                 push:function(path){},
@@ -26,7 +29,15 @@ describe('template',()=>{
         }
     })
     it('has right id', ()=> {
-        expect(wrapper.vm.currentPage).toBe(1)
+        wrapper.vm.startTimer()
+        wrapper.setData({minutes: 1000,
+            seconds: 100,})
+        wrapper.vm.startTimer()
+        wrapper.setData({minutes: 61,
+            seconds: 100,})
+        wrapper.vm.startTimer()
+        wrapper.vm.stop()
+        wrapper.vm.start()
     })
 
 })

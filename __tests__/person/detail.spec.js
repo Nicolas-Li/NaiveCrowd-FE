@@ -2,7 +2,6 @@ import {mount,config,createLocalVue} from '@vue/test-utils'
 import Detail from '@/components/person/Detail'
 import ElementUI from 'element-ui'
 import VueCookies from 'vue-cookies'
-import Vue from 'vue'
 import axios from 'axios'
 jest.mock('axios')
 const localVue=createLocalVue()

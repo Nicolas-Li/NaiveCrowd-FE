@@ -1,6 +1,6 @@
 <template>
     <div class="timer">
-        <div ref="startTimer">00:00:00/00:00:00</div>
+        <div ref="startTimer" id="time">{{timehtml}}</div>
         <div v-if="overtime==true">已超时</div>
     </div>
 </template>
@@ -24,6 +24,7 @@ export default {
             minutes: 0,
             seconds: 0,
             overtime: false,
+            timehtml:'',
             maxhour:0,
             maxmin:0,
             maxsec:0,
@@ -40,7 +41,7 @@ export default {
             this.maxmin -= 60;
             this.maxhour = this.maxhour + 1;
         }
-        this.$refs.startTimer.innerHTML = (this.hour < 10 ? '0' + this.hour: this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes: this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds: this.seconds)
+        this.timehtml = (this.hour < 10 ? '0' + this.hour: this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes: this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds: this.seconds)
                     +'/'+(this.maxhour < 10 ? '0' + this.maxhour: this.maxhour)
                     +':'+(this.maxmin < 10 ? '0' + this.maxmin: this.maxmin)
                     +':'+(this.maxsec < 10 ? '0' + this.maxsec: this.maxsec)
@@ -61,7 +62,7 @@ export default {
                 this.minutes -= 60;
                 this.hour = this.hour + 1;
             }
-            this.$refs.startTimer.innerHTML = (this.hour < 10 ? '0' + this.hour: this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes: this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds: this.seconds)
+            this.timehtml = (this.hour < 10 ? '0' + this.hour: this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes: this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds: this.seconds)
                                 +'/'+(this.maxhour < 10 ? '0' + this.maxhour: this.maxhour)
                                 +':'+(this.maxmin < 10 ? '0' + this.maxmin: this.maxmin)
                                 +':'+(this.maxsec < 10 ? '0' + this.maxsec: this.maxsec)

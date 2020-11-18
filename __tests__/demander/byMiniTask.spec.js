@@ -1,10 +1,7 @@
-import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,config,createLocalVue} from '@vue/test-utils'
 import ByMiniTasks from '@/components/task/demander/acceptance/ByMiniTasks'
 import ElementUI from 'element-ui'
-import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
-//import router from '../../src/router/router.js'
-import Vue from 'vue'
 import axios from 'axios'
 jest.mock('axios')
 const localVue=createLocalVue()
