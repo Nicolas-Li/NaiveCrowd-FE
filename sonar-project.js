@@ -18,11 +18,11 @@ const parameters = {
         'sonar.test.inclusions': 'src/**/*.spec.ts,test/**/*.e2e-spec.ts',
         //'sonar.testExecutionReportPaths':  'coverage/test-reporter.xml',
         'sonar.javascript.lcov.reportPaths': 'coverage/lcov.info',
-        'sonar.login':'c83065bc7bbf3b589c508ced02892fc93c690158',
+        'sonar.login':'b97b060225e18b69e37f5a65d1f1b2f866a07382',
         //'sonar.password':'pd4imF0xluZ1',
         //'sonar.scm.provider':'2018013354@secoder.net',
         'sonar.scm.disabled':'true',
-        'sonar.gitlab.user_token':'ZS8NqX8ML4zXJb5aQxe9',
+        'sonar.gitlab.user_token':'FyAtGKNs3giE5YL9Ydsz',
     }
 }
 sonarqubeScanner(parameters, () => process.exit());

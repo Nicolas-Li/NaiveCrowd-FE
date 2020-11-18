@@ -1,9 +1,7 @@
-import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,config,createLocalVue} from '@vue/test-utils'
 import Distribute from '@/components/task/user/Distribute'
 import ElementUI from 'element-ui'
-import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
-import Vue from 'vue'
 import axios from 'axios'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
