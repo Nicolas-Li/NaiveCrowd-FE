@@ -1,8 +1,8 @@
 <template>
-    <el-main>
+<div>
         <el-button @click="getMiniTasksId">换一个</el-button>
-        <DoTaskTemplate :data="problemList" @onSubmit="submitAnswer"/>
-    </el-main>
+        <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" @onSubmit="submitAnswer"/>
+</div>
 </template>
 
 <script>
@@ -17,7 +17,8 @@
         data() {
             return {
                 miniTaskId: null,
-                problemList: [],
+                problemList: [{description:'1',type:'choice',choice:['1','2']}],
+                miniTasksTime:3689,
             }
         },
         mounted: function () {
@@ -41,6 +42,17 @@
                         }).catch(err => {
                             this.$message.error(err.toString())
                         })
+                        fun.getInfoOfTask(this.miniTaskId)
+                        .then(res => {
+                            let data = res.data
+                            if (data.type === "failed") {
+                                this.$message.error(data.message)
+                            } else {
+                                this.miniTasksTime = data.miniTasksTime
+                            }
+                        }).catch(err => {
+                        this.$message.error(err.toString())
+                })
                     }
                 }).catch(err => {
                     this.$message.error(err.toString())
