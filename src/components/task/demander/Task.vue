@@ -53,7 +53,7 @@
                 return util.showStatus(this.task.status)
             },
             showDate() {
-                return util.showDate()
+                return util.showDate(this)
             },
             showButton() {
                 let statusList = ["配置任务", "发布任务", "终止任务", "我要验收", "我要结算", "导出任务"]

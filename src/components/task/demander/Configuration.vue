@@ -159,7 +159,8 @@
 
 <script>
     import fun from "@/net/task"
-    import util from "@/util"
+    import src_util from "@/util"
+    import task_util from "@/components/task/util"
 
     export default {
         name: "Configuration",
@@ -236,7 +237,7 @@
                 this.ruleForm.time = new Date()
                 this.ruleForm.time.setTime(dateTime.getTime())
             } else {
-                util.toIndex(this, "配置出错啦！即将返回主页面")
+                src_util.toIndex(this, "配置出错啦！即将返回主页面")
             }
         },
         methods: {
@@ -300,37 +301,15 @@
                 })
             },
             submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.isSubmitting = true
-                        fun.configTask(this.ruleForm.problems, this.task.id, this.deadline, this.ruleForm.taskTag, this.ruleForm.miniTasksNum, this.miniTasksBonus, this.ruleForm.miniTasksTime, this.ruleForm.miniTasksLimit, this.ruleForm.miniTasksType)
-                            .then(res => {
-                                this.isSubmitting = false
-                                let data = res.data
-                                if (data.type === "failed") {
-                                    this.$message.error(data.message)
-                                } else if (data.type === "success") {
-                                    this.$message.success("任务配置成功")
-                                    this.$router.push({path: '/main/task/demander'})
-                                }
-                            }).catch(err => {
-                            this.isSubmitting = false
-                            this.$message.error(err.toString())
-                            return false
-                        })
-                    } else {
-                        this.$message.error("请完整配置任务！")
-                        return false;
-                    }
-                });
+                task_util.submitForm(this, formName, true)
             },
             resetForm(formName) {
-                this.$refs[formName].resetFields();
+                task_util.resetForm(this, formName)
             },
         },
         computed: {
             deadline: function () {
-                return util.deadline(this.ruleForm.time, this.ruleForm.date)
+                return src_util.deadline(this.ruleForm.time, this.ruleForm.date)
             },
             miniTasksBonus() {
                 return this.ruleForm.miniTasksBonus1 * 100 + this.ruleForm.miniTasksBonus2

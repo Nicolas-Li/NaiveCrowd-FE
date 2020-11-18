@@ -55,7 +55,8 @@
 
 <script>
     import fun from "@/net/task"
-    import util from "@/util"
+    import src_util from "@/util"
+    import task_util from "@/components/task/util";
 
     export default {
         name: "TaskCreate",
@@ -108,41 +109,19 @@
                 this.ruleForm.cover = null
                 this.$refs.ruleForm.validateField('cover')
             },
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.isSubmitting = true
-                        fun.createTask(this.ruleForm.cover, this.ruleForm.title, this.ruleForm.intro, this.deadline)
-                            .then(res => {
-                                this.isSubmitting = false
-                                let data = res.data
-                                if (data.type === "failed") {
-                                    this.$message.error(data.message)
-                                } else if (data.type === "success") {
-                                    this.$message.success("任务创建成功")
-                                    this.$router.push({path: '/main/task/demander'})
-                                }
-                            }).catch(err => {
-                            this.isSubmitting = false
-                            this.$message.error(err.toString())
-                            return false
-                        })
-                    } else {
-                        this.$message.error("必须配置任务标题、介绍和封面！")
-                        return false;
-                    }
-                });
-            },
             resetForm(formName) {
-                this.$refs[formName].resetFields();
+                task_util.resetForm(this, formName)
+            },
+            submitForm(formName) {
+                task_util.submitForm(this, formName, false)
             },
         },
         computed: {
-            deadline: function () {
-                return util.deadline(this.ruleForm.time, this.ruleForm.date)
-            },
             showButton() {
                 return this.isSubmitting ? "正在创建" : "立即创建"
+            },
+            deadline: function () {
+                return src_util.deadline(this.ruleForm.time, this.ruleForm.date)
             },
             uploadAble() {
                 return Boolean(this.ruleForm.cover)

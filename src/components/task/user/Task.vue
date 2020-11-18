@@ -52,7 +52,7 @@
                 return util.showStatus(this.task.status)
             },
             showDate() {
-                return util.showDate()
+                return util.showDate(this)
             },
         },
         mounted: function () {
