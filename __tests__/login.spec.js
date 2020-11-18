@@ -1,7 +1,6 @@
 import {mount,config,createLocalVue} from '@vue/test-utils'
 import Login from '@/components/log/login/Login'
 import ElementUI from 'element-ui'
-import Vue from 'vue'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
 config.stubs.transition = false
