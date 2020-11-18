@@ -24,6 +24,7 @@
 
 <script>
     import fun from "@/net/task"
+    import util from "@/components/task/util"
 
     export default {
         name: "Task",
@@ -49,31 +50,16 @@
         },
         computed: {
             showStatus() {
-                let statusList = ["未配置", "待发布", "发布中", "待验收", "待结算", "任务结束"]
-                return statusList[this.task.status]
+                return util.showStatus(this.task.status)
             },
             showDate() {
-                let t = new Date()
-                t.setTime(this.task.time)
-                return t.toLocaleString()
+                return util.showDate()
             },
         },
         mounted: function () {
             if (this.task.status === 2) {
                 this.loading = true
-                fun.getTaskProgress(this.task.id)
-                    .then(res => {
-                        let data = res.data
-                        this.loading = false
-                        if (data.type === "failed") {
-                            this.$message.error(data.message)
-                        } else if (data.type === "success") {
-                            this.percentage = Math.round(Math.min(data.answersNum * 100.0 / data.totalNum, 100))
-                        }
-                    }).catch(err => {
-                    this.loading = false
-                    this.$message.error(err.toString())
-                })
+                util.getTaskProgress(this)
             }
         },
         methods: {

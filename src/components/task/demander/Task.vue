@@ -50,13 +50,10 @@
         },
         computed: {
             showStatus() {
-                let statusList = ["未配置", "待发布", "发布中", "待验收", "待结算", "任务结束"]
-                return statusList[this.task.status]
+                return util.showStatus(this.task.status)
             },
             showDate() {
-                let t = new Date()
-                t.setTime(this.task.time)
-                return t.toLocaleString()
+                return util.showDate()
             },
             showButton() {
                 let statusList = ["配置任务", "发布任务", "终止任务", "我要验收", "我要结算", "导出任务"]
@@ -66,19 +63,7 @@
         },
         mounted: function () {
             if (this.task.status === 2) {
-                fun.getTaskProgress(this.task.id)
-                    .then(res => {
-                        let data = res.data
-                        this.loading = false
-                        if (data.type === "failed") {
-                            this.$message.error(data.message)
-                        } else if (data.type === "success") {
-                            this.percentage = Math.round(Math.min(data.answersNum * 100.0 / data.totalNum, 100))
-                        }
-                    }).catch(err => {
-                    this.loading = false
-                    this.$message.error(err.toString())
-                })
+                util.getTaskProgress(this)
             }
         },
         methods: {
