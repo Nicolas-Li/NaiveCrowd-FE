@@ -1,7 +1,5 @@
 <template>
-    
-        <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" @onSubmit="submitAnswer"/>
-    
+    <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" :isTimer="true" @onSubmit="submitAnswer"/>
 </template>
 
 <script>

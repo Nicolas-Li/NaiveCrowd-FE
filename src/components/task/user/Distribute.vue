@@ -1,10 +1,10 @@
 <template>
-<div>
+    <div>
         <el-button @click="getMiniTasksId">换一个</el-button>
         <div>当前任务:{{title}}</div>
         <el-divider/>
-        <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" @onSubmit="submitAnswer"/>
-</div>
+        <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" :isTimer="true" @onSubmit="submitAnswer"/>
+    </div>
 </template>
 
 <script>
