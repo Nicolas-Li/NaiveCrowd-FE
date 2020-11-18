@@ -54,7 +54,6 @@
 </template>
 
 <script>
-    import fun from "@/net/task"
     import src_util from "@/util"
     import task_util from "@/components/task/util";
 
