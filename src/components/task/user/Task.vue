@@ -23,7 +23,6 @@
 </template>
 
 <script>
-    import fun from "@/net/task"
     import util from "@/components/task/util"
 
     export default {

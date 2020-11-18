@@ -79,6 +79,7 @@ const routes = [
             // 登陆界面
             {
                 path: '/login', component: () => import("@/components/log/login/Template"),
+                name: 'login',
                 children: [
                     {path: '/login', component: () => import("@/components/log/login/Identity")},
                     {path: '/login/user', component: () => import("@/components/log/login/Login")},
