@@ -42,7 +42,7 @@
                         if (data.type === "failed") {
                             this.$message.error(data.message)
                         } else {
-                            this.miniTasksTime = data.miniTasksTime
+                            this.miniTasksTime = data.dotime
                         }
                     }).catch(err => {
                     this.$message.error(err.toString())
