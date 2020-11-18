@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-main>
+        <el-header>
             <div style="margin:5px">第{{currentPage}}题.{{data[currentPage-1].description}}</div>
             <div v-if="data[currentPage-1].type==='choice'">
                 <el-radio-group v-model="answer[currentPage-1]">
@@ -13,6 +13,8 @@
                     </div>
                 </el-radio-group>
             </div>
+        </el-header>
+        <el-main>
             <div v-if="data[currentPage-1].type==='completion'">
                 <el-input clearable
                           placeholder="请输入答案"
@@ -28,15 +30,23 @@
             </div>
         </el-main>
         <el-footer>
-            <el-pagination
-                    :current-page.sync="currentPage"
-                    :page-size="1"
-                    :total="data.length"
-                    background
-                    layout="prev, pager, next">
-            </el-pagination>
-            <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
-            <Timer :time="time" :maxtime="maxtime" ref="headerChild"></Timer>
+            <el-container>
+                <el-head>
+                    <el-pagination
+                            :current-page.sync="currentPage"
+                            :page-size="1"
+                            :total="data.length"
+                            background
+                            layout="prev, pager, next">
+                    </el-pagination>
+                </el-head>
+                <el-main>
+                    <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
+                </el-main>
+                <el-footer>
+                    <Timer :time="time" :maxtime="maxtime" ref="headerChild"></Timer>
+                </el-footer>
+            </el-container>
         </el-footer>
     </el-container>
 </template>
