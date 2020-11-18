@@ -5,27 +5,24 @@
             <el-divider></el-divider>
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <div align='left'>题目数量：{{task.problemsNum}}</div>
+                    <div align='left'>题目数量：{{ task.num }}</div>
                 </el-col>
                 <el-col :span="6">
-                    <div align='left'>题目类型：{{type}}</div>
+                    <div align='left'>题目类型：{{ type }}</div>
                 </el-col>
                 <el-col :span="6">
-                    <div align='left'>预期收益：{{task.bonus}}</div>
-                </el-col>
-                <el-col :span="6">
-                    <div align='left'>做题时间：{{miniTaskTime}}min</div>
+                    <div align='left'>做题时间：{{ task.doTime }}</div>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col>
-                    <div align='left'>截止日期：{{showDate}}</div>
+                <el-col>s
+                    <div align='left'>截止日期：{{ showDate }}</div>
                 </el-col>
             </el-row>
             <el-divider></el-divider>
             <el-row>
                 <el-col :span="24">
-                    <div align='left'>题目描述：{{task.intro}}</div>
+                    <div align='left'>题目描述：{{ task.intro }}</div>
                 </el-col>
             </el-row>
             <el-divider></el-divider>
@@ -50,7 +47,6 @@
                 task: {},
                 isFavor: false,
                 type: "选择题",
-                miniTaskTime: 20,
             }
         },
         mounted: function () {
