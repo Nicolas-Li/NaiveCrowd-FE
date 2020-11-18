@@ -30,42 +30,43 @@
         name: "Task",
         props: {
             task: {
-                type: Object,
-                default: () => {
-                    return {
-                        id: "3a4d567",
-                        title: "标题",
-                        intro: "介绍",
-                        status: 0,
-                        time: new Date().getTime()
-                    }
-                }
+                title: "标题",
+                time: new Date().getTime(),
+                intro: "介绍",
+                id: "3a4d567",
+                status: 0
             }
         },
         data() {
             return {
-                loading: false,
-                percentage: 0
+                percentage: 0,
+                loading: false
             }
-        },
+        }
+        ,
         computed: {
-            showStatus() {
-                return util.showStatus(this.task.status)
-            },
             showDate() {
                 return util.showDate(this)
-            },
+            }
+            ,
+            showStatus() {
+                return util.showStatus(this.task.status)
+            }
+            ,
             showButton() {
                 let statusList = ["配置任务", "发布任务", "终止任务", "我要验收", "我要结算", "导出任务"]
                 let statusLoadingList = ["进入配置", "正在发布", "正在终止", "进入验收", "进入结算", "正在导出"]
                 return this.loading ? statusLoadingList[this.task.status] : statusList[this.task.status]
-            },
-        },
+            }
+            ,
+        }
+        ,
         mounted: function () {
             if (this.task.status === 2) {
                 util.getTaskProgress(this)
             }
-        },
+        }
+        ,
         methods: {
             chooseTask() {
                 this.loading = true
@@ -174,7 +175,8 @@
                         this.$message.warning("任务状态出错啦，请刷新页面")
                         break
                 }
-            },
+            }
+            ,
         }
     }
 </script>
