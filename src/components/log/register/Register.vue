@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import fun from "@/net/login"
+    import util from "@/components/log/util"
 
     export default {
         name: "Register",
@@ -124,30 +124,10 @@
         },
         methods: {
             submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.$cookies.set("name", this.ruleForm.name, "30d", "/")
-                        fun.register(this.ruleForm.pass, this.ruleForm.email, this.ruleForm.sex)
-                            .then(res => {
-                                let data = res.data
-                                if (data.type === "failed") {
-                                    this.$message.error(data.message)
-                                } else if (data.type === "success") {
-                                    this.$message.success("注册成功")
-                                    this.$cookies.set("isLogin", true, "30d", "/")
-                                    this.$router.push({ path: '/main' })
-                                }
-                            }).catch(err => {
-                            this.$message.error(err.toString())
-                        })
-                    } else {
-                        this.$message.error('提交信息不正确！');
-                        return false;
-                    }
-                });
+                util.submitForm(this, formName, true)
             },
             resetForm(formName) {
-                this.$refs[formName].resetFields();
+                util.resetForm(this, formName)
             }
         }
     }

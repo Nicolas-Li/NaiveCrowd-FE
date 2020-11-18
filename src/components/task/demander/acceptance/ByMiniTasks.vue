@@ -74,7 +74,7 @@
 </template>
 
 <script>
-    import fun from "@/net/task";
+    import fun from "@/net/task"
 
     export default {
         name: "ByMiniTasks",

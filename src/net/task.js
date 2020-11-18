@@ -2,7 +2,6 @@ import axios from 'axios'
 
 axios.defaults.withCredentials = true
 import API from "@/net/API"
-import "@/mock/index"
 
 export default {
     async loadMore(start, num) {

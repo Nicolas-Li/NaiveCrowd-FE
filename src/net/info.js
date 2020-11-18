@@ -1,8 +1,6 @@
-// 引入ajax
 import axios from 'axios'
 axios.defaults.withCredentials = true
 import API from "@/net/API"
-// import "@/mock/index"
 
 export default {
     async getInfo() {
