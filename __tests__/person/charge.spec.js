@@ -1,7 +1,6 @@
 import {mount,config,createLocalVue} from '@vue/test-utils'
 import Charge from '@/components/person/Charge'
 import ElementUI from 'element-ui'
-import Vue from 'vue'
 import axios from 'axios'
 jest.mock('axios')
 const localVue=createLocalVue()
