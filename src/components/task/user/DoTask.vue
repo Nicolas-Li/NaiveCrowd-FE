@@ -17,8 +17,8 @@
             return {
                 miniTaskId: null,
                 task: null,
-                problemList: [{description:'1',type:'choice',choice:['1','2']}],
-                miniTasksTime:3689,
+                problemList: [],
+                miniTasksTime:600,
             }
         },
         mounted: function () {
