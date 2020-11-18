@@ -73,6 +73,10 @@
             maxtime:{
                 type:Number,
                 default:600
+            },
+            isTimer:{
+                type:Boolean,
+                default:false
             }
         },
         data() {
@@ -82,15 +86,21 @@
             }
         },
         created() {
-            this.$refs.headerChild.start()
+            if(this.isTimer)
+                this.$refs.headerChild.start()
         },
         methods: {
             submit: function () {
-                if(this.$refs.headerChild.overtime==false){
+                if(!this.isTimer){
                     this.$emit("onSubmit", this.answer)
                 }
                 else{
-                    this.$message.error("超时啦！")
+                    if(this.$refs.headerChild.overtime==false){
+                        this.$emit("onSubmit", this.answer)
+                    }
+                    else{
+                        this.$message.error("超时啦！")
+                    }
                 }
             }
         },
