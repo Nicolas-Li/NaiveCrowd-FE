@@ -75,7 +75,7 @@
                             this.$message.error(data.message)
                         } else if (data.type === "success") {
                             this.name = this.$cookies.get('name')
-                            this.sex = data.sex === "non-binary" ? "el-icon-link" : "el-icon-" + data.sex;
+                            this.sex = data.sex === "non-binary" ? "el-icon-link" : "el-icon-" + data.sex
                             this.email = data.email
                             this.credit = data.credit ? data.credit : 100
                             this.money = util.money(data.money ? data.money : 0).replace("元", "")

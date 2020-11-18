@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import fun from "@/net/login"
+    import util from "@/components/log/util"
 
     export default {
         name: "Login",
@@ -55,34 +55,14 @@
                         {validator: validatePass, trigger: 'blur'}
                     ]
                 }
-            };
+            }
         },
         methods: {
             submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid && this.$cookies.isKey("identity")) {
-                        this.$cookies.set("name", this.ruleForm.name, "30d", "/")
-                        fun.login(this.ruleForm.pass)
-                            .then(res => {
-                                let data = res.data
-                                if (data.type === "failed") {
-                                    this.$message.error(data.message)
-                                } else if (data.type === "success") {
-                                    this.$message.success("登录成功")
-                                    this.$cookies.set("isLogin", true, "30d", "/")
-                                    this.$router.push({ path: '/main' })
-                                }
-                            }).catch(err => {
-                            this.$message.error(err.toString())
-                        })
-                    } else {
-                        this.$message.error('提交信息不正确！');
-                        return false;
-                    }
-                });
+                util.submitForm(this, formName, false)
             },
             resetForm(formName) {
-                this.$refs[formName].resetFields();
+                util.resetForm(this, formName)
             }
         }
     }
