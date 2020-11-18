@@ -1,7 +1,6 @@
-import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,config,createLocalVue} from '@vue/test-utils'
 import DoTaskTemplate from '@/components/task/user/DoTaskTemplate'
 import ElementUI from 'element-ui'
-import Vue from 'vue'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
 config.stubs.transition = false
