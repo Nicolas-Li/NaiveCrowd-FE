@@ -19,7 +19,7 @@
         data() {
             return {
                 miniTaskId: null,
-                problemList: [{description:'1',type:'choice',choice:['1','2']}],
+                problemList: [],
                 miniTasksTime:600,
                 title:'',
             }
