@@ -1,6 +1,8 @@
 <template>
 <div>
         <el-button @click="getMiniTasksId">换一个</el-button>
+        <div>当前任务:{{title}}</div>
+        <el-divider/>
         <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" @onSubmit="submitAnswer"/>
 </div>
 </template>
@@ -18,7 +20,8 @@
             return {
                 miniTaskId: null,
                 problemList: [{description:'1',type:'choice',choice:['1','2']}],
-                miniTasksTime:3689,
+                miniTasksTime:600,
+                title:'',
             }
         },
         mounted: function () {
@@ -48,7 +51,8 @@
                             if (data.type === "failed") {
                                 this.$message.error(data.message)
                             } else {
-                                this.miniTasksTime = data.miniTasksTime
+                                this.title=data.title
+                                this.miniTasksTime = data.dotime
                             }
                         }).catch(err => {
                         this.$message.error(err.toString())
