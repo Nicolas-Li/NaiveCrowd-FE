@@ -1,7 +1,6 @@
-import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,config,createLocalVue} from '@vue/test-utils'
 import Timer from '@/components/task/user/Timer'
 import ElementUI from 'element-ui'
-import Vue from 'vue'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
 config.stubs.transition = false
