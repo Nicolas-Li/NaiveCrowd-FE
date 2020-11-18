@@ -1,14 +1,10 @@
-import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,config,createLocalVue} from '@vue/test-utils'
 import Configuration from '@/components/task/demander/Configuration'
 import ElementUI from 'element-ui'
-import VueRouter from 'vue-router'
 import VueCookies from 'vue-cookies'
 import axios from 'axios'
-//import router from '../../src/router/router.js'
-import Vue from 'vue'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
-//localVue.use(VueRouter)
 localVue.use(VueCookies)
 config.stubs.transition = false
 jest.mock('axios')
@@ -38,10 +34,9 @@ describe('Configuration',()=>{
     })
     var file={type:'text/plai'}
     wrapper.vm.beforeProblemsUpload(file)
-    var file1={type:'text/plain'}
+    //var file1={type:'text/plain'}
     //wrapper.vm.beforeProblemsUpload(file1)
     //wrapper.vm.submitForm('ruleForm')
-    const button=wrapper.find('.el-button')
 
     it('have right buttons',()=>{
         expect(wrapper.findAll('.el-input').length).toBe(0)
