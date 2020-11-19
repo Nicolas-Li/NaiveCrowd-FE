@@ -1,4 +1,4 @@
-import {shallowMount,shallow,mount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
 import DoTaskTemplate from '@/components/task/user/DoTaskTemplate'
 import Timer from '@/components/task/user/Timer'
 import ElementUI from 'element-ui'
@@ -11,15 +11,26 @@ localVue.use(Timer)
 jest.mock('axios')
 
 describe('TaskView',()=>{
-    mount(DoTaskTemplate, localVue,{
-        stubs: ['Timer']
-      })
-    const wrapper = shallowMount(DoTaskTemplate,{
+    const wrapper = mount(DoTaskTemplate,{
         localVue,
-        stubs:{
-            'Timer':Timer
-            
+        mocks:{
+            $router:{
+                push:function(path){},
+                back:function(){}
+            },
         },
+        propsData:{
+            isTimer:true
+        }
+    })
+    it('has right id', ()=> {
+        expect(1+0).toBe(1)
+    })
+    wrapper.vm.submit([null, null, null])
+    wrapper.vm.$refs.headerChild.overtime=true
+    wrapper.vm.submit([null, null, null])
+    const wrapper1 = mount(DoTaskTemplate,{
+        localVue,
         mocks:{
             $router:{
                 push:function(path){},
@@ -30,8 +41,5 @@ describe('TaskView',()=>{
             isTimer:false
         }
     })
-    it('has right id', ()=> {
-        expect(1+0).toBe(1)
-    })
-    wrapper.vm.submit([null, null, null])
+    wrapper1.vm.submit([null, null, null])
 })

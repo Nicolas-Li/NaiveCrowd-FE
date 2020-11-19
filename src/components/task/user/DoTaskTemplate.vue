@@ -92,7 +92,7 @@
                 answer: [],
             }
         },
-        created() {
+        mounted() {
             if(this.isTimer){
                 this.$refs.headerChild.start()
                 //document.getElementById("timer").start()
