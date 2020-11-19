@@ -28,21 +28,8 @@
             }
         },
         created() {
-            this.timer = setInterval(this.startTimer, 1000);
-            this.maxsec = this.maxtime
-            while (this.maxsec >= 60) {
-                this.maxsec -= 60;
-                this.maxmin = this.maxmin + 1;
-            }
-            while (this.maxmin >= 60) {
-                this.maxmin -= 60;
-                this.maxhour = this.maxhour + 1;
-            }
-            this.timehtml = (this.hour < 10 ? '0' + this.hour : this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds)
-                + '/' + (this.maxhour < 10 ? '0' + this.maxhour : this.maxhour)
-                + ':' + (this.maxmin < 10 ? '0' + this.maxmin : this.maxmin)
-                + ':' + (this.maxsec < 10 ? '0' + this.maxsec : this.maxsec)
-            ;
+            this.timer = setInterval(this.startTimer, 1000)
+            this.resetMaxTime(this.maxtime)
         },
         methods: {
             startTimer() {
@@ -73,26 +60,29 @@
             },
             start() {
                 this.timer = setInterval(this.startTimer, 1000)
+            },
+            resetMaxTime(maxT) {
+                this.maxsec = maxT
+                while (this.maxsec >= 60) {
+                    this.maxsec -= 60;
+                    this.maxmin = this.maxmin + 1;
+                }
+                while (this.maxmin >= 60) {
+                    this.maxmin -= 60;
+                    this.maxhour = this.maxhour + 1;
+                }
+                this.timehtml = (this.hour < 10 ? '0' + this.hour : this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds)
+                    + '/' + (this.maxhour < 10 ? '0' + this.maxhour : this.maxhour)
+                    + ':' + (this.maxmin < 10 ? '0' + this.maxmin : this.maxmin)
+                    + ':' + (this.maxsec < 10 ? '0' + this.maxsec : this.maxsec)
+                ;
             }
         },
         watch: {
             'maxtime': {
                 handler(newData) {
                     if (newData) {
-                        this.maxsec = newData
-                        while (this.maxsec >= 60) {
-                            this.maxsec -= 60;
-                            this.maxmin = this.maxmin + 1;
-                        }
-                        while (this.maxmin >= 60) {
-                            this.maxmin -= 60;
-                            this.maxhour = this.maxhour + 1;
-                        }
-                        this.timehtml = (this.hour < 10 ? '0' + this.hour : this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds)
-                            + '/' + (this.maxhour < 10 ? '0' + this.maxhour : this.maxhour)
-                            + ':' + (this.maxmin < 10 ? '0' + this.maxmin : this.maxmin)
-                            + ':' + (this.maxsec < 10 ? '0' + this.maxsec : this.maxsec)
-                        ;
+                        this.resetMaxTime(newData)
                     }
                 }
             }
