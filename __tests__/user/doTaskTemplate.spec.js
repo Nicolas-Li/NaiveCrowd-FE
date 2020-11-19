@@ -42,4 +42,11 @@ describe('TaskView',()=>{
         }
     })
     wrapper1.vm.submit([null, null, null])
+    wrapper.setProps({ data: [{
+        description: "111",
+        type: "111",
+        choice: ["111"],
+        imageUrl: null,
+    }] })
+    wrapper1.setProps({ data: false })
 })
