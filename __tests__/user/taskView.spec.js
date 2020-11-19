@@ -92,11 +92,33 @@ describe('TaskView',()=>{
             }
         }
     })
+    const wrapper4 = shallowMount(TaskView,{
+        localVue,
+        mocks:{
+            $router:{
+                push:function(path){},
+                back:function(){}
+            },
+            $route:{
+                params:{
+                    
+                },
+            }
+        }
+    })
     
     it('m',async()=>{
         wrapper.vm.doTask()
         wrapper.vm.favor()
     })
+    axios.post.mockResolvedValue({
+        data:{
+            type:'success',
+            message:'123',
+        }
+    })
+    wrapper.vm.doTask()
+    wrapper.vm.favor()
     axios.post.mockResolvedValue({
         data:{
             type:'failed',
@@ -105,5 +127,6 @@ describe('TaskView',()=>{
     })
     wrapper.vm.doTask()
     wrapper.vm.favor()
-    
+    wrapper.setData({task:{isFavor:true}})
+    wrapper.vm.favor()
 })
