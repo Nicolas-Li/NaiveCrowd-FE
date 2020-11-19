@@ -26,7 +26,7 @@
                 </el-col>
             </el-row>
             <el-divider></el-divider>
-            <div v-if="$cookies.get('identity') === 'user'">
+            <div v-if="$cookies.get('identity') === 'user' && task.status === 2">
                 <el-button :disabled="isFavor" @click="favor">{{ isFavor ? "已收藏" : "收藏" }}</el-button>
                 <el-button @click="doTask">开始做题</el-button>
             </div>
