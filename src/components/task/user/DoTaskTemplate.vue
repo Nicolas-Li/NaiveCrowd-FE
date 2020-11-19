@@ -7,7 +7,7 @@
                     <div :key=item v-for="item in data[currentPage-1].choice">
                         <el-radio :label="item" style="zoom:130%;margin:3px">
                             {{item}}
-<!--                            {{String.fromCharCode(65+index)}}.{{item}}-->
+                            <!--                            {{String.fromCharCode(65+index)}}.{{item}}-->
                             <!-- {{item.trim().replace(':', '.').replace(/'/ig, '')}} -->
                         </el-radio>
                     </div>
@@ -22,11 +22,17 @@
                 </el-input>
             </div>
             <div v-if="data[currentPage-1].type==='photo-judge'">
-                <el-image :src="data[currentPage-1].imageUrl"/>
-                <el-radio-group v-model="answer[currentPage-1]">
-                    <el-radio label='yes'>√</el-radio>
-                    <el-radio label='no'>×</el-radio>
-                </el-radio-group>
+                <el-row>
+                    <el-col :span="12">
+                        <el-image :src="data[currentPage-1].imageUrl" style="max-height: 500px" fit="contain"/>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-radio-group v-model="answer[currentPage-1]">
+                            <el-radio label='yes'>√</el-radio>
+                            <el-radio label='no'>×</el-radio>
+                        </el-radio-group>
+                    </el-col>
+                </el-row>
             </div>
         </el-main>
         <el-footer>
@@ -53,6 +59,7 @@
 
 <script>
     import Timer from "@/components/task/user/Timer";
+
     export default {
         name: "DoTaskTemplate",
         components: {
@@ -70,13 +77,13 @@
                     }]
                 }
             },
-            maxtime:{
-                type:Number,
-                default:600
+            maxtime: {
+                type: Number,
+                default: 600
             },
-            isTimer:{
-                type:Boolean,
-                default:false
+            isTimer: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -86,21 +93,23 @@
             }
         },
         created() {
+<<<<<<< HEAD
             if(this.isTimer){
+=======
+            if (this.isTimer)
+>>>>>>> master
                 this.$refs.headerChild.start()
                 //document.getElementById("timer").start()
             }
         },
         methods: {
             submit: function () {
-                if(!this.isTimer){
+                if (!this.isTimer) {
                     this.$emit("onSubmit", this.answer)
-                }
-                else{
-                    if(this.$refs.headerChild.overtime===false){
+                } else {
+                    if (this.$refs.headerChild.overtime === false) {
                         this.$emit("onSubmit", this.answer)
-                    }
-                    else{
+                    } else {
                         this.$message.error("超时啦！")
                     }
                 }
@@ -119,9 +128,9 @@
 </script>
 
 <style scoped>
-     .radio {
-        font-size:20px;
+    .radio {
+        font-size: 20px;
         zoom: 220%;
-        margin:10px
+        margin: 10px
     }
 </style>

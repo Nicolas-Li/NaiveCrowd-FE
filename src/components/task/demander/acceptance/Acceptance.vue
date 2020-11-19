@@ -2,17 +2,18 @@
     <el-container v-if="task.id">
         <el-header>
             <el-row>
-                <el-col :span="16">
-                    {{ answerProgress.totNum }}份答案中，检查了{{ answerProgress.checkNum }}份答案，
-                    拒绝了{{ answerProgress.refuseNum }}份答案
-                </el-col>
-                <el-col :span="8">
+<!--                <el-col :span="16">-->
+<!--                    {{ answerProgress.totNum }}份答案中，检查了{{ answerProgress.checkNum }}份答案，-->
+<!--                    拒绝了{{ answerProgress.refuseNum }}份答案-->
+<!--                </el-col>-->
+<!--                <el-col :span="8">-->
                     <el-button plain round
                                type="primary"
-                               v-if="answerProgress.refuseNum > 0">继续分发
+                               v-if="answerProgress.refuseNum > 0"
+                               @click="continueRelease">继续分发
                     </el-button>
                     <el-button @click="settleTask" plain round type="warning">结算任务</el-button>
-                </el-col>
+<!--                </el-col>-->
             </el-row>
             <el-menu mode="horizontal">
                 <el-row>
@@ -29,7 +30,7 @@
                         </el-menu-item>
                     </el-col>
                     <el-col :span="8">
-                        <el-menu-item index="3">
+                        <el-menu-item index="3" @click="autoCheck">
                             <i class="el-icon-s-release"></i>
                             <span slot="title">平台反作弊</span>
                         </el-menu-item>
@@ -88,6 +89,31 @@
                     } else if (data.type === "success") {
                         this.$message.success(data.message)
                         this.$router.push({path: '/main/task/demander'})
+                    }
+                }).catch(err => {
+                    this.$message.error(err.toString())
+                })
+            },
+            continueRelease() {
+                fun.continueRelease(this.task.id).then(res => {
+                    let data = res.data;
+                    if (data.type === "failed") {
+                        this.$message.error(data.message)
+                    } else if (data.type === "success") {
+                        this.$message.success(data.message)
+                        this.$router.push({path: '/main/task/demander'})
+                    }
+                }).catch(err => {
+                    this.$message.error(err.toString())
+                })
+            },
+            autoCheck() {
+                fun.autoCheck(this.task.id).then(res => {
+                    let data = res.data;
+                    if (data.type === "failed") {
+                        this.$message.error(data.message)
+                    } else if (data.type === "success") {
+                        this.$message.success(data.message)
                     }
                 }).catch(err => {
                     this.$message.error(err.toString())

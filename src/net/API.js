@@ -92,6 +92,14 @@ const API = {
         path: "/api/check/refuseanswerofuser",
         method: "post"
     },
+    CONTINUE_RELEASE: {
+        path: "/api/check/continuerelease",
+        method: "post"
+    },
+    AUTO_CHECK: {
+        path: "/api/task/autochecktask",
+        method: "post"
+    },
     SETTLE_TASK: {
         path: "/api/task/settletask",
         method: "post"

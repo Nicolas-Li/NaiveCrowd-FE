@@ -72,6 +72,12 @@ export default {
     async refuseAnswer(id) {
         return await axios.post(API.REFUSE_ANSWERS_OF_USER.path, { id })
     },
+    async continueRelease(id) {
+        return await axios.post(API.CONTINUE_RELEASE.path, { id })
+    },
+    async autoCheck(id) {
+        return await axios.post(API.AUTO_CHECK.path, { id })
+    },
     async settleTask(id) {
         return await axios.post(API.SETTLE_TASK.path, { id })
     },

@@ -28,7 +28,7 @@
                         {{ problem.choice }}
                     </div>
                     <div>
-                        {{ problem.imageUrl }}
+                        <el-image :src="problem.imageUrl" style="max-height: 300px" fit="contain"/>
                     </div>
                 </el-card>
             </el-col>
