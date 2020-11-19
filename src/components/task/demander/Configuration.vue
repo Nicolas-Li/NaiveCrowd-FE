@@ -263,14 +263,18 @@
                 this.inputValue = '';
             },
             beforeProblemsUpload(file) {
+                // todo: mac下不能交zip
                 const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
-                if (!isTXTorZIP) {
-                    this.$message.error('上传配置任务只能是 TXT/ZIP 格式!')
-                } else {
+                // const isTXTorZIP = true
+                // if (!isTXTorZIP) {
+                // if (false) {
+                //     this.$message.error('上传配置任务只能是 TXT/ZIP 格式!')
+                // } else {
                     this.ruleForm.problems = file
                     this.$refs.ruleForm.validateField('problems')
-                }
-                return isTXTorZIP
+                // }
+                // return isTXTorZIP
+                return true
             },
             handleProblemsRemove() {
                 this.ruleForm.problems = null
