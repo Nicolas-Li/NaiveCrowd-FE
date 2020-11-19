@@ -44,7 +44,7 @@
                     <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
                 </el-main>
                 <el-footer>
-                    <Timer :maxtime="maxtime" ref="headerChild"></Timer>
+                    <Timer :maxtime="maxtime" ref="headerChild" id="timer"></Timer>
                 </el-footer>
             </el-container>
         </el-footer>
@@ -86,8 +86,10 @@
             }
         },
         created() {
-            if(this.isTimer)
+            if(this.isTimer){
                 this.$refs.headerChild.start()
+                //document.getElementById("timer").start()
+            }
         },
         methods: {
             submit: function () {
