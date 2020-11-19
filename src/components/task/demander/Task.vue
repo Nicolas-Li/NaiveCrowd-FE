@@ -25,6 +25,7 @@
 <script>
     import fun from "@/net/task"
     import util from "@/util"
+    import task_util from "@/components/task/util"
 
     export default {
         name: "Task",
@@ -46,11 +47,11 @@
         ,
         computed: {
             showDate() {
-                return util.showDate(this)
+                return task_util.showDate(this)
             }
             ,
             showStatus() {
-                return util.showStatus(this.task.status)
+                return task_util.showStatus(this.task.status)
             }
             ,
             showButton() {
@@ -63,7 +64,7 @@
         ,
         mounted: function () {
             if (this.task.status === 2) {
-                util.getTaskProgress(this)
+                task_util.getTaskProgress(this)
             }
         }
         ,
