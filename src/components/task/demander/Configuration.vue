@@ -263,7 +263,8 @@
                 this.inputValue = '';
             },
             beforeProblemsUpload(file) {
-                const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
+                // const isTXTorZIP = (file.type === 'text/plain') || (file.type === 'application/x-zip-compressed')
+                const isTXTorZIP = true
                 if (!isTXTorZIP) {
                     this.$message.error('上传配置任务只能是 TXT/ZIP 格式!')
                 } else {
