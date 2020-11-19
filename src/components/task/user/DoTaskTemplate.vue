@@ -31,7 +31,7 @@
         </el-main>
         <el-footer>
             <el-container>
-                <el-head>
+                <el-header>
                     <el-pagination
                             :current-page.sync="currentPage"
                             :page-size="1"
@@ -39,7 +39,7 @@
                             background
                             layout="prev, pager, next">
                     </el-pagination>
-                </el-head>
+                </el-header>
                 <el-main>
                     <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
                 </el-main>
