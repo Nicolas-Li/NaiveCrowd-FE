@@ -1,7 +1,7 @@
 import fun from "@/net/task";
 
 function f(that, isConfig) {
-    return isConfig ? fun.configTask(that.ruleForm.problems, that.task.id, that.deadline, that.ruleForm.taskTag, that.ruleForm.miniTasksNum, that.miniTasksBonus, that.ruleForm.miniTasksTime, that.ruleForm.miniTasksLimit, that.ruleForm.miniTasksType) : fun.createTask(this.ruleForm.cover, this.ruleForm.title, this.ruleForm.intro, this.deadline)
+    return isConfig ? fun.configTask(that.ruleForm.problems, that.task.id, that.deadline, that.ruleForm.taskTag, that.ruleForm.miniTasksNum, that.miniTasksBonus, that.ruleForm.miniTasksTime, that.ruleForm.miniTasksLimit, that.ruleForm.miniTasksType) : fun.createTask(that.ruleForm.cover, that.ruleForm.title, that.ruleForm.intro, that.deadline)
 }
 
 export default {
@@ -36,7 +36,7 @@ export default {
         that.$refs[formName].validate((valid) => {
             if (valid) {
                 that.isSubmitting = true
-                f(isConfig)
+                f(that, isConfig)
                     .then(res => {
                         that.isSubmitting = false
                         let data = res.data
