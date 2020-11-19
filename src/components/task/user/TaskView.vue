@@ -93,7 +93,7 @@
                                 this.$message.error(res.data.message)
                             } else {
                                 this.$message.success(res.data.message)
-                                this.task.isFavor = true
+                                this.isFavor = true
                             }
                         }).catch(err => {
                         this.$message.error(err.toString())
