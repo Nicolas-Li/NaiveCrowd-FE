@@ -44,7 +44,7 @@
                     <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
                 </el-main>
                 <el-footer>
-                    <Timer :time="time" :maxtime="maxtime" ref="headerChild"></Timer>
+                    <Timer :maxtime="maxtime" ref="headerChild"></Timer>
                 </el-footer>
             </el-container>
         </el-footer>
@@ -95,7 +95,7 @@
                     this.$emit("onSubmit", this.answer)
                 }
                 else{
-                    if(this.$refs.headerChild.overtime==false){
+                    if(this.$refs.headerChild.overtime===false){
                         this.$emit("onSubmit", this.answer)
                     }
                     else{

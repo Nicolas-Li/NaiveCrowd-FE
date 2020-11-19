@@ -1,7 +1,7 @@
 <template>
     <div class="timer">
-        <div ref="startTimer" id="time">{{timehtml}}</div>
-        <div v-if="overtime==true">已超时</div>
+        <div ref="startTimer">{{timehtml}}</div>
+        <div v-if="overtime===true">已超时</div>
     </div>
 </template>
 
@@ -9,9 +9,6 @@
 export default {
     name:'Timer',
     props:{
-      time:{
-        type:Number
-      },
       maxtime: {
         type:Number,
         default:0
@@ -50,7 +47,10 @@ export default {
     methods: {
         startTimer() {
             if(this.seconds + 60 * this.minutes + 3600 * this.hour >= this.maxtime){
+                console.log("time=" + this.seconds + 60 * this.minutes + 3600 * this.hour)
+                console.log("maxtime=" + this.maxtime)
                 this.overtime = true
+                this.stop()
                 return 0
             }
             this.seconds += 1;
