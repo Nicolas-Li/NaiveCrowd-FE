@@ -5,7 +5,7 @@
             <el-divider></el-divider>
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <div align='left'>题目数量：{{ task.num }}</div>
+                    <div align='left'>小任务题目数量：{{ task.num }}</div>
                 </el-col>
                 <el-col :span="6">
                     <div align='left'>题目类型：{{ type }}</div>
@@ -15,7 +15,7 @@
                 </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col>s
+                <el-col>
                     <div align='left'>截止日期：{{ showDate }}</div>
                 </el-col>
             </el-row>
