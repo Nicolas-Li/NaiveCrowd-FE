@@ -27,6 +27,8 @@ describe('Acceptance',()=>{
             }
         }
     })
+    wrapper.vm.seeAnswersOfUsers()
+    wrapper.vm.seeAnswersOfUser(-1)
 
     //wrapper.setData({loading:true,money:100})
 

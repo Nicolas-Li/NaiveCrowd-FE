@@ -93,11 +93,7 @@
             }
         },
         created() {
-<<<<<<< HEAD
             if(this.isTimer){
-=======
-            if (this.isTimer)
->>>>>>> master
                 this.$refs.headerChild.start()
                 //document.getElementById("timer").start()
             }
