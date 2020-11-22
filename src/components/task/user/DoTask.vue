@@ -16,7 +16,7 @@
                 miniTaskId: null,
                 task: null,
                 problemList: [],
-                miniTasksTime:600,
+                miniTasksTime:0,
             }
         },
         mounted: function () {

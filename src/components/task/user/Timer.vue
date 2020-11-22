@@ -28,8 +28,8 @@
             }
         },
         created() {
-            this.timer = setInterval(this.startTimer, 1000)
             this.resetMaxTime(this.maxtime)
+            this.timer = setInterval(this.startTimer, 1000)
         },
         methods: {
             startTimer() {
@@ -62,6 +62,8 @@
                 this.timer = setInterval(this.startTimer, 1000)
             },
             resetMaxTime(maxT) {
+                this.maxhour = 0
+                this.maxmin = 0
                 this.maxsec = maxT
                 while (this.maxsec >= 60) {
                     this.maxsec -= 60;

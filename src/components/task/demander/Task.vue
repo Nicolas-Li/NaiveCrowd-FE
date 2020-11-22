@@ -103,8 +103,8 @@
                                                 if (data.type === "failed") {
                                                     this.$message.error(data.message)
                                                 } else if (data.type === "success") {
-                                                    this.$message.success("任务发布成功")
                                                     this.task.status = 2
+                                                    this.$message.success("任务发布成功")
                                                 }
                                             }).catch(err => {
                                             this.loading = false
@@ -126,8 +126,8 @@
                                 if (data.type === "failed") {
                                     this.$message.error(data.message)
                                 } else if (data.type === "success") {
-                                    this.$message.success("任务终止成功")
                                     this.task.status = 3
+                                    this.$message.success("任务终止成功")
                                 }
                             }).catch(err => {
                             this.loading = false
@@ -148,8 +148,8 @@
                             if (data.type === "failed") {
                                 this.$message.error(data.message)
                             } else if (data.type === "success") {
-                                this.$message.success(data.message)
                                 this.task.status = 5
+                                this.$message.success(data.message)
                             }
                         }).catch(err => {
                             this.$message.error(err.toString())
@@ -162,8 +162,8 @@
                             if (data.type === "failed") {
                                 this.$message.error(data.message)
                             } else if (data.type === "success") {
-                                this.$message.success(data.message)
                                 window.open(data.resultUrl)
+                                this.$message.success(data.message)
                             }
                             this.loading = false
                         }).catch(err => {

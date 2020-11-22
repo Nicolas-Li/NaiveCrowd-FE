@@ -20,7 +20,7 @@
             return {
                 miniTaskId: null,
                 problemList: [],
-                miniTasksTime:600,
+                miniTasksTime:0,
                 title:'',
             }
         },
