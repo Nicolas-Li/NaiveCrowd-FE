@@ -1,17 +1,19 @@
-import {shallowMount,config,createLocalVue} from '@vue/test-utils'
+import {shallowMount,mount,config,createLocalVue} from '@vue/test-utils'
 import Configuration from '@/components/task/demander/Configuration'
 import ElementUI from 'element-ui'
+import {Form} from 'element-ui'
 import VueCookies from 'vue-cookies'
 import axios from 'axios'
 const localVue=createLocalVue()
 localVue.use(ElementUI)
+localVue.use(Form)
 localVue.use(VueCookies)
 config.stubs.transition = false
 jest.mock('axios')
 
 
 describe('Configuration',()=>{
-    const wrapper = shallowMount(Configuration,{
+    const wrapper = mount(Configuration,{
         localVue,
         mocks:{
             $route:{
@@ -22,14 +24,6 @@ describe('Configuration',()=>{
                 params:{id:'1',status:0},
                 back: function(a){}
             },
-            $refs:{
-                ruleForm:{
-                    validateField:function(a){}
-                },
-                a:{
-                    validate:function(){}
-                }
-            }
         }
     })
     var file={type:'text/plai'}
@@ -37,10 +31,7 @@ describe('Configuration',()=>{
     //var file1={type:'text/plain'}
     //wrapper.vm.beforeProblemsUpload(file1)
     //wrapper.vm.submitForm('ruleForm')
-
-    it('have right buttons',()=>{
-        expect(wrapper.findAll('.el-input').length).toBe(0)
-    })
+    //wrapper.vm.handleClose('1')
 
     //wrapper.setData({loading:true,money:100})
 
