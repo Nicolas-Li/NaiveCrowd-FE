@@ -10,7 +10,7 @@ describe('timer',()=>{
     const wrapper = shallowMount(Timer,{
         localVue,
         propsData: {
-            maxtime:8000
+            maxTime:8000
         },
         mocks:{
             $router:{
@@ -29,8 +29,10 @@ describe('timer',()=>{
         }
     })
     it('has right id', ()=> {
+        wrapper.setData({minutes: 0,
+            seconds: 0,})
         wrapper.vm.startTimer()
-        wrapper.setData({minutes: 1000,
+        wrapper.setData({minutes: 10000,
             seconds: 100,})
         wrapper.vm.startTimer()
         wrapper.setData({minutes: 61,
@@ -39,12 +41,12 @@ describe('timer',()=>{
         wrapper.vm.stop()
         wrapper.vm.start()
         wrapper.vm.maxtime+=1
-        
+        wrapper.vm.resetMaxTime(100000)
     })
     const wrapper2 = shallowMount(Timer,{
         localVue,
         propsData: {
-            maxtime:8000
+            maxTime:8000
         },
         mocks:{
             $router:{
@@ -62,5 +64,6 @@ describe('timer',()=>{
             },
         }
     })
-    wrapper2.vm.maxtime=0
+    wrapper2.vm.maxTime=100
+    wrapper2.vm.maxTime=0
 })
