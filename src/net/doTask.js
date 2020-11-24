@@ -5,7 +5,7 @@ import API from "@/net/API"
 
 export default {
     async distributeMiniTask() {
-        return await axios.get(API.DISTRIBUTE_MINITASK.path)
+        return await axios.get(API.DISTRIBUTE_TASK.path)
     },
     async getProblems(id) {
         return await axios.post(API.GET_PROBLEMS_OF_MINITASK.path, {id})
