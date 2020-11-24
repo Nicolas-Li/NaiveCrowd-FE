@@ -31,6 +31,7 @@
 <script>
     import DoTaskTemplate from "@/components/task/user/DoTaskTemplate";
     import fun from "@/net/doTask"
+    import allFun from "@/net/task"
 
     export default {
         name: "Distribute",
@@ -83,7 +84,7 @@
             },
             getMiniTaskByTask() {
                 if (this.task.id) {
-                    fun.getMiniTaskByTask(this.task.id)
+                    allFun.getMiniTaskByTask(this.task.id)
                         .then(res => {
                             if (res.data.type === "failed") {
                                 this.$message.error(res.data.message)
