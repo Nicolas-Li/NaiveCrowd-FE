@@ -47,9 +47,12 @@
                         :visible.sync="answerDrawerVisible"
                         direction="rtl">
                     <el-row>
-                        <el-col :span="12">
+                        <el-col v-if="!deleted">
                             <el-button @click="answerDrawerVisible=false">验收通过</el-button>
                             <el-button @click="refuseAnswer">拒绝通过</el-button>
+                        </el-col>
+                        <el-col v-if="deleted">
+                            <el-button disabled>已拒绝</el-button>
                         </el-col>
                     </el-row>
                     <div>
@@ -98,6 +101,7 @@
                 // 详细答案
                 answerDrawerVisible: false,
                 answerId: null,
+                deleted: false,
                 userInfo: {
                     name: "unknown",
                     credit: 100,
@@ -148,25 +152,22 @@
                 })
             },
             seeAnswersOfUser(answerId) {
-                if (this.answerId !== answerId) {
-                    this.answerId = null
-                    fun.getProblemsAndUsers(answerId)
-                        .then(res => {
-                            let data = res.data
-                            if (data.type === "success") {
-                                this.answerDrawerVisible = true
-                                this.answerId = answerId
-                                this.userInfo = data.userInfo
-                                this.contentList = data.contentList
-                            } else if (data.type === "failed") {
-                                this.$message.error(data.message)
-                            }
-                        }).catch(err => {
-                        this.$message.error(err.toString())
-                    })
-                } else {
-                    this.answerDrawerVisible = true
-                }
+                this.answerId = null
+                fun.getProblemsAndUsers(answerId)
+                    .then(res => {
+                        let data = res.data
+                        if (data.type === "success") {
+                            this.answerDrawerVisible = true
+                            this.answerId = answerId
+                            this.deleted = data.deleted
+                            this.userInfo = data.userInfo
+                            this.contentList = data.contentList
+                        } else if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        }
+                    }).catch(err => {
+                    this.$message.error(err.toString())
+                })
             },
             refuseAnswer() {
                 fun.refuseAnswer(this.answerId)

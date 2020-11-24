@@ -1,7 +1,7 @@
 <template>
     <div class="timer">
-        <div ref="startTimer">{{timehtml}}</div>
-        <div v-if="overtime===true">已超时</div>
+        <div ref="startTimer">{{timeHtml}}</div>
+        <div v-if="overtime">已超时</div>
     </div>
 </template>
 
@@ -9,51 +9,50 @@
     export default {
         name: 'Timer',
         props: {
-            maxtime: {
+            maxTime: {
                 type: Number,
                 default: 0
             },
         },
         data() {
             return {
-                timer: "",
+                timer: null,
                 hour: 0,
                 minutes: 0,
                 seconds: 0,
                 overtime: false,
-                timehtml: '',
-                maxhour: 0,
-                maxmin: 0,
-                maxsec: 0,
+                timeHtml: '',
+                maxHour: 0,
+                maxMin: 0,
+                maxSec: 0,
             }
         },
         created() {
-            this.resetMaxTime(this.maxtime)
             this.timer = setInterval(this.startTimer, 1000)
+            this.resetMaxTime(this.maxTime)
         },
         methods: {
             startTimer() {
-                if (this.seconds + 60 * this.minutes + 3600 * this.hour >= this.maxtime) {
-                    console.log("time=" + this.seconds + 60 * this.minutes + 3600 * this.hour)
-                    console.log("maxtime=" + this.maxtime)
+                if (this.seconds + 60 * this.minutes + 3600 * this.hour >= this.maxTime) {
                     this.overtime = true
+                    this.$emit("timeIsOut")
                     this.stop()
                     return 0
                 }
-                this.seconds += 1;
+                this.seconds += 1
                 while (this.seconds >= 60) {
-                    this.seconds -= 60;
-                    this.minutes = this.minutes + 1;
+                    this.seconds -= 60
+                    this.minutes = this.minutes + 1
                 }
                 while (this.minutes >= 60) {
-                    this.minutes -= 60;
-                    this.hour = this.hour + 1;
+                    this.minutes -= 60
+                    this.hour = this.hour + 1
                 }
-                this.timehtml = (this.hour < 10 ? '0' + this.hour : this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds)
-                    + '/' + (this.maxhour < 10 ? '0' + this.maxhour : this.maxhour)
-                    + ':' + (this.maxmin < 10 ? '0' + this.maxmin : this.maxmin)
-                    + ':' + (this.maxsec < 10 ? '0' + this.maxsec : this.maxsec)
-                ;
+                this.timeHtml = (this.hour < 10 ? '0' + this.hour : this.hour)
+                    + ':' + (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds)
+                    + '/' + (this.maxHour < 10 ? '0' + this.maxHour : this.maxHour)
+                    + ':' + (this.maxMin < 10 ? '0' + this.maxMin : this.maxMin)
+                    + ':' + (this.maxSec < 10 ? '0' + this.maxSec : this.maxSec)
             },
             stop() {
                 clearInterval(this.timer)
@@ -62,32 +61,36 @@
                 this.timer = setInterval(this.startTimer, 1000)
             },
             resetMaxTime(maxT) {
-                this.maxhour = 0
-                this.maxmin = 0
-                this.maxsec = maxT
-                while (this.maxsec >= 60) {
-                    this.maxsec -= 60;
-                    this.maxmin = this.maxmin + 1;
+                this.maxHour = 0
+                this.maxMin = 0
+                this.maxSec = 0
+                this.maxSec = maxT
+                while (this.maxSec >= 60) {
+                    this.maxSec -= 60
+                    this.maxMin = this.maxMin + 1
                 }
-                while (this.maxmin >= 60) {
-                    this.maxmin -= 60;
-                    this.maxhour = this.maxhour + 1;
+                while (this.maxMin >= 60) {
+                    this.maxMin -= 60
+                    this.maxHour = this.maxHour + 1
                 }
-                this.timehtml = (this.hour < 10 ? '0' + this.hour : this.hour) + ':' + (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds)
-                    + '/' + (this.maxhour < 10 ? '0' + this.maxhour : this.maxhour)
-                    + ':' + (this.maxmin < 10 ? '0' + this.maxmin : this.maxmin)
-                    + ':' + (this.maxsec < 10 ? '0' + this.maxsec : this.maxsec)
-                ;
+                this.timeHtml = (this.hour < 10 ? '0' + this.hour : this.hour)
+                    + ':' + (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds)
+                    + '/' + (this.maxHour < 10 ? '0' + this.maxHour : this.maxHour)
+                    + ':' + (this.maxMin < 10 ? '0' + this.maxMin : this.maxMin)
+                    + ':' + (this.maxSec < 10 ? '0' + this.maxSec : this.maxSec)
             }
         },
         watch: {
-            'maxtime': {
+            'maxTime': {
                 handler(newData) {
                     if (newData) {
                         this.resetMaxTime(newData)
                     }
                 }
             }
+        },
+        beforeDestroy() {
+            this.stop()
         }
     }
 </script>

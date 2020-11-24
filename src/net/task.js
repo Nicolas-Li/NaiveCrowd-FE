@@ -4,9 +4,6 @@ axios.defaults.withCredentials = true
 import API from "@/net/API"
 
 export default {
-    async loadMore(start, num) {
-        return await axios.post(API.LOAD_MORE_TASK.path, {start, num})
-    },
     async loadAll() {
         return await axios.post(API.LOAD_ALL_TASK.path, {})
     },
