@@ -27,7 +27,7 @@ describe('Configuration',()=>{
         }
     })
     var file={type:'text/plai'}
-    wrapper.vm.beforeProblemsUpload(file)
+    //wrapper.vm.beforeProblemsUpload(file)
     //var file1={type:'text/plain'}
     //wrapper.vm.beforeProblemsUpload(file1)
     //wrapper.vm.submitForm('ruleForm')
@@ -106,7 +106,7 @@ describe('Configuration',()=>{
             }
         }
     })
-    wrapper2.vm.beforeProblemsUpload(file)
+    //wrapper2.vm.beforeProblemsUpload(file)
     it('money',async()=>{
         axios.post.mockResolvedValue({
             data:{

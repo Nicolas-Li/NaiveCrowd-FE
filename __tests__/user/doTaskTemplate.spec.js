@@ -20,7 +20,7 @@ describe('TaskView',()=>{
             },
         },
         propsData:{
-            isTimer:true
+            isTimer:false
         }
     })
     it('has right id', ()=> {

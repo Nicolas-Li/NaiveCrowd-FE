@@ -21,6 +21,7 @@ describe('Distribute',()=>{
     it('m',async()=>{
         wrapper.vm.getTask()
         wrapper.vm.getMiniTaskByTask()
+        wrapper.vm.submitAnswer()
         axios.get.mockResolvedValue({
             data:{
                 type:'failed',
