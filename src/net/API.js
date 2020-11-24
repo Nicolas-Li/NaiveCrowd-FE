@@ -20,10 +20,6 @@ const API = {
         method: "post"
     },
 
-    LOAD_MORE_TASK: {
-        path: "/api/task/loadmore",
-        method: "post"
-    },
     LOAD_ALL_TASK:{
         path: "/api/task/loadall",
         method: "post"
