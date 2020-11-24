@@ -104,8 +104,8 @@ const API = {
         path: "/api/task/exporttask",
         method: "post"
     },
-    DISTRIBUTE_MINITASK: {
-        path: "/api/task/distributeminitask",
+    DISTRIBUTE_TASK: {
+        path: "/api/task/distributetask",
         method: "get"
     },
     GET_PROBLEMS_OF_MINITASK: {
