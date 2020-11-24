@@ -20,10 +20,6 @@ const API = {
         method: "post"
     },
 
-    LOAD_MORE_TASK: {
-        path: "/api/task/loadmore",
-        method: "post"
-    },
     LOAD_ALL_TASK:{
         path: "/api/task/loadall",
         method: "post"
@@ -118,6 +114,10 @@ const API = {
     },
     SUBMIT_ANSWER: {
         path: "/api/answer/submitanswer",
+        method: "post"
+    },
+    TIME_OUT: {
+        path: "/api/answer/timeout",
         method: "post"
     },
     GET_INFO_OF_TASK:{

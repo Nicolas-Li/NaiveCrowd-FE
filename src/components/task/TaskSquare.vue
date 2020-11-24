@@ -35,14 +35,14 @@
                         <el-radio @change="change" label='0' v-model="type">不限</el-radio>
                         <el-radio @change="change" label='choice' v-model="type">选择题</el-radio>
                         <el-radio @change="change" label='completion' v-model="type">填空题</el-radio>
-                        <el-radio @change="change" label='photo-judge' v-model="type">判断题</el-radio>
+                        <el-radio @change="change" label='photo-judge' v-model="type">图片判断题</el-radio>
                     </div>
                 </el-col>
             </el-row>
         </el-header>
         <el-divider></el-divider>
         <el-main>
-            <Stick :list="tasks" @onScrollEnd="loadMore">
+            <Stick :list="tasks">
                 <template slot-scope="scope">
                     <TaskCard :task="scope.data"/>
                 </template>
@@ -89,20 +89,8 @@
                 }).catch(err => {
                 this.$message.error(err.toString())
             })
-
-
         },
         methods: {
-            loadMore: function (number = 10) {
-                // fun.loadMore(this.allTasks.length, number)
-                //     .then(res => {
-                //         let data = res.data.data
-                //         this.allTasks = this.allTasks.concat(data)
-                //         this.change(0)
-                //     }).catch(err => {
-                //     this.$message.error(err.toString())
-                // })
-            },
             change(label) {
                 this.tasks.splice(0, this.tasks.length)
                 for (let i = 0; i < this.allTasks.length; i = i + 1) {

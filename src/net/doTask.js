@@ -15,5 +15,8 @@ export default {
     },
     async getInfoOfTask(id){
         return await axios.post(API.GET_INFO_OF_TASK.path, {id})
+    },
+    async timeOut(id){
+        return await axios.post(API.TIME_OUT.path, {id})
     }
 }
