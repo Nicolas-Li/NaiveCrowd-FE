@@ -37,23 +37,21 @@
         </el-main>
         <el-footer>
             <el-container>
-                <el-col>
-                    <el-row>
-                        <el-pagination
-                                :current-page.sync="currentPage"
-                                :page-size="1"
-                                :total="data.length"
-                                background
-                                layout="prev, pager, next">
-                        </el-pagination>
-                    </el-row>
-                    <el-row>
-                        <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
-                    </el-row>
-                    <el-row>
-                        <Timer :maxtime="maxtime" ref="headerChild"></Timer>
-                    </el-row>
-                </el-col>
+                <el-header>
+                    <el-pagination
+                            :current-page.sync="currentPage"
+                            :page-size="1"
+                            :total="data.length"
+                            background
+                            layout="prev, pager, next">
+                    </el-pagination>
+                </el-header>
+                <el-main>
+                    <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
+                </el-main>
+                <el-footer>
+                    <Timer :maxtime="maxtime" ref="headerChild" id="timer"></Timer>
+                </el-footer>
             </el-container>
         </el-footer>
     </el-container>
@@ -94,9 +92,11 @@
                 answer: [],
             }
         },
-        created() {
-            if (this.isTimer)
+        mounted() {
+            if(this.isTimer){
                 this.$refs.headerChild.start()
+                //document.getElementById("timer").start()
+            }
         },
         methods: {
             submit: function () {

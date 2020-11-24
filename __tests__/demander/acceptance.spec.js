@@ -23,6 +23,8 @@ describe('Acceptance',()=>{
             },
         }
     })
+    wrapper.vm.continueRelease()
+    wrapper.vm.autoCheck()
 
     it('money',async()=>{
         axios.post.mockResolvedValue({
@@ -33,6 +35,8 @@ describe('Acceptance',()=>{
         })
         wrapper.vm.assertTaskId()
         wrapper.vm.settleTask()
+        wrapper.vm.continueRelease()
+        wrapper.vm.autoCheck()
         axios.post.mockResolvedValue({
             data:{
                 type:'failed',
@@ -40,6 +44,8 @@ describe('Acceptance',()=>{
             }
         })
         wrapper.vm.settleTask()
+        wrapper.vm.continueRelease()
+        wrapper.vm.autoCheck()
         axios.post.mockResolvedValue({
             data:{
                 type:'f',
@@ -47,7 +53,10 @@ describe('Acceptance',()=>{
             }
         })
         wrapper.vm.settleTask()
+        wrapper.vm.continueRelease()
+        wrapper.vm.autoCheck()
     })
+
 
     const wrapper2 = shallowMount(Acceptance,{
         localVue,

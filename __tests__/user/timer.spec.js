@@ -38,6 +38,29 @@ describe('timer',()=>{
         wrapper.vm.startTimer()
         wrapper.vm.stop()
         wrapper.vm.start()
+        wrapper.vm.maxtime+=1
+        
     })
-
+    const wrapper2 = shallowMount(Timer,{
+        localVue,
+        propsData: {
+            maxtime:8000
+        },
+        mocks:{
+            $router:{
+                push:function(path){},
+                back:function(){}
+            },
+            $route:{
+                params:{
+                    id:1,
+                    status:0
+                },
+                query:{
+                    task: 0
+                }
+            },
+        }
+    })
+    wrapper2.vm.maxtime=0
 })
