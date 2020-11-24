@@ -61,6 +61,9 @@
                 this.timer = setInterval(this.startTimer, 1000)
             },
             resetMaxTime(maxT) {
+                this.maxHour = 0
+                this.maxMin = 0
+                this.maxSec = 0
                 this.maxSec = maxT
                 while (this.maxSec >= 60) {
                     this.maxSec -= 60
