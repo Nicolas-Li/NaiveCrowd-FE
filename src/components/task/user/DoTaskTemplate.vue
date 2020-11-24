@@ -94,7 +94,7 @@
                 answer: [],
             }
         },
-        created() {
+        mounted() {
             if (this.isTimer)
                 this.$refs.headerChild.start()
         },
