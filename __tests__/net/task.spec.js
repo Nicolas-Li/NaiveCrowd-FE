@@ -3,7 +3,7 @@ import axios from 'axios'
 jest.mock('axios')
 
 describe('task util', ()=>{
-    f.loadMore(0,1)
+    f.loadAll()
     f.getFavor()
     f.createTask(1,1,1,1)
     f.configTask(1,1,1,1,1,1,1,1,1)

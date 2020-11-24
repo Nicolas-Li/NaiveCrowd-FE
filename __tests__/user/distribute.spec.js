@@ -17,22 +17,26 @@ describe('Distribute',()=>{
     const wrapper = shallowMount(Distribute,{
         localVue,
     })
-
+    wrapper.setData({task:{id:1}})
     it('m',async()=>{
+        wrapper.vm.getTask()
+        wrapper.vm.getMiniTaskByTask()
         axios.get.mockResolvedValue({
             data:{
                 type:'failed',
                 message:'123',
             }
         })
-        wrapper.vm.getMiniTasksId()
+        wrapper.vm.getTask()
+        wrapper.vm.getMiniTaskByTask()
         axios.get.mockResolvedValue({
             data:{
                 type:'f',
                 message:'123',
             }
         })
-        wrapper.vm.getMiniTasksId()
+        wrapper.vm.getTask()
+        wrapper.vm.getMiniTaskByTask()
         axios.get.mockResolvedValue({
             data:{
                 type:'success',
@@ -47,7 +51,8 @@ describe('Distribute',()=>{
                 data:['1']
             }
         })
-        wrapper.vm.getMiniTasksId()
+        wrapper.vm.getTask()
+        wrapper.vm.getMiniTaskByTask()
         wrapper.vm.submitAnswer('')
         wrapper.vm.problemList=['1','1']
         
@@ -58,7 +63,8 @@ describe('Distribute',()=>{
                 data:[]
             }
         })
-        wrapper.vm.getMiniTasksId()
+        wrapper.vm.getTask()
+        wrapper.vm.getMiniTaskByTask()
         wrapper.vm.submitAnswer('')
         axios.post.mockResolvedValue({
             data:{
@@ -67,8 +73,10 @@ describe('Distribute',()=>{
                 data:[]
             }
         })
-        wrapper.vm.getMiniTasksId()
+        wrapper.vm.getTask()
+        wrapper.vm.getMiniTaskByTask()
         wrapper.vm.submitAnswer('')
+        wrapper.vm.showDate()
     })
     
 })
