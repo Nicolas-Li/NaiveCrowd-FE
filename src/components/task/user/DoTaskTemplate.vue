@@ -51,7 +51,7 @@
                         <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
                     </el-row>
                     <el-row>
-                        <Timer :maxtime="maxtime" ref="headerChild"></Timer>
+                        <Timer :maxtime="maxTime" ref="headerChild" @timeIsOut="timeIsOut"/>
                     </el-row>
                 </el-col>
             </el-container>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-    import Timer from "@/components/task/user/Timer";
+    import Timer from "@/components/task/user/Timer"
 
     export default {
         name: "DoTaskTemplate",
@@ -79,7 +79,7 @@
                     }]
                 }
             },
-            maxtime: {
+            maxTime: {
                 type: Number,
                 default: 600
             },
@@ -109,6 +109,9 @@
                         this.$message.error("超时啦！")
                     }
                 }
+            },
+            timeIsOut() {
+                this.$emit("timeIsOut")
             }
         },
         watch: {

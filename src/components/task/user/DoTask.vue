@@ -1,5 +1,7 @@
 <template>
-    <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" :isTimer="true" @onSubmit="submitAnswer"/>
+    <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" :isTimer="true"
+                    @onSubmit="submitAnswer"
+                    @timeIsOut="timeIsOut"/>
 </template>
 
 <script>
@@ -74,6 +76,9 @@
                         this.$message.error(err.toString())
                     })
                 }
+            },
+            timeIsOut() {
+                fun.timeOut(this.miniTaskId)
             }
         }
     }

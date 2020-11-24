@@ -116,6 +116,10 @@ const API = {
         path: "/api/answer/submitanswer",
         method: "post"
     },
+    TIME_OUT: {
+        path: "/api/answer/timeout",
+        method: "post"
+    },
     GET_INFO_OF_TASK:{
         path:"/api/task/taskinfoofminitask",
         method:"post"
