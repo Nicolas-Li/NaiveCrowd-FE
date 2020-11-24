@@ -20,7 +20,7 @@ describe('TaskView',()=>{
             },
         },
         propsData:{
-            isTimer:false
+            isTimer:true
         }
     })
     it('has right id', ()=> {
@@ -49,4 +49,5 @@ describe('TaskView',()=>{
         imageUrl: null,
     }] })
     wrapper1.setProps({ data: false })
+    wrapper.vm.timeIsOut()
 })
