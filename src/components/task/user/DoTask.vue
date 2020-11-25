@@ -16,7 +16,7 @@
         data() {
             return {
                 miniTaskId: null,
-                task: null,
+                task: {},
                 problemList: [],
             }
         },
@@ -65,6 +65,7 @@
             },
             timeIsOut() {
                 fun.timeOut(this.miniTaskId)
+                this.$router.push({name: 'taskView', params: {task: this.task}})
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container v-if="data">
         <el-header>
             <div style="margin:5px">第{{currentPage}}题.{{data[currentPage-1].description}}</div>
             <div v-if="data[currentPage-1].type==='choice'">
@@ -51,7 +51,7 @@
                         <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
                     </el-row>
                     <el-row>
-                        <Timer :maxtime="maxTime" ref="headerChild" @timeIsOut="timeIsOut"/>
+                        <Timer :maxTime="maxTime" ref="headerChild" @timeIsOut="timeIsOut"/>
                     </el-row>
                 </el-col>
             </el-container>
@@ -71,7 +71,7 @@
             data: {
                 type: Array,
                 default: () => {
-                    return [{
+                    return [{},{
                         description: "",
                         type: "",
                         choice: [""],
@@ -94,7 +94,7 @@
                 answer: [],
             }
         },
-        created() {
+        mounted() {
             if (this.isTimer)
                 this.$refs.headerChild.start()
         },
@@ -111,6 +111,7 @@
                 }
             },
             timeIsOut() {
+                this.$message.error("超时啦！")
                 this.$emit("timeIsOut")
             }
         },
