@@ -2,6 +2,8 @@
     <el-container v-if="data">
         <el-header>
             <div style="margin:5px">第{{currentPage}}题.{{data[currentPage-1].description}}</div>
+        </el-header>
+        <el-main>
             <div v-if="data[currentPage-1].type==='choice'">
                 <el-radio-group v-model="answer[currentPage-1]">
                     <div :key=item v-for="item in data[currentPage-1].choice">
@@ -13,8 +15,6 @@
                     </div>
                 </el-radio-group>
             </div>
-        </el-header>
-        <el-main>
             <div v-if="data[currentPage-1].type==='completion'">
                 <el-input clearable
                           placeholder="请输入答案"
@@ -24,7 +24,7 @@
             <div v-if="data[currentPage-1].type==='photo-judge'">
                 <el-row>
                     <el-col :span="12">
-                        <el-image :src="data[currentPage-1].imageUrl" style="max-height: 500px" fit="contain"/>
+                        <el-image :src="data[currentPage-1].imageUrl" fit="contain" style="max-height: 500px"/>
                     </el-col>
                     <el-col :span="12">
                         <el-radio-group v-model="answer[currentPage-1]">
@@ -51,7 +51,7 @@
                         <el-button @click="submit" v-if="currentPage===data.length">提交</el-button>
                     </el-row>
                     <el-row>
-                        <Timer :maxTime="maxTime" ref="headerChild" @timeIsOut="timeIsOut"/>
+                        <Timer :maxTime="maxTime" @timeIsOut="timeIsOut" ref="headerChild"/>
                     </el-row>
                 </el-col>
             </el-container>
@@ -71,7 +71,7 @@
             data: {
                 type: Array,
                 default: () => {
-                    return [{},{
+                    return [{}, {
                         description: "",
                         type: "",
                         choice: [""],
