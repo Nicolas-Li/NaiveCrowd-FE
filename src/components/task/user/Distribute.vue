@@ -11,7 +11,7 @@
             <el-col :span="8"><br/></el-col>
         </el-row>
         <div>
-            <el-row>
+            <el-row v-if="task.id !== null">
                 <el-col :span="8">
                     <el-image :src="task.cover"
                               fit="cover" style="max-width: 300px"
@@ -67,6 +67,7 @@
         methods: {
             getTask() {
                 this.miniTaskId = null
+                this.task.id = null
                 fun.distributeMiniTask().then(res => {
                     let data = res.data
                     if (data.type === "failed") {
