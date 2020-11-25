@@ -1,30 +1,33 @@
 <template>
     <div>
         <el-row>
-            <el-col :span="12">
-                <el-button @click="getTask">换一个任务</el-button>
+            <el-col :span="8"><br/></el-col>
+            <el-col :span="4">
+                <el-button @click="getTask" type="primary">换一个任务</el-button>
             </el-col>
-            <el-col :span="12">
-                <el-button @click="getMiniTaskByTask" v-if="miniTaskId !== null">领取任务</el-button>
+            <el-col :span="4">
+                <el-button @click="getMiniTaskByTask" type="success" v-if="miniTaskId !== null">领取任务</el-button>
             </el-col>
+            <el-col :span="8"><br/></el-col>
         </el-row>
-        <el-row>
-            <el-col :span="8">
-                <el-image :src="task.cover"
-                          fit="cover" style="max-width: 300px"
-                          v-if="task.cover"/>
-            </el-col>
-            <el-col :span="16">
-                <h1>{{ task.title }}</h1>
-                <p>任务介绍:{{ task.intro }}</p>
-                <p>小任务题目数量:{{ task.num }}</p>
-                <p>截止日期:{{ showDate }}</p>
-            </el-col>
-        </el-row>
-        <el-divider/>
-        <DoTaskTemplate :data="problemList" :isTimer="true" :maxtime="task.doTime"
-                        @onSubmit="submitAnswer"
-                        v-if="miniTaskId !== null"/>
+        <div v-if="miniTaskId !== null">
+            <el-row>
+                <el-col :span="8">
+                    <el-image :src="task.cover"
+                              fit="cover" style="max-width: 300px"
+                              v-if="task.cover"/>
+                </el-col>
+                <el-col :span="16">
+                    <h1>{{ task.title }}</h1>
+                    <p>任务介绍:{{ task.intro }}</p>
+                    <p>小任务题目数量:{{ task.num }}</p>
+                    <p>截止日期:{{ showDate }}</p>
+                </el-col>
+            </el-row>
+            <el-divider/>
+            <DoTaskTemplate :data="problemList" :isTimer="true" :maxTime="task.doTime"
+                            @onSubmit="submitAnswer"/>
+        </div>
     </div>
 </template>
 

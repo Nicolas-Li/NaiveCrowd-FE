@@ -11,7 +11,7 @@
                     <div align='left'>题目类型：{{ type }}</div>
                 </el-col>
                 <el-col :span="6">
-                    <div align='left'>做题时间：{{ task.dotime }}s</div>
+                    <div align='left'>做题时间：{{ task.doTime }}s</div>
                 </el-col>
             </el-row>
             <el-row :gutter="20">

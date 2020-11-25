@@ -63,8 +63,8 @@
             resetMaxTime(maxT) {
                 this.maxHour = 0
                 this.maxMin = 0
-                this.maxSec = 0
                 this.maxSec = maxT
+                //todo
                 while (this.maxSec >= 60) {
                     this.maxSec -= 60
                     this.maxMin = this.maxMin + 1

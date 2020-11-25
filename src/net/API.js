@@ -92,6 +92,10 @@ const API = {
         path: "/api/check/continuerelease",
         method: "post"
     },
+    ANSWER_PROGRESS: {
+        path: "/api/check/answerprogress",
+        method: "post"
+    },
     AUTO_CHECK: {
         path: "/api/task/autochecktask",
         method: "post"

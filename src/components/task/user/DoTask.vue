@@ -1,5 +1,5 @@
 <template>
-    <DoTaskTemplate :data="problemList" :maxtime="miniTasksTime" :isTimer="true"
+    <DoTaskTemplate :data="problemList" :maxTime="task.doTime" :isTimer="true"
                     @onSubmit="submitAnswer"
                     @timeIsOut="timeIsOut"/>
 </template>
@@ -16,9 +16,8 @@
         data() {
             return {
                 miniTaskId: null,
-                task: null,
+                task: {},
                 problemList: [],
-                miniTasksTime:0,
             }
         },
         mounted: function () {
@@ -32,19 +31,6 @@
                             this.$message.error(data.message)
                         } else {
                             this.problemList = data.data
-                        }
-                    }).catch(err => {
-                    this.$message.error(err.toString())
-                })
-                fun.getInfoOfTask(this.miniTaskId)
-                    .then(res => {
-                        let data = res.data
-                        if (data.type === "failed") {
-                            this.$message.error(data.message)
-                        } else {
-                            console.log(data)
-                            this.miniTasksTime = data.dotime
-                            console.log(this.miniTasksTime)
                         }
                     }).catch(err => {
                     this.$message.error(err.toString())
@@ -79,6 +65,7 @@
             },
             timeIsOut() {
                 fun.timeOut(this.miniTaskId)
+                this.$router.push({name: 'taskView', params: {task: this.task}})
             }
         }
     }
