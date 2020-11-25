@@ -72,6 +72,9 @@ export default {
     async continueRelease(id) {
         return await axios.post(API.CONTINUE_RELEASE.path, { id })
     },
+    async getAnswerProgress(id) {
+        return await axios.post(API.ANSWER_PROGRESS.path, { id })
+    },
     async autoCheck(id) {
         return await axios.post(API.AUTO_CHECK.path, { id })
     },
