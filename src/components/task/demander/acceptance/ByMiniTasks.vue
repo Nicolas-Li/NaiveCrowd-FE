@@ -169,6 +169,7 @@
                 })
             },
             refuseAnswer() {
+                this.answerDrawerVisible = false
                 fun.refuseAnswer(this.answerId)
                     .then(res => {
                         let data = res.data
