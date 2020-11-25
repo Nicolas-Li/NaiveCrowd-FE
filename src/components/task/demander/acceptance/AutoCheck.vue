@@ -90,6 +90,7 @@
                         let data = res.data
                         if (data.type === "success") {
                             this.$message.success(data.message)
+                            this.$emit("refuse")
                         } else if (data.type === "failed") {
                             this.$message.error(data.message)
                         }

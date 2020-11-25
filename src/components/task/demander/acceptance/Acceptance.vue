@@ -39,8 +39,8 @@
             </el-menu>
         </el-header>
         <el-main>
-            <ByMiniTasks :task="task" v-if="currentIndex === 1"/>
-            <AutoCheck :task="task" v-if="currentIndex === 3"/>
+            <ByMiniTasks :task="task" v-if="currentIndex === 1" @refuse="getAnswerProgress"/>
+            <AutoCheck :task="task" v-if="currentIndex === 3" @refuse="getAnswerProgress"/>
         </el-main>
     </el-container>
 </template>
