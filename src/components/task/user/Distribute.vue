@@ -6,11 +6,11 @@
                 <el-button @click="getTask" type="primary">换一个任务</el-button>
             </el-col>
             <el-col :span="4">
-                <el-button @click="getMiniTaskByTask" type="success" v-if="miniTaskId !== null">领取任务</el-button>
+                <el-button @click="getMiniTaskByTask" type="success" v-if="miniTaskId === null">领取任务</el-button>
             </el-col>
             <el-col :span="8"><br/></el-col>
         </el-row>
-        <div v-if="miniTaskId !== null">
+        <div>
             <el-row>
                 <el-col :span="8">
                     <el-image :src="task.cover"
@@ -26,6 +26,7 @@
             </el-row>
             <el-divider/>
             <DoTaskTemplate :data="problemList" :isTimer="true" :maxTime="task.doTime"
+                            v-if="miniTaskId !== null"
                             @onSubmit="submitAnswer"/>
         </div>
     </div>
@@ -124,6 +125,8 @@
                     this.$message.error(err.toString())
                 })
             },
+        },
+        computed: {
             showDate() {
                 let t = new Date()
                 t.setTime(this.task.time)
