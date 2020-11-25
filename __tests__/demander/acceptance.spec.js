@@ -24,7 +24,7 @@ describe('Acceptance',()=>{
         }
     })
     wrapper.vm.continueRelease()
-    wrapper.vm.autoCheck()
+    wrapper.vm.getAnswerProgress()
 
     it('money',async()=>{
         axios.post.mockResolvedValue({
@@ -36,7 +36,7 @@ describe('Acceptance',()=>{
         wrapper.vm.assertTaskId()
         wrapper.vm.settleTask()
         wrapper.vm.continueRelease()
-        wrapper.vm.autoCheck()
+        wrapper.vm.getAnswerProgress()
         axios.post.mockResolvedValue({
             data:{
                 type:'failed',
@@ -45,7 +45,7 @@ describe('Acceptance',()=>{
         })
         wrapper.vm.settleTask()
         wrapper.vm.continueRelease()
-        wrapper.vm.autoCheck()
+        wrapper.vm.getAnswerProgress()
         axios.post.mockResolvedValue({
             data:{
                 type:'f',
@@ -54,7 +54,7 @@ describe('Acceptance',()=>{
         })
         wrapper.vm.settleTask()
         wrapper.vm.continueRelease()
-        wrapper.vm.autoCheck()
+        wrapper.vm.getAnswerProgress()
     })
 
 

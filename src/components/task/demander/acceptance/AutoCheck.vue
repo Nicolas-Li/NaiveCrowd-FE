@@ -76,9 +76,9 @@
                     if (data.type === "failed") {
                         this.$message.error(data.message)
                     } else if (data.type === "success") {
-                        this.$message.success("自动拒绝了" + data.errAnswerList.length + "份答案")
                         this.errAnswerList = data.errAnswerList
                         this.warnAnswerList = data.warnAnswerList
+                        this.$message.success("自动拒绝了" + data.errAnswerList.length + "份答案")
                     }
                 }).catch(err => {
                     this.$message.error(err.toString())
