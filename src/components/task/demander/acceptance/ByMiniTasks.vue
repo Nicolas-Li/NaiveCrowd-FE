@@ -2,9 +2,9 @@
     <el-main>
         <el-button @click="drawerVisible=!drawerVisible">{{ drawerVisible ? '关闭' : '打开'}}任务列表</el-button>
         <el-drawer
-                title="小任务列表"
                 :visible.sync="drawerVisible"
-                direction="ltr">
+                direction="ltr"
+                title="小任务列表">
             <i :key="miniTasksId" v-for="(miniTasksId, index) in miniTasksIdList">
                 <el-button @click="seeAnswersOfUsers(miniTasksId, index)" class="singleButton"
                            icon="el-icon-edit"
@@ -17,7 +17,7 @@
         </el-drawer>
         <el-row>
             <el-col :span="12">
-                <el-card v-for="problem in problemList" :key="problem.description">
+                <el-card :key="problem.description" v-for="problem in problemList">
                     <div slot="header">
                         {{ problem.description }}
                     </div>
@@ -28,7 +28,7 @@
                         {{ problem.choice }}
                     </div>
                     <div>
-                        <el-image :src="problem.imageUrl" style="max-height: 300px" fit="contain"/>
+                        <el-image :src="problem.imageUrl" fit="contain" style="max-height: 300px"/>
                     </div>
                 </el-card>
             </el-col>
@@ -36,9 +36,7 @@
                 <i :key="answerId" v-for="(answerId, index) in answersOfUsersIdList">
                     <el-button @click="seeAnswersOfUser(answerId)" class="singleButton"
                                icon="el-icon-edit"
-                               plain
-                               round
-                               type="primary">
+                               plain round type="primary">
                         用户答案{{ normalIndex(answersOfUsersIdList.length, index) }}
                     </el-button>
                 </i>
@@ -67,7 +65,7 @@
                     <div>
                         做了{{ userInfo.answerNum }}份关于该任务的小任务
                     </div>
-                    <el-card v-for="content in contentList" :key="content.content">
+                    <el-card :key="content.content" v-for="content in contentList">
                         {{ content }}
                     </el-card>
                 </el-drawer>
@@ -113,7 +111,7 @@
                 }],
             }
         },
-        mounted: function() {
+        mounted: function () {
             this.seeMiniTasksOfTask()
         },
         methods: {
@@ -156,14 +154,15 @@
                 fun.getProblemsAndUsers(answerId)
                     .then(res => {
                         let data = res.data
-                        if (data.type === "success") {
+                        console.log(data)
+                        if (data.type === "failed") {
+                            this.$message.error(data.message)
+                        } else if (data.type === "success") {
                             this.answerDrawerVisible = true
                             this.answerId = answerId
                             this.deleted = data.deleted
                             this.userInfo = data.userInfo
                             this.contentList = data.contentList
-                        } else if (data.type === "failed") {
-                            this.$message.error(data.message)
                         }
                     }).catch(err => {
                     this.$message.error(err.toString())
@@ -173,10 +172,11 @@
                 fun.refuseAnswer(this.answerId)
                     .then(res => {
                         let data = res.data
-                        if (data.type === "success") {
-                            this.$message.success(data.message)
-                        } else if (data.type === "failed") {
+                        if (data.type === "failed") {
                             this.$message.error(data.message)
+                        } else if (data.type === "success") {
+                            this.$message.success(data.message)
+                            this.$emit("refuse")
                         }
                     }).catch(err => {
                     this.$message.error(err.toString())
@@ -187,7 +187,7 @@
 </script>
 
 <style scoped>
-.singleButton {
-    margin: 2px 3px 3px 2px;
-}
+    .singleButton {
+        margin: 2px 3px 3px 2px;
+    }
 </style>

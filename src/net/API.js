@@ -92,6 +92,10 @@ const API = {
         path: "/api/check/continuerelease",
         method: "post"
     },
+    ANSWER_PROGRESS: {
+        path: "/api/check/answerprogress",
+        method: "post"
+    },
     AUTO_CHECK: {
         path: "/api/task/autochecktask",
         method: "post"
@@ -104,8 +108,8 @@ const API = {
         path: "/api/task/exporttask",
         method: "post"
     },
-    DISTRIBUTE_MINITASK: {
-        path: "/api/task/distributeminitask",
+    DISTRIBUTE_TASK: {
+        path: "/api/task/distributetask",
         method: "get"
     },
     GET_PROBLEMS_OF_MINITASK: {
