@@ -27,7 +27,7 @@
                     <div>
                         {{ problem.choice }}
                     </div>
-                    <div>
+                    <div v-if="problem.type === 'photo-judge'">
                         <el-image :src="problem.imageUrl" fit="contain" style="max-height: 300px"/>
                     </div>
                 </el-card>
