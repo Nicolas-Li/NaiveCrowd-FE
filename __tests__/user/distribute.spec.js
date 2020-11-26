@@ -77,7 +77,6 @@ describe('Distribute',()=>{
         wrapper.vm.getTask()
         wrapper.vm.getMiniTaskByTask()
         wrapper.vm.submitAnswer('')
-        wrapper.vm.showDate
     })
     
 })
